@@ -1,7 +1,7 @@
 # SPGP_TermProject
  스마트폰 게임 프로그래밍 텀 프로젝트
 
-프로젝트 이름 : Equipter
+프로젝트 이름 : 장비 수집가(equipment collector)
 
 게임 컨셉 : 
     - 턴제 수집형 RPG 게임
@@ -38,3 +38,5 @@
     7주차 - 캐릭터와 무기 추가
     8주차 - 몬스터와 탐험지역 추가
     9주차 - 디버그 및 최종 테스트
+
+1차 발표 링크 : https://youtu.be/sNvB-zUBuz4
