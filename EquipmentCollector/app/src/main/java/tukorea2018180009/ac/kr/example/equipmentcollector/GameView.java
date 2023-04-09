@@ -10,7 +10,7 @@ import android.view.Choreographer;
 import android.view.MotionEvent;
 import android.view.View;
 
-import tukorea2018180009.ac.kr.example.equipmentcollector.Metrics;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 
 /**
  * TODO: document your custom view class.

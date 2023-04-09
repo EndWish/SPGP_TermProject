@@ -54,7 +54,8 @@ public class Sprite extends GameObject{
         canvas.restore();
     }
 
-    void actionDownReaction(float mx, float my){
+
+    public void actionDownReaction(float mx, float my){
         if (BuildConfig.DEBUG) {
             Log.d(TAG,"클릭 되었습니다.");
         }
