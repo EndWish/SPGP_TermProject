@@ -27,17 +27,21 @@ public class BaseScene {
     }
 
     public void update(float deltaTime) {
+        objects.removeIf(child -> child.isDeleted());
         for (GameObject object : objects) {
+            if(object.isDeleted())
+                continue;
             object.update(deltaTime);
         }
     }
 
     public void draw(Canvas canvas) {
         for (GameObject object : objects) {
+            if(object.isDeleted())
+                continue;
             object.draw(canvas);
         }
     }
-
 
     public boolean onTouchEvent(MotionEvent event) {
         return false;
