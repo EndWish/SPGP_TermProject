@@ -36,6 +36,8 @@
 ### 1주차 - 리소스 수집  
 -------------------------
 ### 2주차 - 클래스다이어 그램을 작성하고 설계하기  
+링크 : https://drive.google.com/file/d/1hy8AKG66e9_fdKM2iuScWqOGM9-6YYXr/view?usp=sharing  
+![image](https://user-images.githubusercontent.com/90082921/230753916-d48dd56a-f54e-455e-a9d6-032b73a03740.png)  
 -------------------------
 ### 3주차 - 타이틀 화면 및 메인화면에 필요한 버튼 구성, 캐릭터와 장비 인벤토리 창 구현  
 -------------------------
