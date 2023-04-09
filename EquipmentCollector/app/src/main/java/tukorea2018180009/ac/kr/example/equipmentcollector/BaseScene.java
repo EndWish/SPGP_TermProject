@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class BaseScene {
     private static ArrayList<BaseScene> stack = new ArrayList<>();
 
-    private ArrayList<IGameObject> objects = new ArrayList<>();
+    private ArrayList<GameObject> objects = new ArrayList<>();
 
     public static BaseScene getTopScene() {
         int top = stack.size() - 1;
@@ -21,19 +21,19 @@ public class BaseScene {
         return stack.size();
     }
 
-    public int add(IGameObject object) {
+    public int add(GameObject object) {
         objects.add(object);
         return objects.size();
     }
 
     public void update(float deltaTime) {
-        for (IGameObject object : objects) {
+        for (GameObject object : objects) {
             object.update(deltaTime);
         }
     }
 
     public void draw(Canvas canvas) {
-        for (IGameObject object : objects) {
+        for (GameObject object : objects) {
             object.draw(canvas);
         }
     }

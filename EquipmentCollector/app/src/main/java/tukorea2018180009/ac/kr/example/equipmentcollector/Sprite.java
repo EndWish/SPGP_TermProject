@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 
-public class Sprite implements IGameObject {
+public class Sprite extends GameObject{
     protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
     protected float x, y, width, height, pivotx, pivoty;
