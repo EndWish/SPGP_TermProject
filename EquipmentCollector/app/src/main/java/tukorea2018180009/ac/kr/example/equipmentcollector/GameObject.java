@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class GameObject {
-    private boolean deleted;
-    private ArrayList<GameObject> children = new ArrayList<GameObject>();
+    protected boolean deleted;
+    protected ArrayList<GameObject> children = new ArrayList<GameObject>();
 
     GameObject(){
         deleted = false;

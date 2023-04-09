@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class BaseScene {
     private static ArrayList<BaseScene> stack = new ArrayList<>();
 
-    private ArrayList<GameObject> objects = new ArrayList<>();
+    protected ArrayList<GameObject> gameObjects = new ArrayList<>();
 
     public static BaseScene getTopScene() {
         int top = stack.size() - 1;
@@ -22,13 +22,13 @@ public class BaseScene {
     }
 
     public int add(GameObject object) {
-        objects.add(object);
-        return objects.size();
+        gameObjects.add(object);
+        return gameObjects.size();
     }
 
     public void update(float deltaTime) {
-        objects.removeIf(child -> child.isDeleted());
-        for (GameObject object : objects) {
+        gameObjects.removeIf(child -> child.isDeleted());
+        for (GameObject object : gameObjects) {
             if(object.isDeleted())
                 continue;
             object.update(deltaTime);
@@ -36,7 +36,7 @@ public class BaseScene {
     }
 
     public void draw(Canvas canvas) {
-        for (GameObject object : objects) {
+        for (GameObject object : gameObjects) {
             if(object.isDeleted())
                 continue;
             object.draw(canvas);
