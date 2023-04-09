@@ -7,7 +7,14 @@ import android.graphics.Paint;
 public class TitleScene extends BaseScene{
 
     public TitleScene() {
-        Sprite backgroundObj = new Sprite(R.mipmap.jpg_village_background, 0,0,16,9,0,0);
+        Sprite backgroundObj = new Sprite
+                .Builder(R.mipmap.jpg_village_background, 1.f,1.f,16.f,9.f)
+                .setImgFlip(false, true)
+                .setFlip(false, true)
+                .setPivot(0, 0)
+                .setRotation(30)
+                .setScale(1.5f, 1.5f)
+                .build();
         add(backgroundObj);
     }
 
