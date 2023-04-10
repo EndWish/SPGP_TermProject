@@ -4,15 +4,33 @@ import android.graphics.Bitmap;
 
 public abstract class Adventurer {
 
-    protected Status basicStats, extraBasicStats, coefficientStats, totalStats;
+    protected Status basicStatus, extraBasicStatus, coefficientStatus, totalStatus;
 
     //protected ArrayList<Skill> skills;
     //protected ArrayList<EuipmentItem> equipments;
     //protected ArrayList<StateChange> stateChanges;
 
-    public abstract String GetName();
-    public abstract Bitmap GetIcon();
-    public abstract Bitmap GetProfile();
+    public abstract String getName();
+    public abstract Bitmap getIcon();
+    public abstract Bitmap getProfile();
+
+    public Adventurer() {
+        basicStatus = new Status();
+        extraBasicStatus = new Status();
+        coefficientStatus = new Status();
+        totalStatus = new Status();
+
+        initBasicStatus();
+    }
+
+    protected abstract void initBasicStatus();
+
+    public void calculateTotalStatus(){
+        totalStatus.set(0);
+        totalStatus.add(basicStatus);
+        totalStatus.add(extraBasicStatus);
+        totalStatus.mul(coefficientStatus);
+    }
 
     //public void AdvanceTick();
     //public float GetMaximumGauge();

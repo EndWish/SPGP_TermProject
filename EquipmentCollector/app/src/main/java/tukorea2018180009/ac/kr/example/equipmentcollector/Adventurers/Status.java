@@ -13,6 +13,9 @@ public class Status {
     public float[] status = new float[Type.values().length];
 
     // 값을 초기화하는 함수
+    public void set(Type type, float value){
+        this.status[type.ordinal()] = value;
+    }
     public void set(float value){
         for(int i = 0; i < Type.values().length; ++i)
             this.status[i] = value;
@@ -20,6 +23,10 @@ public class Status {
     public void set(Status other){
         for(int i = 0; i < Type.values().length; ++i)
             this.status[i] = other.status[i];
+    }
+
+    public float get(Type type){
+        return this.status[type.ordinal()];
     }
 
     // 값을 더하는 함수
