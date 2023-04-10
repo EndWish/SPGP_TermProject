@@ -2,7 +2,9 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers;
 
 import android.graphics.Bitmap;
 
-public abstract class Adventurer {
+import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
+
+public abstract class Adventurer implements IIcon {
 
     protected Status basicStatus, extraBasicStatus, coefficientStatus, totalStatus;
 
@@ -29,7 +31,7 @@ public abstract class Adventurer {
         totalStatus.set(0);
         totalStatus.add(basicStatus);
         totalStatus.add(extraBasicStatus);
-        totalStatus.mul(coefficientStatus);
+        totalStatus.add(coefficientStatus);
     }
 
     //public void AdvanceTick();

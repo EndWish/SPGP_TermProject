@@ -48,7 +48,8 @@ public class Sprite extends GameObject{
         canvas.scale(sx * (flipx ? -1 : 1), sy * (flipy ? -1 : 1));   // 이미지를 모델좌표계에서 확대/축소 및 반전 시키낟.
         canvas.scale((imgFlipx ? -1 : 1), (imgFlipy ? -1 : 1), width / 2 - px, height / 2 - py);    // 이미지의 중심을 기준으로 이미지를 반전시킨다.
 
-        canvas.drawBitmap(bitmap, null, dstRect, null);
+        if(bitmap != null)
+            canvas.drawBitmap(bitmap, null, dstRect, null);
 
         super.draw((canvas));
         canvas.restore();
@@ -132,14 +133,18 @@ public class Sprite extends GameObject{
         protected boolean flipx = false, flipy = false;
         protected boolean imgFlipx = false, imgFlipy = false;
 
-        public Builder(int bitmapResId, float cx, float cy, float width, float height){
-            if(bitmapResId != 0)
-                this.bitmap = BitmapPool.get(bitmapResId);
+        public Builder(Bitmap bitmap, float cx, float cy, float width, float height){
+            if(bitmap != null)
+                this.bitmap = bitmap;
             this.x = cx;
             this.y = cy;
             this.width = width;
             this.height = height;
         }
+        public Builder(int bitmapResId, float cx, float cy, float width, float height) {
+            this(bitmapResId != 0 ? BitmapPool.get(bitmapResId) : null, cx, cy, width, height);
+        }
+
         public Builder setImgFlip(boolean fx, boolean fy){
             this.imgFlipx = fx;
             this.imgFlipy = fy;
