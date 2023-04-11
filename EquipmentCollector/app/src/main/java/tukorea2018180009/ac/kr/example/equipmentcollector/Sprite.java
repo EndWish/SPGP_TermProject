@@ -17,9 +17,7 @@ public class Sprite extends GameObject{
     protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
 
-    protected float x, y, width, height, px, py;
-    protected float rotation; // degree (x+ 쪽이 앞쪽이다)
-    protected float sx, sy;
+    protected float width, height, px, py;
     protected boolean imgFlipx, imgFlipy;   // 이미지만 반전시키고 그려지는 위치는 바뀌지 않는다.
     protected boolean flipx, flipy;         // 좌표계가 반전된다.
 
@@ -39,22 +37,19 @@ public class Sprite extends GameObject{
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        canvas.save();
+    protected void draw(Canvas canvas) {
+        super.draw((canvas));
+        if(bitmap != null)
+            canvas.drawBitmap(bitmap, null, dstRect, null);
+    }
 
-        // TRS
+    @Override
+    protected void TRS(Canvas canvas){
         canvas.translate(x, y);
         canvas.rotate(rotation);  // 이미지를 모델좌표계에서 회전시킨다.
         canvas.scale(sx * (flipx ? -1 : 1), sy * (flipy ? -1 : 1));   // 이미지를 모델좌표계에서 확대/축소 및 반전 시키낟.
         canvas.scale((imgFlipx ? -1 : 1), (imgFlipy ? -1 : 1), width / 2 - px, height / 2 - py);    // 이미지의 중심을 기준으로 이미지를 반전시킨다.
-
-        if(bitmap != null)
-            canvas.drawBitmap(bitmap, null, dstRect, null);
-
-        super.draw((canvas));
-        canvas.restore();
     }
-
 
     public void actionDownReaction(float mx, float my){
         if (BuildConfig.DEBUG) {
@@ -104,16 +99,12 @@ public class Sprite extends GameObject{
     }
 
     public Sprite(Builder builder){
+        super(builder.x, builder.y, builder.sx, builder.sy, builder.rotation);
         bitmap = builder.bitmap;
-        x = builder.x;
-        y = builder.y;
         width = builder.width;
         height = builder.height;
         px = builder.px;
         py = builder.py;
-        rotation = builder.rotation;
-        sx = builder.sx;
-        sy = builder.sy;
         imgFlipx = builder.imgFlipx;
         imgFlipy = builder.imgFlipy;
         flipx = builder.flipx;

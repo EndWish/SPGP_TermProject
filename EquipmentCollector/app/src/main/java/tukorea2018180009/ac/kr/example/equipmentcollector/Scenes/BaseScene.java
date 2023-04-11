@@ -14,6 +14,7 @@ public class BaseScene {
     private static ArrayList<BaseScene> stack = new ArrayList<>();
 
     protected ArrayList<GameObject> gameObjects = new ArrayList<>();
+    protected int buttonLayer = 0;
 
     public static BaseScene getTopScene() {
         int top = stack.size() - 1;
@@ -39,12 +40,11 @@ public class BaseScene {
             object.update(deltaTime);
         }
     }
-
     public void draw(Canvas canvas) {
         for (GameObject object : gameObjects) {
             if(object.isDeleted())
                 continue;
-            object.draw(canvas);
+            object.drawAll(canvas);
         }
     }
 
@@ -73,4 +73,16 @@ public class BaseScene {
 
         return false;
     }
+
+    // getter, setter
+    public int getButtonLayer(){
+        return buttonLayer;
+    }
+    public void addButtonLayer(){
+        ++buttonLayer;
+    }
+    public void subButtonLayer(){
+        --buttonLayer;
+    }
 }
+
