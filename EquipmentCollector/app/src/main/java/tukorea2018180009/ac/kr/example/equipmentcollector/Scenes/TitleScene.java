@@ -7,7 +7,9 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 
 public class TitleScene extends BaseScene{
 
-    public TitleScene() {
+    @Override
+    public void init() {
+        super.init();
         Sprite backgroundObj = new Sprite
                 .Builder(R.mipmap.jpg_village_background, 1.f,1.f,16.f,9.f)
                 .setImgFlip(false, true)

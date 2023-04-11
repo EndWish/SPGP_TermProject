@@ -8,7 +8,9 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 
 public class VillageScene extends BaseScene{
 
-    public VillageScene() {
+    @Override
+    public void init() {
+        super.init();
         Sprite backgroundObj = new Sprite
                 .Builder(R.mipmap.jpg_village_background, 0.f,0.f,16.f,9.f)
                 .build();
@@ -16,7 +18,6 @@ public class VillageScene extends BaseScene{
 
         AdventurerInventoryButton adventurerInventoryButton = new AdventurerInventoryButton(1.5f, 7.5f);
         add(adventurerInventoryButton);
-
     }
 
     @Override

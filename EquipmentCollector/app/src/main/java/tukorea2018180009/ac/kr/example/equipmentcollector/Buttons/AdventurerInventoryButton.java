@@ -6,7 +6,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
-public class AdventurerInventoryButton extends Sprite {
+public class AdventurerInventoryButton extends SpriteButton {
     private static final String TAG = AdventurerInventoryButton.class.getSimpleName();
 
     public AdventurerInventoryButton(float cx, float cy){
@@ -16,12 +16,11 @@ public class AdventurerInventoryButton extends Sprite {
     }
 
     @Override
-    public void actionDownReaction(float mx, float my){
-        super.actionDownReaction(mx, my);
+    public void clickDown() {
+        super.clickDown();
         // 용사 리스트들을 출력하는 inventory를 생성한다.
-        SelectInventory<Adventurer> newInventory = new SelectInventory<Adventurer>(UserInfo.getInstance().getAdventurers(),
-                1, 1, 14, 7, 5);
-        BaseScene.getTopScene().add(newInventory);  // handler를 이용해서 추가하자.
+        SelectInventory<Adventurer> newInventory  = new SelectInventory<Adventurer>(UserInfo.getInstance().getAdventurers(), 1, 1, 14, 7, 5);
+        BaseScene.getTopScene().add(newInventory);
     }
 
 }

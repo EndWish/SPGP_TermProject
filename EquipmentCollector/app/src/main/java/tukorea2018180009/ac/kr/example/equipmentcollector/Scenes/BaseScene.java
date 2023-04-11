@@ -1,20 +1,28 @@
 package tukorea2018180009.ac.kr.example.equipmentcollector.Scenes;
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.Buttons.SpriteButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
+import tukorea2018180009.ac.kr.example.equipmentcollector.GameView;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Metrics;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 
 public class BaseScene {
+    private static final String TAG = BaseScene.class.getSimpleName();;
+
     private static ArrayList<BaseScene> stack = new ArrayList<>();
 
     protected ArrayList<GameObject> gameObjects = new ArrayList<>();
+    protected SpriteButton buttonOnMouse, clickedButton;
     protected int buttonLayer = 0;
+    protected Canvas canvasForButton = new Canvas();
+
 
     public static BaseScene getTopScene() {
         int top = stack.size() - 1;
@@ -22,8 +30,11 @@ public class BaseScene {
         return stack.get(top);
     }
 
+    public void init() { }
+
     public int pushScene() {
         stack.add(this);
+        init();
         return stack.size();
     }
 
@@ -48,27 +59,42 @@ public class BaseScene {
         }
     }
 
+    public void getButtonOnMouse(float mx, float my){
+        buttonOnMouse = null;
+        for (GameObject gameObject : gameObjects) {
+            if(gameObject.isDeleted())
+                continue;
+            buttonOnMouse = gameObject.getButtonOnMouse(mx, my, canvasForButton);
+
+            if(buttonOnMouse != null)
+                return;
+        }
+    }
+
     public boolean onTouchEvent(MotionEvent event) {
+
         int action = event.getAction();
+
+        float mx = Metrics.toGameX(event.getX());
+        float my = Metrics.toGameY(event.getY());
+        getButtonOnMouse(mx, my);
+
         switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                float mx = Metrics.toGameX(event.getX());
-                float my = Metrics.toGameY(event.getY());
-
-                // 가장 마지막 자식이 가장 앞에 그려지기 때문에 클릭되었는지 판단은 반대순으로 한다.
-                ListIterator<GameObject> reverseIter = gameObjects.listIterator(gameObjects.size());
-                while (reverseIter.hasPrevious()) {
-                    GameObject gameObject = reverseIter.previous();
-                    if(!gameObject.isDeleted() && gameObject instanceof Sprite) {
-                        Sprite sprite = (Sprite) gameObject;
-                        if (sprite.actionDown(mx, my, new Canvas()))
-                            return true;
-                    }
-                }
-                break;
-
             case MotionEvent.ACTION_MOVE:
-                break;
+                if(clickedButton != null && !clickedButton.isDeleted()){
+                    clickedButton.drag();
+                }
+                return true;
+            case MotionEvent.ACTION_DOWN:
+                if(buttonOnMouse != null && !buttonOnMouse.isDeleted()){
+                    buttonOnMouse.clickDown();
+                }
+                return true;
+            case MotionEvent.ACTION_UP:
+                if(buttonOnMouse != null && !buttonOnMouse.isDeleted()){
+                    buttonOnMouse.clickUp();
+                }
+                return true;
         }
 
         return false;
@@ -84,5 +110,10 @@ public class BaseScene {
     public void subButtonLayer(){
         --buttonLayer;
     }
+
+    public SpriteButton getButtonOnMouse() { return buttonOnMouse;}
+    public SpriteButton getClickedButton() { return clickedButton;}
+    public void setButtonOnMouse(SpriteButton buttonOnMouse) { this.buttonOnMouse = buttonOnMouse;}
+    public void setClickedButton(SpriteButton clickedButton) { this.clickedButton = clickedButton;}
 }
 

@@ -44,58 +44,11 @@ public class Sprite extends GameObject{
     }
 
     @Override
-    protected void TRS(Canvas canvas){
+    protected void TRS(Canvas canvas) {
         canvas.translate(x, y);
         canvas.rotate(rotation);  // 이미지를 모델좌표계에서 회전시킨다.
         canvas.scale(sx * (flipx ? -1 : 1), sy * (flipy ? -1 : 1));   // 이미지를 모델좌표계에서 확대/축소 및 반전 시키낟.
         canvas.scale((imgFlipx ? -1 : 1), (imgFlipy ? -1 : 1), width / 2 - px, height / 2 - py);    // 이미지의 중심을 기준으로 이미지를 반전시킨다.
-    }
-
-    public void actionDownReaction(float mx, float my){
-        if (BuildConfig.DEBUG) {
-            Log.d(TAG,"클릭 되었습니다.");
-        }
-    }
-
-    public boolean actionDown(float mx, float my, Canvas canvas){
-        canvas.save();
-        // TRS
-        canvas.translate(x, y);
-        canvas.rotate(rotation);  // 이미지를 모델좌표계에서 회전시킨다.
-        canvas.scale(sx * (flipx ? -1 : 1), sy * (flipy ? -1 : 1));   // 이미지를 모델좌표계에서 확대/축소 및 반전 시키낟.
-        canvas.scale((imgFlipx ? -1 : 1), (imgFlipy ? -1 : 1), width / 2 - px, height / 2 - py);    // 이미지의 중심을 기준으로 이미지를 반전시킨다.
-
-        float[] mousePoint = { mx, my };
-        Matrix inverseMatrix = new Matrix();
-        canvas.getMatrix().invert(inverseMatrix);
-        inverseMatrix.mapPoints(mousePoint);
-        float nx = mousePoint[0];
-        float ny = mousePoint[1];
-
-        if(dstRect.left <= nx && nx <= dstRect.right && dstRect.top <= ny && ny <= dstRect.bottom) {
-            // 자식이 클릭 되었을 경우
-            // 가장 마지막 자식이 가장 앞에 그려지기 때문에 클릭되었는지 판단은 반대순으로 한다.
-            ListIterator<GameObject> reverseIter = children.listIterator(children.size());
-            while (reverseIter.hasPrevious()) {
-                GameObject gameObject = reverseIter.previous();
-                if(!gameObject.isDeleted() && gameObject instanceof Sprite) {
-                    Sprite sprite = (Sprite) gameObject;
-                    if (sprite.actionDown(mx, my, canvas)){
-                        canvas.restore();
-                        return true;
-                    }
-                }
-            }
-            
-            // 내가 클릭되었을 경우
-            actionDownReaction(mx, my);
-            canvas.restore();
-            return true;
-        }
-        
-        // 클릭되지 않았을 경우
-        canvas.restore();
-        return false;
     }
 
     public Sprite(Builder builder){

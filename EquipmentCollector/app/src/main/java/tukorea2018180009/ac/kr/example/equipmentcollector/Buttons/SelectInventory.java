@@ -7,13 +7,18 @@ import java.util.ArrayList;
 import tukorea2018180009.ac.kr.example.equipmentcollector.BuildConfig;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 
 public class SelectInventory<T extends IIcon> extends Sprite {
     protected T selectedIcon;
 
+    // 생성자
     public SelectInventory(ArrayList<T> icons, float cx, float cy, float width, float height, int column) {
         super(new Sprite.Builder(R.mipmap.jpg_village_background, cx, cy, width, height));
+
+        // 버튼 레이어를 하나 상승시킨다.
+        BaseScene.getTopScene().addButtonLayer();
 
         // SelectButton들을 자식으로 생성
         final float paddingRatio = 0.2f;    // 패딩이 차지할 비율
@@ -28,11 +33,20 @@ public class SelectInventory<T extends IIcon> extends Sprite {
         }
     }
 
+    // 소멸
+    @Override
+    public void setDelete() {
+        BaseScene.getTopScene().subButtonLayer();
+        selectedIcon = null;
+        super.setDelete();
+    }
+
+    // 선택 콜벡 함수
     public void select(T selectedIcon){ this.selectedIcon = selectedIcon; }
     public T getSelectedIcon() { return selectedIcon; }
 
     //////////////////////// SelectInventory에 사용될 버튼 클래스 //////////////////////
-    class SelectButton<T extends IIcon> extends Sprite {
+    class SelectButton<T extends IIcon> extends SpriteButton {
         protected SelectInventory targetInventory;
         protected T myIcon;
 
@@ -43,10 +57,12 @@ public class SelectInventory<T extends IIcon> extends Sprite {
         }
 
         @Override
-        public void actionDownReaction(float mx, float my){
-            super.actionDownReaction(mx, my);
-            if(myIcon != null)
-                targetInventory.select(this.myIcon);
+        public void clickUp() {
+            if(isClickedThis()) {
+                if(myIcon != null)
+                    targetInventory.select(this.myIcon);
+            }
+            super.clickUp();
         }
     }
 
