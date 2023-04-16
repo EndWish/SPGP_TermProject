@@ -28,7 +28,6 @@ public class ArthurAdventurer extends Adventurer{
     @Override
     protected void initBasicStatus() {
         basicStatus.set(Status.Type.hpm, 100);
-        basicStatus.set(Status.Type.hp, basicStatus.get(Status.Type.hpm));
 
         basicStatus.set(Status.Type.essentialSkillSpeed, 2);
         basicStatus.set(Status.Type.normalSkillSpeed, 2);

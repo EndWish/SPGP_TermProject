@@ -1,14 +1,24 @@
 package tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+
 public class Status {
-    public enum Type{
-        hp, hpm,
+    public static enum Type{
+        hpm,
         essentialSkillSpeed, normalSkillSpeed, ultimateSkillSpeed,
         slashPower, piercePower, impactPower,
         magicPower, holyPower, cursedPower,
         slashDefense, pierceDefense, impactDefense,
         magicResistance, holyResistance, cursedResistance,
     }
+    public static final int[] image = new int[] {
+        R.mipmap.png_icon_hp,
+        R.mipmap.png_icon_essential_skill_speed, R.mipmap.png_icon_normal_skill_speed, R.mipmap.png_icon_ultimate_skill_speed,
+        R.mipmap.png_icon_slash, R.mipmap.png_icon_pierce, R.mipmap.png_icon_impact,
+        R.mipmap.png_icon_magic, R.mipmap.png_icon_holy, R.mipmap.png_icon_curse,
+        R.mipmap.png_icon_slash_def, R.mipmap.png_icon_pierce_def, R.mipmap.png_icon_impact_def,
+        R.mipmap.png_icon_magic_def, R.mipmap.png_icon_holy_def, R.mipmap.png_icon_curse_def,
+    };
 
     public float[] status = new float[Type.values().length];
 

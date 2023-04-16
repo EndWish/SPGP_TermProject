@@ -43,4 +43,20 @@ public abstract class Adventurer implements IIcon {
     //public void ResetTotalStats();
     //public void UpdateStats();
 
+    // getter setter
+    public Status getBasicStatus() {
+        return basicStatus;
+    }
+
+    public Status getExtraBasicStatus() {
+        return extraBasicStatus;
+    }
+
+    public Status getCoefficientStatus() {
+        return coefficientStatus;
+    }
+
+    public Status getTotalStatus() {
+        return totalStatus;
+    }
 }
