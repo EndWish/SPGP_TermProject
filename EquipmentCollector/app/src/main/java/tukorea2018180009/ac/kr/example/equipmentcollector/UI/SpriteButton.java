@@ -1,10 +1,8 @@
-package tukorea2018180009.ac.kr.example.equipmentcollector.Buttons;
+package tukorea2018180009.ac.kr.example.equipmentcollector.UI;
 
-import android.util.Config;
 import android.util.Log;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.BuildConfig;
-import tukorea2018180009.ac.kr.example.equipmentcollector.GameView;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 

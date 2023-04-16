@@ -2,7 +2,7 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Scenes;
 
 import android.graphics.Canvas;
 
-import tukorea2018180009.ac.kr.example.equipmentcollector.Buttons.AdventurerInventoryButton;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerInventoryButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 

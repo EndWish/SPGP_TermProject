@@ -65,6 +65,10 @@ public class Sprite extends GameObject{
         fixDstRect();
     }
 
+    public void setBitmap(Bitmap bitmap){
+        this.bitmap = bitmap;
+    }
+
     public static class Builder{
         // 필수 인자.
         protected Bitmap bitmap;

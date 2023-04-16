@@ -1,17 +1,13 @@
 package tukorea2018180009.ac.kr.example.equipmentcollector.Scenes;
 
 import android.graphics.Canvas;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
 
-import tukorea2018180009.ac.kr.example.equipmentcollector.Buttons.SpriteButton;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
-import tukorea2018180009.ac.kr.example.equipmentcollector.GameView;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Metrics;
-import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 
 public class BaseScene {
     private static final String TAG = BaseScene.class.getSimpleName();;

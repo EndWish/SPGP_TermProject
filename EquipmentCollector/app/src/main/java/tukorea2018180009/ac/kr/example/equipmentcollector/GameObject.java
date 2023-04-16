@@ -2,12 +2,10 @@ package tukorea2018180009.ac.kr.example.equipmentcollector;
 
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.icu.text.Edits;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import tukorea2018180009.ac.kr.example.equipmentcollector.Buttons.SpriteButton;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 
 public class GameObject {
     protected boolean deleted;
@@ -132,4 +130,40 @@ public class GameObject {
         return deleted;
     }
 
+    // getter, setter
+
+    public float getX() {
+        return x;
+    }
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public float getY() {
+        return y;
+    }
+    public void setY(float y) {
+        this.y = y;
+    }
+
+    public float getSx() {
+        return sx;
+    }
+    public void setSx(float sx) {
+        this.sx = sx;
+    }
+
+    public float getSy() {
+        return sy;
+    }
+    public void setSy(float sy) {
+        this.sy = sy;
+    }
+
+    public float getRotation() {
+        return rotation;
+    }
+    public void setRotation(float rotation) {
+        this.rotation = rotation;
+    }
 }

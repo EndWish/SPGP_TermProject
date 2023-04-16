@@ -1,10 +1,7 @@
-package tukorea2018180009.ac.kr.example.equipmentcollector.Buttons;
-
-import android.util.Log;
+package tukorea2018180009.ac.kr.example.equipmentcollector.UI;
 
 import java.util.ArrayList;
 
-import tukorea2018180009.ac.kr.example.equipmentcollector.BuildConfig;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
@@ -15,7 +12,7 @@ public class SelectInventory<T extends IIcon> extends Sprite {
 
     // 생성자
     public SelectInventory(ArrayList<T> icons, float cx, float cy, float width, float height, int column) {
-        super(new Sprite.Builder(R.mipmap.jpg_village_background, cx, cy, width, height));
+        super(new Sprite.Builder(R.mipmap.png_black_white_frame_256x256, cx, cy, width, height));
 
         // 버튼 레이어를 하나 상승시킨다.
         BaseScene.getTopScene().addButtonLayer();
@@ -54,6 +51,13 @@ public class SelectInventory<T extends IIcon> extends Sprite {
             super(new Sprite.Builder(icon.getIcon(), cx, cy, width, height));
             this.targetInventory = targetInventory;
             this.myIcon = icon;
+        }
+
+        @Override
+        public void setDelete() {
+            super.setDelete();
+            targetInventory = null;
+            myIcon = null;
         }
 
         @Override
