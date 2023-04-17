@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.SlashSkill;
 
 public class ArthurAdventurer extends Adventurer{
     private static final String name = "Arthur";
@@ -14,12 +15,10 @@ public class ArthurAdventurer extends Adventurer{
     public String getName() {
         return name;
     }
-
     @Override
     public Bitmap getIcon() {
         return icon;
     }
-
     @Override
     public Bitmap getProfile() {
         return profile;
@@ -50,5 +49,10 @@ public class ArthurAdventurer extends Adventurer{
         basicStatus.set(Status.Type.cursedResistance, 30);
 
 
+    }
+
+    @Override
+    protected void initSkills() {
+        skills.add(new SlashSkill());
     }
 }

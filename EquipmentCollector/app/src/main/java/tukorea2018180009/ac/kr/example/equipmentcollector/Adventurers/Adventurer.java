@@ -2,13 +2,19 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
+
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 
 public abstract class Adventurer implements IIcon {
 
-    protected Status basicStatus, extraBasicStatus, coefficientStatus, totalStatus;
+    protected Status basicStatus = new Status();
+    protected Status extraBasicStatus = new Status();
+    protected Status coefficientStatus = new Status();
+    protected Status totalStatus = new Status();
 
-    //protected ArrayList<Skill> skills;
+    protected ArrayList<Skill> skills = new ArrayList<>();
     //protected ArrayList<EuipmentItem> equipments;
     //protected ArrayList<StateChange> stateChanges;
 
@@ -17,15 +23,11 @@ public abstract class Adventurer implements IIcon {
     public abstract Bitmap getProfile();
 
     public Adventurer() {
-        basicStatus = new Status();
-        extraBasicStatus = new Status();
-        coefficientStatus = new Status();
-        totalStatus = new Status();
-
         initBasicStatus();
     }
 
     protected abstract void initBasicStatus();
+    protected abstract void initSkills();
 
     public void calculateTotalStatus(){
         totalStatus.set(0);
@@ -47,15 +49,12 @@ public abstract class Adventurer implements IIcon {
     public Status getBasicStatus() {
         return basicStatus;
     }
-
     public Status getExtraBasicStatus() {
         return extraBasicStatus;
     }
-
     public Status getCoefficientStatus() {
         return coefficientStatus;
     }
-
     public Status getTotalStatus() {
         return totalStatus;
     }
