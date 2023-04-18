@@ -11,7 +11,7 @@ public class TitleScene extends BaseScene{
     public void init() {
         super.init();
         Sprite backgroundObj = new Sprite
-                .Builder(R.mipmap.jpg_village_background, 1.f,1.f,16.f,9.f)
+                .Builder(R.mipmap.jpg_village_background, 1.f,1.f,1600.f,900.f)
                 .setImgFlip(false, true)
                 .setFlip(false, true)
                 .setPivot(0, 0)

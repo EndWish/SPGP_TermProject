@@ -2,6 +2,7 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.UI;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
@@ -18,7 +19,7 @@ public class StatusText extends Sprite {
         this.statusType = type;
         this.status = status;
         String text = this.status != null ? String.format("%.1f", status.get(type)) : "";
-        childText = new Text(width * 0.6f, -width * 0.1f, text, width, width * 40.f, Color.BLACK);
+        childText = new Text(width * 0.6f, -width * 0.1f, text, width, width * 40.f, Color.BLACK, Paint.Align.LEFT);
         addChild(childText);
     }
 

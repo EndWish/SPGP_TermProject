@@ -12,11 +12,11 @@ public class VillageScene extends BaseScene{
     public void init() {
         super.init();
         Sprite backgroundObj = new Sprite
-                .Builder(R.mipmap.jpg_village_background, 0.f,0.f,16.f,9.f)
+                .Builder(R.mipmap.jpg_village_background, 0.f,0.f,1600.f,900.f)
                 .build();
         add(backgroundObj);
 
-        AdventurerInventoryButton adventurerInventoryButton = new AdventurerInventoryButton(1.5f, 7.5f);
+        AdventurerInventoryButton adventurerInventoryButton = new AdventurerInventoryButton(150f, 750f);
         add(adventurerInventoryButton);
     }
 

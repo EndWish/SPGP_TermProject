@@ -1,6 +1,7 @@
 package tukorea2018180009.ac.kr.example.equipmentcollector;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.text.TextPaint;
 import android.util.Log;
 
@@ -9,7 +10,6 @@ import java.util.ArrayList;
 
 public class Text extends GameObject {
     private static final String TAG = Text.class.getSimpleName();
-    static final float fontSize = 20;
 
     private static int findSplitIndex(String text, int start, TextPaint paint, float fontWidth) {
         // start부터 시작하여 width를 넘는 문자열의 인덱스를 반환합니다.
@@ -25,7 +25,7 @@ public class Text extends GameObject {
     protected TextPaint paint;
     float textSize, width;
 
-    public Text(float cx, float cy, String text, float textSize, float width, int color) {
+    public Text(float cx, float cy, String text, float textSize, float width, int color, Paint.Align align) {
         super(cx, cy);
 
         this.paint = new TextPaint();
@@ -35,6 +35,8 @@ public class Text extends GameObject {
         this.paint.setColor(color);
         setTextSize(textSize);
         setText(text);
+
+        paint.setTextAlign(align);
     }
 
     public void setText(String text){
@@ -45,7 +47,7 @@ public class Text extends GameObject {
             return;
         }
 
-        float fontWidth = width * fontSize;
+        float fontWidth = width;
         String[] lines = text.split("\\r?\\n"); // 개행문자를 기준으로 문자열을 나눕니다.
 
         for (String line : lines) {
@@ -72,17 +74,15 @@ public class Text extends GameObject {
     }
     public void setTextSize(float textSize){
         this.textSize = textSize;
-        this.paint.setTextSize(this.textSize * fontSize);
+        this.paint.setTextSize(this.textSize);
     }
 
     @Override
     protected void draw(Canvas canvas) {
         super.draw(canvas);
-        canvas.scale(1.f/fontSize, 1.f/fontSize);
         for(int i = 0; i < texts.size(); ++i){
             String text = texts.get(i);
-            canvas.drawText(text, x * fontSize, (y + textSize * (1 + i)) * fontSize, paint);
+            canvas.drawText(text, 0, textSize * (0.8f + i), paint);
         }
-        canvas.scale(fontSize, fontSize);
     }
 }

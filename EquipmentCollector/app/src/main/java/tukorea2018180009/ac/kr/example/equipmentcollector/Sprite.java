@@ -114,6 +114,21 @@ public class Sprite extends GameObject{
             this.py = height / 2;
             return this;
         }
+        public Builder setPivotRightTop(){
+            this.px = width;
+            this.py = 0;
+            return this;
+        }
+        public Builder setPivotLeftBottom(){
+            this.px = 0;
+            this.py = height;
+            return this;
+        }
+        public Builder setPivotRightBottom(){
+            this.px = width;
+            this.py = height;
+            return this;
+        }
         public Builder setRotation(float degree){
             this.rotation = degree;
             return this;

@@ -24,22 +24,22 @@ public class AdventurerInventory extends Sprite {
     ArrayList<StatusText> statusTexts;
 
     public AdventurerInventory() {
-        super(new Sprite.Builder(R.mipmap.png_black_white_frame_512x256, 1, 1, 14, 7));
+        super(new Sprite.Builder(R.mipmap.png_black_white_frame_512x256, 100, 100, 1400, 700));
         // 용사 리스트들을 출력하는 inventory를 생성한다.
         selectInventory  = new SelectInventory<Adventurer>(UserInfo.getInstance().getAdventurers(),
-                0.5f, 0.5f, 6, 6, 4);
+                50f, 50f, 600, 600, 4, 100);
         addChild(selectInventory);
 
-        profileImage = new Sprite(new Builder(0, 7.0f, 0.5f, 2, 3));
+        profileImage = new Sprite(new Builder(0, 700.0f, 50f, 20, 30));
         addChild(profileImage);
 
         statusTexts = new ArrayList<>();
         for(Status.Type type : Status.Type.values()) {
             int index = type.ordinal();
-            float offsetx = (int)(index / 8) * 2.5f;
-            float offsety = index % 8 * 0.5f;
+            float offsetx = (int)(index / 8) * 250f;
+            float offsety = index % 8 * 50f;
 
-            StatusText statusText = new StatusText(null, type, 9.3f + offsetx, 0.5f + offsety, 0.5f);
+            StatusText statusText = new StatusText(null, type, 930f + offsetx, 50f + offsety, 50f);
             statusTexts.add(statusText);
             addChild(statusText);
         }
