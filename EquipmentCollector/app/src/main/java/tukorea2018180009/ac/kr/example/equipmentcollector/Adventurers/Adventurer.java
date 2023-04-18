@@ -24,6 +24,7 @@ public abstract class Adventurer implements IIcon {
 
     public Adventurer() {
         initBasicStatus();
+        initSkills();
     }
 
     protected abstract void initBasicStatus();
@@ -57,5 +58,8 @@ public abstract class Adventurer implements IIcon {
     }
     public Status getTotalStatus() {
         return totalStatus;
+    }
+    public ArrayList<Skill> getSkills() {
+        return skills;
     }
 }

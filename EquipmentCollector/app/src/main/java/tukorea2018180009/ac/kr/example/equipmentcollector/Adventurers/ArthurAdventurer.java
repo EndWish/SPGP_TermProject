@@ -54,5 +54,7 @@ public class ArthurAdventurer extends Adventurer{
     @Override
     protected void initSkills() {
         skills.add(new SlashSkill());
+        skills.add(new SlashSkill());
+        skills.add(new SlashSkill());
     }
 }

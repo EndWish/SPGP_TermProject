@@ -14,10 +14,10 @@ public abstract class Skill implements IAbility, IIcon {
     }
 
     // 자식 클래스에서 설정할 함수(값)들
-    abstract Grade getGrade();
-    abstract float getCorrectionSpeed();
-    abstract String getDesc();
-    abstract String getName();
+    public abstract Grade getGrade();
+    public abstract float getCorrectionSpeed();
+    public abstract String getDesc();
+    public abstract String getName();
 
     // getter, setter
     public float getGauge() {

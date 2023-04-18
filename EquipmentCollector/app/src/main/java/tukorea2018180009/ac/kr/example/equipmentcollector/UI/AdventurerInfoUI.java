@@ -4,11 +4,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Text;
 
@@ -58,7 +60,12 @@ public class AdventurerInfoUI extends Sprite {
         addChild(closeButton);
         
         // 스킬 버튼 생성
-        
+        int skillIndex = 0;
+        for(Skill skill : adventurer.getSkills()){
+            SkillButton skillButton = new SkillButton(skill, 25 + 225 * skillIndex, 600, 200);
+            ++skillIndex;
+            addChild(skillButton);
+        }
     }
 
     // 소멸자

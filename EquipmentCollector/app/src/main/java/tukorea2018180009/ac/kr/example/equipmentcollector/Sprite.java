@@ -65,8 +65,21 @@ public class Sprite extends GameObject{
         fixDstRect();
     }
 
+    // getter setter
     public void setBitmap(Bitmap bitmap){
         this.bitmap = bitmap;
+    }
+    public float getWidth() {
+        return width;
+    }
+    public void setWidth(float width) {
+        this.width = width;
+    }
+    public float getHeight() {
+        return height;
+    }
+    public void setHeight(float height) {
+        this.height = height;
     }
 
     public static class Builder{

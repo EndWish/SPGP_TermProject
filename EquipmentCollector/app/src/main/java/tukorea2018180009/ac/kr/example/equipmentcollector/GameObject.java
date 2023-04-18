@@ -9,11 +9,13 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 
 public class GameObject {
     protected boolean deleted;
+    protected boolean visible;
     protected float x, y, sx, sy, rotation; // degree (x+ 쪽이 앞쪽이다)
     protected ArrayList<GameObject> children = new ArrayList<GameObject>();
 
     GameObject() {
         deleted = false;
+        visible = true;
         x = 0;
         y = 0;
         sx = 1;
@@ -48,6 +50,8 @@ public class GameObject {
     /// draw하는 함수
     // 그리기 위한 캔버스 변환과 계층적으로 ,drawAll을 호출해주는 함수
     public void drawAll(Canvas canvas){
+        if(!visible) return;    // visible이 false면 그리지 않는다.(자식도 그리지 않는다.)
+
         canvas.save();
 
         // 캔버스에 변환을 적용한다.
@@ -131,6 +135,12 @@ public class GameObject {
     }
 
     // getter, setter
+    public boolean isVisible() {
+        return visible;
+    }
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
 
     public float getX() {
         return x;

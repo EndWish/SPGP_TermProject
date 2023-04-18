@@ -39,6 +39,21 @@ public class Text extends GameObject {
         paint.setTextAlign(align);
     }
 
+    @Override
+    protected void draw(Canvas canvas) {
+        super.draw(canvas);
+        for(int i = 0; i < texts.size(); ++i){
+            String text = texts.get(i);
+            canvas.drawText(text, 0, textSize * (0.8f + i), paint);
+        }
+    }
+
+    // 텍스트가 몇 줄인지 얻는 함수
+    public int getNLine(){
+        return texts.size();
+    }
+
+    // getter, setter
     public void setText(String text){
         texts.clear();
         // text가 null이거나 공백인 경우 빈 배열을 반환합니다.
@@ -75,14 +90,10 @@ public class Text extends GameObject {
     public void setTextSize(float textSize){
         this.textSize = textSize;
         this.paint.setTextSize(this.textSize);
+
+        // !! 글자 크기가 바뀌면 다시 라인을 나누어 줘야 한다.(이 기능이 필요해 질때 구현하자.)
     }
 
-    @Override
-    protected void draw(Canvas canvas) {
-        super.draw(canvas);
-        for(int i = 0; i < texts.size(); ++i){
-            String text = texts.get(i);
-            canvas.drawText(text, 0, textSize * (0.8f + i), paint);
-        }
-    }
+
+
 }

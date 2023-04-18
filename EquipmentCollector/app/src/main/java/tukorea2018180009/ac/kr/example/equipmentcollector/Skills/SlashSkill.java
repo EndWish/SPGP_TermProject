@@ -23,19 +23,19 @@ public class SlashSkill extends Skill {
         return icon;
     }
     @Override
-    Grade getGrade() {
+    public Grade getGrade() {
         return Grade.essential;
     }
     @Override
-    float getCorrectionSpeed() {
+    public float getCorrectionSpeed() {
         return 1.0f;
     }
     @Override
-    String getDesc() {
+    public String getDesc() {
         return desc;
     }
     @Override
-    String getName() {
+    public String getName() {
         return name;
     }
 }
