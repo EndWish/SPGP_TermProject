@@ -19,7 +19,7 @@ public class StatusText extends Sprite {
         this.statusType = type;
         this.status = status;
         String text = this.status != null ? String.format("%.1f", status.get(type)) : "";
-        childText = new Text(width * 0.6f, -width * 0.1f, text, width, width * 40.f, Color.BLACK, Paint.Align.LEFT);
+        childText = new Text(width * 1.1f, 0, text, width, width * 40.f, Color.BLACK, Paint.Align.LEFT);
         addChild(childText);
     }
 

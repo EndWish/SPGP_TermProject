@@ -23,10 +23,8 @@ public class SelectInventory<T extends IIcon> extends Sprite {
 
     // 생성자
     public SelectInventory(ArrayList<T> icons, float cx, float cy, float width, float height, int column, float triggetButtonWidth) {
-        super(new Sprite.Builder(R.mipmap.png_black_white_frame_256x256, cx, cy, width, height));
+        super(new Sprite.Builder(R.mipmap.png_black_white_frame_512x256, cx, cy, width, height));
         this.icons = icons;
-        // 버튼 레이어를 하나 상승시킨다.
-        BaseScene.getTopScene().addButtonLayer();
 
         // SelectButton들을 자식으로 생성
         final float paddingRatio = 0.2f;    // 패딩이 차지할 비율
@@ -44,8 +42,8 @@ public class SelectInventory<T extends IIcon> extends Sprite {
         }
 
         // 페이지 넘기는 버튼 생성 & 텍스트
-        leftPageButton = new TriggerButton(new Builder(R.mipmap.png_black_white_frame_256x256, 0, height * 1.02f, triggetButtonWidth, triggetButtonWidth));
-        rightPageButton = new TriggerButton(new Builder(R.mipmap.png_black_white_frame_256x256, width, height * 1.02f, triggetButtonWidth, triggetButtonWidth)
+        leftPageButton = new TriggerButton(new Builder(R.mipmap.png_button_left_arrow, 0, height * 1.02f, triggetButtonWidth, triggetButtonWidth));
+        rightPageButton = new TriggerButton(new Builder(R.mipmap.png_button_right_arrow, width, height * 1.02f, triggetButtonWidth, triggetButtonWidth)
                                                 .setPivotRightTop());
         pageText = new Text(width / 2.f, height * 1.02f, (pageIndex + 1) + "/" + getMaxPageIndex(), triggetButtonWidth, width, Color.BLACK, Paint.Align.CENTER);
         addChild(leftPageButton);
@@ -58,7 +56,6 @@ public class SelectInventory<T extends IIcon> extends Sprite {
     // 소멸
     @Override
     public void setDelete() {
-        BaseScene.getTopScene().subButtonLayer();
         selectedIcon = null;
         icons = null;
         selectButtons = null;
