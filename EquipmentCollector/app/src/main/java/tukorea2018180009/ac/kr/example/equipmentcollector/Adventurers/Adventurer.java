@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import java.util.ArrayList;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 
@@ -15,20 +16,28 @@ public abstract class Adventurer implements IIcon {
     protected Status totalStatus = new Status();
 
     protected ArrayList<Skill> skills = new ArrayList<>();
-    //protected ArrayList<EuipmentItem> equipments;
+    protected ArrayList<Equipment> equipments = new ArrayList<>();
     //protected ArrayList<StateChange> stateChanges;
+
+    // 생성자
+    public Adventurer() {
+        initBasicStatus();
+        initSkills();
+        initForTest();
+    }
 
     public abstract String getName();
     public abstract Bitmap getIcon();
     public abstract Bitmap getProfile();
 
-    public Adventurer() {
-        initBasicStatus();
-        initSkills();
-    }
 
+    protected void initForTest() {}
     protected abstract void initBasicStatus();
     protected abstract void initSkills();
+
+    protected void addEquipment(Equipment equipment) {
+        equipments.add(equipment);
+    }
 
     public void calculateTotalStatus(){
         totalStatus.set(0);
@@ -61,5 +70,8 @@ public abstract class Adventurer implements IIcon {
     }
     public ArrayList<Skill> getSkills() {
         return skills;
+    }
+    public ArrayList<Equipment> getEquipments() {
+        return equipments;
     }
 }
