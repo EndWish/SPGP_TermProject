@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerInventoryButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
 public class VillageScene extends BaseScene{
 
@@ -25,4 +26,9 @@ public class VillageScene extends BaseScene{
         super.draw(canvas);
     }
 
+    @Override
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+        UserInfo.getInstance().update();
+    }
 }

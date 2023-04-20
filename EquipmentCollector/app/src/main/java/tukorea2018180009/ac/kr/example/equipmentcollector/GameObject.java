@@ -7,13 +7,13 @@ import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 
-public class GameObject {
-    protected boolean deleted;
+public class GameObject extends Object {
     protected boolean visible;
     protected float x, y, sx, sy, rotation; // degree (x+ 쪽이 앞쪽이다)
     protected ArrayList<GameObject> children = new ArrayList<GameObject>();
 
-    GameObject() {
+    public GameObject() {
+        super();
         deleted = false;
         visible = true;
         x = 0;
@@ -22,12 +22,12 @@ public class GameObject {
         sy = 1;
         rotation = 0;
     }
-    GameObject(float cx, float cy){
+    public GameObject(float cx, float cy){
         this();
         this.x = cx;
         this.y = cy;
     }
-    GameObject(float cx, float cy, float sx, float sy, float rotation){
+    public GameObject(float cx, float cy, float sx, float sy, float rotation){
         this(cx, cy);
         this.sx = sx;
         this.sy = sy;
@@ -35,6 +35,7 @@ public class GameObject {
     }
 
     /// update 함수
+    @Override
     public void update(float deltaTime){
         // 삭제 표시가 된 오브젝트를 삭제해준다.
         children.removeIf(child -> child.isDeleted());
@@ -123,15 +124,14 @@ public class GameObject {
     }
 
     // 자신을 삭제/추가 하는 함수
-    public void setDelete(){
-        deleted = true;
+    @Override
+    public void setDelete() {
+        super.setDelete();
         for(GameObject child : children)
             if(!child.isDeleted())
                 child.setDelete();
         children.clear();
-    }
-    public boolean isDeleted(){
-        return deleted;
+        children = null;
     }
 
     // getter, setter

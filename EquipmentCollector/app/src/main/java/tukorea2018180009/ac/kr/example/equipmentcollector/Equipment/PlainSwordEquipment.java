@@ -28,4 +28,8 @@ public class PlainSwordEquipment extends Equipment {
     public Bitmap getIcon() {
         return icon;
     }
+    @Override
+    public int getUpgradeCost() {
+        return 100;
+    }
 }

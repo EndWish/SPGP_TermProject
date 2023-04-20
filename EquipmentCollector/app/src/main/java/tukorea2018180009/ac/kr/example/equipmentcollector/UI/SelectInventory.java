@@ -6,6 +6,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
@@ -66,6 +67,8 @@ public class SelectInventory<T extends IIcon> extends Sprite {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
+        updatePage();
+
         if(leftPageButton.getTrigger())
             subPageIndex();
         if(rightPageButton.getTrigger())
@@ -110,6 +113,11 @@ public class SelectInventory<T extends IIcon> extends Sprite {
         }
     }
 
+    public void setIcons(ArrayList<T> icons){
+        this.icons = icons;
+        updatePage();
+    }
+
     public int getMaxPageIndex(){
         return (int)(Math.ceil(icons.size() / selectButtons.size()));
     }
@@ -118,10 +126,15 @@ public class SelectInventory<T extends IIcon> extends Sprite {
     class SelectButton<T extends IIcon> extends SpriteButton {
         protected SelectInventory targetInventory;
         protected T myIcon;
+        protected Text childUpgradeLevelText;
 
         public SelectButton(SelectInventory targetInventory, T icon, float cx, float cy, float width, float height) {
             super(new Sprite.Builder(null, cx, cy, width, height));
             this.targetInventory = targetInventory;
+            // 장비일 경우 강화수치를 나타내주기 위해 따로 Text를 추가한다.
+            childUpgradeLevelText = new Text(width, 0, "", width / 3f, width, Color.YELLOW, Paint.Align.RIGHT);
+            addChild(childUpgradeLevelText);
+
             setMyIcon(icon);
         }
 
@@ -130,6 +143,7 @@ public class SelectInventory<T extends IIcon> extends Sprite {
             super.setDelete();
             targetInventory = null;
             myIcon = null;
+            childUpgradeLevelText = null;
         }
 
         @Override
@@ -148,6 +162,12 @@ public class SelectInventory<T extends IIcon> extends Sprite {
         public void setMyIcon(T myIcon) {
             this.myIcon = myIcon;
             setBitmap(myIcon == null ? null : myIcon.getIcon());
+            childUpgradeLevelText.setText("");
+            // 장비 아이콘일 경우 강화수치를 표시한다.
+            if(myIcon instanceof Equipment){
+                childUpgradeLevelText.setText("+" + ((Equipment) myIcon).getUpgradeLevel());
+            }
+
         }
     }
 

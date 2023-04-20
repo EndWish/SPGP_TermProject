@@ -113,7 +113,13 @@ public class AdventurerInfoUI extends Sprite {
     // update
     @Override
     public void update(float deltaTime) {
+        if(adventurer == null || adventurer.isDeleted()){
+            setDelete();
+            return;
+        }
         super.update(deltaTime);
+
+        updateEquipmentButtons();
 
         // 장비 페이지 넘기는 버튼을 눌렀을 경우
         if(leftEquipmentButton.getTrigger())
@@ -129,7 +135,6 @@ public class AdventurerInfoUI extends Sprite {
     // 장비 버튼 갱신
     protected void updateEquipmentButtons() {
         ArrayList<Equipment> equipments = adventurer.getEquipments();
-        Log.d("장비의 개수", "" + equipments.size());
 
         int startIndex = 6 * equipmentPageIndex;
         for(EquipmentButton equipmentButton : equipmentButtons){

@@ -33,6 +33,13 @@ public class StatusText extends Sprite {
     }
 
     @Override
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+        String text = status != null ? String.format("%.1f", status.get(statusType)) : "";
+        childText.setText(text);
+    }
+
+    @Override
     protected void draw(Canvas canvas) {
         if(status != null)
             super.draw(canvas);

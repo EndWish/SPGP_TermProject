@@ -5,10 +5,12 @@ import android.graphics.Bitmap;
 import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 
-public abstract class Adventurer implements IIcon {
+public abstract class Adventurer extends Object implements IIcon {
 
     protected Status basicStatus = new Status();
     protected Status extraBasicStatus = new Status();
@@ -21,9 +23,24 @@ public abstract class Adventurer implements IIcon {
 
     // 생성자
     public Adventurer() {
+        super();
         initBasicStatus();
         initSkills();
         initForTest();
+    }
+
+    // 소멸자
+    @Override
+    public void setDelete() {
+        super.setDelete();
+        equipments.forEach(equipment -> equipment.setDelete());
+        equipments = null;
+    }
+
+    @Override
+    public void update(float deltaTime) {
+        super.update(deltaTime);
+        equipments.removeIf(equipment -> equipment.isDeleted());
     }
 
     public abstract String getName();

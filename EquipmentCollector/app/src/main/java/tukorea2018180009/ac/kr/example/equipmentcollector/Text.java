@@ -58,7 +58,6 @@ public class Text extends GameObject {
         texts.clear();
         // text가 null이거나 공백인 경우 빈 배열을 반환합니다.
         if (text == null || text.trim().isEmpty()) {
-            Log.d(TAG, "text가 없습니다.");
             return;
         }
 
