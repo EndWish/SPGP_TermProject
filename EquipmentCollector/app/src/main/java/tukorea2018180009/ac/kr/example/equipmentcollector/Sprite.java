@@ -21,11 +21,6 @@ public class Sprite extends GameObject{
     protected boolean imgFlipx, imgFlipy;   // 이미지만 반전시키고 그려지는 위치는 바뀌지 않는다.
     protected boolean flipx, flipy;         // 좌표계가 반전된다.
 
-
-    protected void setBitmapResource(int bitmapResId) {
-        bitmap = BitmapPool.get(bitmapResId);
-    }
-
     protected void fixDstRect() {
         dstRect.set(-px, -py, -px + width, -py + height);
     }
@@ -68,6 +63,9 @@ public class Sprite extends GameObject{
     // getter setter
     public void setBitmap(Bitmap bitmap){
         this.bitmap = bitmap;
+    }
+    public void setBitmap(int bitmapResId) {
+        bitmap = BitmapPool.get(bitmapResId);
     }
     public float getWidth() {
         return width;

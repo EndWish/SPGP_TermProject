@@ -5,6 +5,7 @@ import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Metrics;
@@ -16,6 +17,7 @@ public class BaseScene {
 
     protected ArrayList<GameObject> gameObjects = new ArrayList<>();
     protected SpriteButton buttonOnMouse, clickedButton;
+    protected Object hand;
     protected int buttonLayer = 0;
     protected Canvas canvasForButton = new Canvas();
 
@@ -89,6 +91,7 @@ public class BaseScene {
             case MotionEvent.ACTION_UP:
                 if(buttonOnMouse != null && !buttonOnMouse.isDeleted()){
                     buttonOnMouse.clickUp();
+                    setHand(null);
                 }
                 return true;
         }
@@ -111,5 +114,11 @@ public class BaseScene {
     public SpriteButton getClickedButton() { return clickedButton;}
     public void setButtonOnMouse(SpriteButton buttonOnMouse) { this.buttonOnMouse = buttonOnMouse;}
     public void setClickedButton(SpriteButton clickedButton) { this.clickedButton = clickedButton;}
+    public Object getHand() {
+        return hand;
+    }
+    public void setHand(Object hand) {
+        this.hand = hand;
+    }
 }
 

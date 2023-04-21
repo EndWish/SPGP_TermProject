@@ -1,13 +1,13 @@
-package tukorea2018180009.ac.kr.example.equipmentcollector.UI;
+package tukorea2018180009.ac.kr.example.equipmentcollector.UI.EquipmentUI;
 
 import java.util.ArrayList;
 
-import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
-import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SelectInventory;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.TriggerButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
 public class SelectIngredientEquipmentInventory extends Sprite {

@@ -1,10 +1,9 @@
-package tukorea2018180009.ac.kr.example.equipmentcollector.UI;
+package tukorea2018180009.ac.kr.example.equipmentcollector.UI.EquipmentUI;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
-import tukorea2018180009.ac.kr.example.equipmentcollector.GameView;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.YesNoQueryUI;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
 public class EquipmentUpgradeQueryUI extends YesNoQueryUI {
@@ -28,8 +27,8 @@ public class EquipmentUpgradeQueryUI extends YesNoQueryUI {
         // 파괴 확률 : 실패 확률 * 0.02
         destructionPercentage = (100f - successPercentage) * 0.02f;
 
-        childText.setText(this.ingredient.getName() + "+" + this.ingredient.getUpgradeLevel() + "을 재료로 사용해서 강화 하시겠습니까?\n"
-                + "강화 비용 - " + cost + "(Gold)\n\n"
+        childText.setText( "\"" + this.ingredient.getName() + "+" + this.ingredient.getUpgradeLevel() + "\"을 재료로 사용해서 강화 하시겠습니까?\n"
+                + "강화 비용 - " + cost + "(비용) / " + UserInfo.getInstance().getGold() + "(소지금)\n\n"
                 + "강화 성공 확률 : " + successPercentage + "%\n"
                 + "강화 실패 확률 : " + (100f - successPercentage - destructionPercentage) + "%\n"
                 + "재료 파괴 확률 : " + destructionPercentage + "%\n");

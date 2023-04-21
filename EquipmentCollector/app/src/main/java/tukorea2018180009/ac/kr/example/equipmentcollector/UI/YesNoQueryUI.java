@@ -10,7 +10,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Text;
 
 public class YesNoQueryUI extends Sprite {
     protected TriggerButton yesButton, noButton;
-    Text childText;
+    protected Text childText;
 
     // 생성자
     public YesNoQueryUI() {

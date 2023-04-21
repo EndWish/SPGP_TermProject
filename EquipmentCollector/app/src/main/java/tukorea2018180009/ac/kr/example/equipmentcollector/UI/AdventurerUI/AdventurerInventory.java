@@ -1,20 +1,12 @@
-package tukorea2018180009.ac.kr.example.equipmentcollector.UI;
-
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.util.Log;
-
-import java.util.ArrayList;
+package tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerUI;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
-import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
-import tukorea2018180009.ac.kr.example.equipmentcollector.GameView;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
-import tukorea2018180009.ac.kr.example.equipmentcollector.Text;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerUI.AdventurerInfoUI;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SelectInventory;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.TriggerButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
 public class AdventurerInventory extends Sprite {

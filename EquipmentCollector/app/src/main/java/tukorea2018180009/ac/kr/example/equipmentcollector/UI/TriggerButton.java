@@ -15,7 +15,7 @@ public class TriggerButton extends SpriteButton {
         trigger = true;
     }
 
-    boolean getTrigger(){
+    public boolean getTrigger(){
         if(trigger){
             trigger = false;
             return true;

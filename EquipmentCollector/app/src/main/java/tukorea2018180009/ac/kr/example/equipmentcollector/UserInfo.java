@@ -17,6 +17,7 @@ public class UserInfo {
     // 멤버 변수
     protected ArrayList<Adventurer> adventurers;
     protected ArrayList<Equipment> equipments;
+    protected Adventurer party[] = new Adventurer[4];
     protected int gold;
 
     //생성자
@@ -45,7 +46,29 @@ public class UserInfo {
     public void update() {
         adventurers.removeIf(adventurer -> adventurer.isDeleted());
         equipments.removeIf(equipment -> equipment.isDeleted());
+        for(Adventurer adventurer : party){
+            if(adventurer != null && adventurer.isDeleted())
+                adventurer = null;
+        }
 
+    }
+
+    // 파티 설정
+    public void setPartyAdventerer(int index, Adventurer addAdventurer) {
+        // 내가 소유중인 모험가가 아닐경우 바로 리턴한다.
+        if(!adventurers.contains(addAdventurer))
+            return;
+
+        // 중복될 경우 그 모험가를 삭제한다.
+        for(Adventurer adventurer : party)
+            if(adventurer == addAdventurer)
+                adventurer = null;
+
+        // 모험가를 배치한다.
+        party[index] = addAdventurer;
+    }
+    public Adventurer getPartyAdventerer(int index) {
+        return party[index];
     }
 
     // getter, setter
@@ -55,5 +78,6 @@ public class UserInfo {
     public int getGold() { return gold; }
     public void addGold(int gold) {this.gold += gold;}
     public void subGold(int gold) {this.gold -= gold;}
+
 
 }

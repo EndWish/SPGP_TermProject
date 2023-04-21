@@ -1,13 +1,12 @@
-package tukorea2018180009.ac.kr.example.equipmentcollector.UI;
+package tukorea2018180009.ac.kr.example.equipmentcollector.UI.EquipmentUI;
 
 import android.graphics.Color;
 import android.graphics.Paint;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
-import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
-import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Text;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 
 public class EquipmentButton extends SpriteButton {
     Equipment equipment;
