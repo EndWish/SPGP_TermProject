@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
@@ -144,6 +145,13 @@ public class SelectInventory<T extends IIcon> extends Sprite {
             targetInventory = null;
             myIcon = null;
             childUpgradeLevelText = null;
+        }
+
+        @Override
+        public void clickDown() {
+            super.clickDown();
+            if(myIcon != null)
+                BaseScene.getTopScene().setHand((Object)myIcon);
         }
 
         @Override

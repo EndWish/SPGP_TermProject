@@ -16,6 +16,7 @@ public class BaseScene {
     private static ArrayList<BaseScene> stack = new ArrayList<>();
 
     protected ArrayList<GameObject> gameObjects = new ArrayList<>();
+    protected ArrayList<GameObject> addPostGameObjects = new ArrayList<>();
     protected SpriteButton buttonOnMouse, clickedButton;
     protected Object hand;
     protected int buttonLayer = 0;
@@ -41,13 +42,17 @@ public class BaseScene {
         return gameObjects.size();
     }
 
+    public void addPost(GameObject object){
+        addPostGameObjects.add(object);
+    }
+
     public void update(float deltaTime) {
-        gameObjects.removeIf(child -> child.isDeleted());
+        gameObjects.removeIf(child -> child == null || child.isDeleted());
         for (GameObject object : gameObjects) {
-            if(object.isDeleted())
-                continue;
             object.update(deltaTime);
         }
+        gameObjects.addAll(addPostGameObjects);
+        addPostGameObjects.clear();
     }
     public void draw(Canvas canvas) {
         for (GameObject object : gameObjects) {

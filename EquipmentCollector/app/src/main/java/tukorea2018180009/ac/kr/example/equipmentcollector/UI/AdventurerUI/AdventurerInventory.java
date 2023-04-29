@@ -12,6 +12,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 public class AdventurerInventory extends Sprite {
     SelectInventory<Adventurer> selectInventory;
     TriggerButton closeButton;
+    PartySettingBarUI partySettingBarUI;
 
     // 생성자
     public AdventurerInventory() {
@@ -38,6 +39,7 @@ public class AdventurerInventory extends Sprite {
         BaseScene.getTopScene().subButtonLayer();
         selectInventory = null;
         closeButton = null;
+        partySettingBarUI.setDelete();
         super.setDelete();
     }
 
@@ -46,9 +48,15 @@ public class AdventurerInventory extends Sprite {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
+        // 파티 셋팅 바 추가.
+        if(partySettingBarUI == null){
+            partySettingBarUI = new PartySettingBarUI();
+            BaseScene.getTopScene().addPost(partySettingBarUI); // [오류발생] update를 순회하는 도중 object를 추가할려고 해서.
+        }
+
         // 모험가를 선택했을 경우
         if(selectInventory.getSelectedIcon() != null){
-            BaseScene.getTopScene().add(new AdventurerInfoUI(selectInventory.getSelectedIcon()));
+            BaseScene.getTopScene().addPost(new AdventurerInfoUI(selectInventory.getSelectedIcon()));
             selectInventory.select(null);
         }
         

@@ -38,12 +38,10 @@ public class GameObject extends Object {
     @Override
     public void update(float deltaTime){
         // 삭제 표시가 된 오브젝트를 삭제해준다.
-        children.removeIf(child -> child.isDeleted());
+        children.removeIf(child -> child == null || child.isDeleted());
 
         // 자식들도 똑같이 update()를 해준다.
-        for(GameObject child : children){
-            if(child.isDeleted())
-                continue;
+        for(GameObject child : children) {
             child.update(deltaTime);
         }
     }
@@ -131,7 +129,6 @@ public class GameObject extends Object {
             if(!child.isDeleted())
                 child.setDelete();
         children.clear();
-        children = null;
     }
 
     // getter, setter

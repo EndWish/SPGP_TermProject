@@ -50,7 +50,6 @@ public class UserInfo {
             if(adventurer != null && adventurer.isDeleted())
                 adventurer = null;
         }
-
     }
 
     // 파티 설정
@@ -60,9 +59,11 @@ public class UserInfo {
             return;
 
         // 중복될 경우 그 모험가를 삭제한다.
-        for(Adventurer adventurer : party)
-            if(adventurer == addAdventurer)
-                adventurer = null;
+        for(int i = 0; i < party.length; ++i){
+            if(party[i] == addAdventurer)
+                party[i] = null;
+        }
+
 
         // 모험가를 배치한다.
         party[index] = addAdventurer;
