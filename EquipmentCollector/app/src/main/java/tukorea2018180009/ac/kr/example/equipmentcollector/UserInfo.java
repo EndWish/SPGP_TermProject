@@ -71,6 +71,14 @@ public class UserInfo {
     public Adventurer getPartyAdventerer(int index) {
         return party[index];
     }
+    public int getNumOfAdventererInParty() {
+        int result = 0;
+        for(int i = 0; i < 4; ++i){
+            if(party[i] != null)
+                ++result;
+        }
+        return result;
+    }
 
     // getter, setter
     public ArrayList<Adventurer> getAdventurers(){ return adventurers; }

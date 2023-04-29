@@ -11,12 +11,14 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
 public class PartySettingBarUI extends Sprite {
-
+    boolean alwaysVisible;
 
     // 생성자
     public PartySettingBarUI() {
         super(new Builder(R.mipmap.png_black_white_frame_512x256, 800, 900 - 75, 525, 150)
                 .setPivotCenter());
+
+        alwaysVisible = false;
 
         for(int i = 0; i < 4; ++i){
             addChild(new AdventurerIcon(i, new Builder(0, -187.5f + 125 * i, 0f, 100f, 100f).setPivotCenter()));
@@ -32,11 +34,25 @@ public class PartySettingBarUI extends Sprite {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
-        Object  object = BaseScene.getTopScene().getHand();
-        if(object instanceof Adventurer)
+        if(alwaysVisible == false){
+            Object  object = BaseScene.getTopScene().getHand();
+            if(object instanceof Adventurer)
+                setVisible(true);
+            else
+                setVisible(false);
+        } else {
             setVisible(true);
-        else
-            setVisible(false);
+        }
+
+    }
+
+    // getter, setter
+    public boolean isAlwaysVisible() {
+        return alwaysVisible;
+    }
+
+    public void setAlwaysVisible(boolean alwaysVisible) {
+        this.alwaysVisible = alwaysVisible;
     }
 
     /// AdventurerIcon 클래스 ////////////////////////////////////////////////////

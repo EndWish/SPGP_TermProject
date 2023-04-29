@@ -2,15 +2,9 @@ package tukorea2018180009.ac.kr.example.equipmentcollector;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.RectF;
-import android.renderscript.Float2;
-import android.renderscript.Matrix3f;
-import android.util.Log;
 
-import java.util.AbstractMap;
-import java.util.ListIterator;
-import java.util.Vector;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 
 public class Sprite extends GameObject{
     private static final String TAG = Sprite.class.getSimpleName();

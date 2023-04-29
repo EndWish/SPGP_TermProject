@@ -2,7 +2,7 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers;
 
 import android.graphics.Bitmap;
 
-import tukorea2018180009.ac.kr.example.equipmentcollector.BitmapPool;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEquipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.SlashSkill;

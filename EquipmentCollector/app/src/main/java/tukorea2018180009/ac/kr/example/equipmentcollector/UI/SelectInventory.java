@@ -7,6 +7,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.ExpenditionAreaInfo.ExpeditionAreaInfo;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
@@ -127,7 +128,7 @@ public class SelectInventory<T extends IIcon> extends Sprite {
     class SelectButton<T extends IIcon> extends SpriteButton {
         protected SelectInventory targetInventory;
         protected T myIcon;
-        protected Text childUpgradeLevelText;
+        protected Text childUpgradeLevelText, childExpeditionAreaNameText;
 
         public SelectButton(SelectInventory targetInventory, T icon, float cx, float cy, float width, float height) {
             super(new Sprite.Builder(null, cx, cy, width, height));
@@ -135,6 +136,9 @@ public class SelectInventory<T extends IIcon> extends Sprite {
             // 장비일 경우 강화수치를 나타내주기 위해 따로 Text를 추가한다.
             childUpgradeLevelText = new Text(width, 0, "", width / 3f, width, Color.YELLOW, Paint.Align.RIGHT);
             addChild(childUpgradeLevelText);
+            // 탐험지역 선택 버튼일 경우 text를 추가한다.
+            childExpeditionAreaNameText = new Text(width / 2f, height / 3, "", width / 5f, width, Color.RED, Paint.Align.CENTER);
+            addChild(childExpeditionAreaNameText);
 
             setMyIcon(icon);
         }
@@ -145,6 +149,7 @@ public class SelectInventory<T extends IIcon> extends Sprite {
             targetInventory = null;
             myIcon = null;
             childUpgradeLevelText = null;
+            childExpeditionAreaNameText = null;
         }
 
         @Override
@@ -169,13 +174,20 @@ public class SelectInventory<T extends IIcon> extends Sprite {
         }
         public void setMyIcon(T myIcon) {
             this.myIcon = myIcon;
+
             setBitmap(myIcon == null ? null : myIcon.getIcon());
-            childUpgradeLevelText.setText("");
+
             // 장비 아이콘일 경우 강화수치를 표시한다.
+            childUpgradeLevelText.setText("");
             if(myIcon instanceof Equipment){
                 childUpgradeLevelText.setText("+" + ((Equipment) myIcon).getUpgradeLevel());
             }
 
+            // 탐험지역 선택 버튼일 경우 text를 표시한다.
+            childExpeditionAreaNameText.setText("");
+            if(myIcon instanceof ExpeditionAreaInfo){
+                childExpeditionAreaNameText.setText(((ExpeditionAreaInfo) myIcon).getName());
+            }
         }
     }
 
