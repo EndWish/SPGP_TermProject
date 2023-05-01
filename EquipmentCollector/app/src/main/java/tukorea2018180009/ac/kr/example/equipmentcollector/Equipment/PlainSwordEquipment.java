@@ -2,6 +2,8 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Equipment;
 
 import android.graphics.Bitmap;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 
@@ -31,5 +33,11 @@ public class PlainSwordEquipment extends Equipment {
     @Override
     public int getUpgradeCost() {
         return 100;
+    }
+
+    // IAbility를 위한 함수들
+    @Override
+    public void applyStatus(Adventurer adventurer) {
+        adventurer.getExtraBasicStatus().add(Status.Type.slashPower, (upgradeLevel + 3));
     }
 }

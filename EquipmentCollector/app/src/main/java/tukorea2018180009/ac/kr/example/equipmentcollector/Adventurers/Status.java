@@ -44,17 +44,26 @@ public class Status {
         for(int i = 0; i < Type.values().length; ++i)
             this.status[i] += other.status[i];
     }
+    public void add(Type type, float value){
+        this.status[type.ordinal()] += value;
+    }
 
     // 값을 빼는 함수
     public void sub(Status other){
         for(int i = 0; i < Type.values().length; ++i)
             this.status[i] -= other.status[i];
     }
+    public void sub(Type type, float value){
+        this.status[type.ordinal()] -= value;
+    }
 
     // 값을 곱하는 함수
     public void mul(Status other){
         for(int i = 0; i < Type.values().length; ++i)
             this.status[i] *= other.status[i];
+    }
+    public void mul(Type type, float value){
+        this.status[type.ordinal()] *= value;
     }
 
 }

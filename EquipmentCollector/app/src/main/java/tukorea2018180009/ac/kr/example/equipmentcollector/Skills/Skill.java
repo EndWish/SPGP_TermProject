@@ -2,6 +2,7 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Skills;
 
 import android.graphics.Bitmap;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IAbility;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 
@@ -34,4 +35,8 @@ public abstract class Skill implements IAbility, IIcon {
     public static enum Grade{
         essential, normal, ultimate,
     }
+
+    // IAbility를 위한 함수들
+    @Override
+    public void applyStatus(Adventurer adventurer) {}
 }

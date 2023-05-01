@@ -9,6 +9,8 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.ExpenditionAreaInfo.ExpeditionAreaInfo;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BattleScene;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.VillageScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerUI.AdventurerInfoUI;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerUI.PartySettingBarUI;
@@ -63,8 +65,7 @@ public class ExpeditionSelectWindow extends Sprite {
             // 모험가 파티가 1명이상 배치되었는지 확인한다.
             if(0 < UserInfo.getInstance().getNumOfAdventererInParty()){
                 // 탐험 씬으로 이동 한다.
-
-
+                new BattleScene().pushScene();
             }
             selectInventory.select(null);
         }

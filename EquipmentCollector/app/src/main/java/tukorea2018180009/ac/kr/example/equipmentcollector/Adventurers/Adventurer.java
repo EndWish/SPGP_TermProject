@@ -12,6 +12,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 
 public abstract class Adventurer extends Object implements IIcon {
 
+    protected float hp;
     protected Status basicStatus = new Status();
     protected Status extraBasicStatus = new Status();
     protected Status coefficientStatus = new Status();
@@ -60,7 +61,26 @@ public abstract class Adventurer extends Object implements IIcon {
         totalStatus.set(0);
         totalStatus.add(basicStatus);
         totalStatus.add(extraBasicStatus);
-        totalStatus.add(coefficientStatus);
+        totalStatus.mul(coefficientStatus);
+    }
+
+    public void initForBattle(){
+        // 추가 능력치들을 초기화 한다.
+        extraBasicStatus.set(0);
+        coefficientStatus.set(1f);
+
+        // 장비와 스킬의 배틀 최기화 함수를 부른다. + 스킬 게이지를 0으로 초기화
+        for (Equipment equipment :equipments)
+            equipment.applyStatus(this);
+        for (Skill skill :skills){
+            skill.applyStatus(this);
+            skill.setGauge(0);
+        }
+
+        // [추가]버프/디버프를 전부 삭제한다.
+
+        calculateTotalStatus();
+        hp = totalStatus.get(Status.Type.hpm);
     }
 
     //public void AdvanceTick();
