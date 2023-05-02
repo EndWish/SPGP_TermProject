@@ -14,7 +14,7 @@ public class ExpeditionSelectWindowOpenButton extends SpriteButton {
     public ExpeditionSelectWindowOpenButton(float cx, float cy){
         super(new Sprite
                 .Builder(R.mipmap.png_button_open_select_expedition, cx, cy, 200, 200)
-                .setPivotCenter());
+                .setPivot(PivotType.center));
     }
 
     @Override

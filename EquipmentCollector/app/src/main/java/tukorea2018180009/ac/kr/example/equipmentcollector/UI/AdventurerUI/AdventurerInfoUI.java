@@ -87,16 +87,16 @@ public class AdventurerInfoUI extends Sprite {
 
         leftEquipmentButton = new TriggerButton(new Builder(R.mipmap.png_button_left_arrow,
                 900 - 75, 662.5f, 150, 150)
-                .setPivotCenter());
+                .setPivot(PivotType.center));
         rightEquipmentButton = new TriggerButton(new Builder(R.mipmap.png_button_right_arrow,
                 1325 + 75, 662.5f, 150, 150)
-                .setPivotCenter());
+                .setPivot(PivotType.center));
         addChild(leftEquipmentButton);
         addChild(rightEquipmentButton);
 
         // 닫기 버튼 생성
         closeButton = new TriggerButton(new Builder(R.mipmap.png_button_x, width, 0, 50, 50)
-                .setPivotRightTop());
+                .setPivot(PivotType.rightTop));
         addChild(closeButton);
 
     }

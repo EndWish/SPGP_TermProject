@@ -47,7 +47,7 @@ public class SelectInventory<T extends IIcon> extends Sprite {
         // 페이지 넘기는 버튼 생성 & 텍스트
         leftPageButton = new TriggerButton(new Builder(R.mipmap.png_button_left_arrow, 0, height * 1.02f, triggetButtonWidth, triggetButtonWidth));
         rightPageButton = new TriggerButton(new Builder(R.mipmap.png_button_right_arrow, width, height * 1.02f, triggetButtonWidth, triggetButtonWidth)
-                                                .setPivotRightTop());
+                                                .setPivot(PivotType.rightTop));
         pageText = new Text(width / 2.f, height * 1.02f, (pageIndex + 1) + "/" + getMaxPageIndex(), triggetButtonWidth, width, Color.BLACK, Paint.Align.CENTER);
         addChild(leftPageButton);
         addChild(rightPageButton);

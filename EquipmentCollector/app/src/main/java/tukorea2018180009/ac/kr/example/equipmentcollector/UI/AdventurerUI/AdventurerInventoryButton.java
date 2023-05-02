@@ -11,7 +11,7 @@ public class AdventurerInventoryButton extends SpriteButton {
     public AdventurerInventoryButton(float cx, float cy){
         super(new Sprite
                 .Builder(R.mipmap.png_button_inventory_adventurer, cx, cy, 200, 200)
-                .setPivotCenter());
+                .setPivot(PivotType.center));
     }
 
     @Override

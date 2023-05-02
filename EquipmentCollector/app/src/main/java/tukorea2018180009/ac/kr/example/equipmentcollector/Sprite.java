@@ -3,6 +3,7 @@ package tukorea2018180009.ac.kr.example.equipmentcollector;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.os.Build;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 
@@ -14,6 +15,11 @@ public class Sprite extends GameObject{
     protected float width, height, px, py;
     protected boolean imgFlipx, imgFlipy;   // 이미지만 반전시키고 그려지는 위치는 바뀌지 않는다.
     protected boolean flipx, flipy;         // 좌표계가 반전된다.
+    protected PivotType pivotType;
+
+    public enum PivotType{
+        custom, leftTop, rightTop, leftBottom, rightBottom, center;
+    }
 
     protected void fixDstRect() {
         dstRect.set(-px, -py, -px + width, -py + height);
@@ -45,6 +51,7 @@ public class Sprite extends GameObject{
         bitmap = builder.bitmap;
         width = builder.width;
         height = builder.height;
+        pivotType = builder.pivotType;
         px = builder.px;
         py = builder.py;
         imgFlipx = builder.imgFlipx;
@@ -66,14 +73,54 @@ public class Sprite extends GameObject{
     }
     public void setWidth(float width) {
         this.width = width;
+        updatePivot();
     }
     public float getHeight() {
         return height;
     }
     public void setHeight(float height) {
         this.height = height;
+        updatePivot();
     }
 
+    public PivotType getPivotType() {
+        return pivotType;
+    }
+    public void setPivot(PivotType pivotType) {
+        this.pivotType = pivotType;
+        updatePivot();
+    }
+    public void setPivot(float px, float py){
+        pivotType = PivotType.custom;
+        this.px = px;
+        this.py = py;
+    }
+    protected void updatePivot(){
+        switch (this.pivotType){
+            case leftTop:
+                this.px = 0;
+                this.py = 0;
+                break;
+            case rightTop:
+                this.px = width;
+                this.py = 0;
+                break;
+            case leftBottom:
+                this.px = 0;
+                this.py = height;
+                break;
+            case rightBottom:
+                this.px = width;
+                this.py = height;
+                break;
+            case center:
+                this.px = width / 2;
+                this.py = height / 2;
+                break;
+        }
+    }
+
+    // 빌더 클래스
     public static class Builder{
         // 필수 인자.
         protected Bitmap bitmap;
@@ -85,6 +132,7 @@ public class Sprite extends GameObject{
         protected float sx = 1, sy = 1;
         protected boolean flipx = false, flipy = false;
         protected boolean imgFlipx = false, imgFlipy = false;
+        protected PivotType pivotType = PivotType.leftTop;
 
         public Builder(Bitmap bitmap, float cx, float cy, float width, float height){
             if(bitmap != null)
@@ -109,29 +157,36 @@ public class Sprite extends GameObject{
             return this;
         }
 
+        public Builder setPivot(PivotType pivotType){
+            this.pivotType = pivotType;
+            switch (pivotType){
+                case leftTop:
+                    this.px = 0;
+                    this.py = 0;
+                    break;
+                case rightTop:
+                    this.px = width;
+                    this.py = 0;
+                    break;
+                case leftBottom:
+                    this.px = 0;
+                    this.py = height;
+                    break;
+                case rightBottom:
+                    this.px = width;
+                    this.py = height;
+                    break;
+                case center:
+                    this.px = width / 2;
+                    this.py = height / 2;
+                    break;
+            }
+            return this;
+        }
         public Builder setPivot(float px, float py){
+            pivotType = PivotType.custom;
             this.px = px;
             this.py = py;
-            return this;
-        }
-        public Builder setPivotCenter(){
-            this.px = width / 2;
-            this.py = height / 2;
-            return this;
-        }
-        public Builder setPivotRightTop(){
-            this.px = width;
-            this.py = 0;
-            return this;
-        }
-        public Builder setPivotLeftBottom(){
-            this.px = 0;
-            this.py = height;
-            return this;
-        }
-        public Builder setPivotRightBottom(){
-            this.px = width;
-            this.py = height;
             return this;
         }
         public Builder setRotation(float degree){

@@ -25,10 +25,10 @@ public class YesNoQueryUI extends Sprite {
 
         // Yes, No 버튼
         noButton = new TriggerButton(new Builder(R.mipmap.png_button_no, width, height, width / 5, width / 10)
-                .setPivotRightBottom());
+                .setPivot(PivotType.rightBottom));
         addChild(noButton);
         yesButton = new TriggerButton(new Builder(R.mipmap.png_button_ok, 0, height, width / 5, width / 10)
-                .setPivotLeftBottom());
+                .setPivot(PivotType.leftBottom));
         addChild(yesButton);
     }
     public YesNoQueryUI(String text) {

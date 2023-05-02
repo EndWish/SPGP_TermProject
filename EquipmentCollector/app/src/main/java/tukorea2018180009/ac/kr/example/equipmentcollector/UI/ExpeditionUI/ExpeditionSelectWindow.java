@@ -42,7 +42,7 @@ public class ExpeditionSelectWindow extends Sprite {
 
         // 닫기 버튼 생성
         closeButton = new TriggerButton(new Builder(R.mipmap.png_button_x, width, 0, 50, 50)
-                .setPivotRightTop());
+                .setPivot(PivotType.rightTop));
         addChild(closeButton);
     }
 

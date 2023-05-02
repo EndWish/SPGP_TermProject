@@ -16,11 +16,12 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
 public class BattleScene extends BaseScene {
 
+    ExpeditionAreaInfo currentExpeditonAreaInfo;
     BattlePage battlePage;
     int wave = 0;
 
     ArrayList<BattleProfile> myParty = new ArrayList<>();
-    ArrayList<BattleProfile> enemyParty = new ArrayList<>();
+    ArrayList<BattleProfile> enemyParty;
 
     TriggerButton nextBattleButton;
 
@@ -28,15 +29,15 @@ public class BattleScene extends BaseScene {
     public void init() {
         super.init();
 
+        currentExpeditonAreaInfo = ExpeditionAreaInfo.getCurrentExpeditionAreaInfo();
         battlePage = BattlePage.waitNextBattle;
 
         // 배경을 생성한다.
-        add(new Sprite(
-                new Sprite.Builder(ExpeditionAreaInfo.getCurrentExpeditionAreaInfo().getIcon(),
+        add(new Sprite( new Sprite.Builder(currentExpeditonAreaInfo.getIcon(),
                         0,0,1600, 900)));
 
         // 다음 웨이브 버튼을 생성한다.
-        nextBattleButton = new TriggerButton(new Sprite.Builder(R.mipmap.png_button_right_arrow, 1200, 450, 200, 200).setPivotCenter());
+        nextBattleButton = new TriggerButton(new Sprite.Builder(R.mipmap.png_button_right_arrow, 1200, 450, 200, 200).setPivot(Sprite.PivotType.center));
         add(nextBattleButton);
 
         // [추가]웨이브를 나타내는 텍스트를 생성한다.
@@ -63,6 +64,8 @@ public class BattleScene extends BaseScene {
 
     }
 
+
+
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
@@ -80,6 +83,7 @@ public class BattleScene extends BaseScene {
                     battlePage = BattlePage.tick;
                     ++wave;
                     // [추가]적을 생성한다. Forest1_ExpeditionAreaInfo를 전역에 저장해두고 사용하자.
+                    loadEnemiesFromExpeditionAreaInfo(wave);
                 }
                 break;
 
@@ -103,6 +107,33 @@ public class BattleScene extends BaseScene {
 
     }
 
+    protected void RemoveEnemyParty(){
+        if(enemyParty != null){
+            for(BattleProfile battleProfile : enemyParty)
+                battleProfile.setDelete();
+            enemyParty = null;
+        }
+    }
+
+    protected void loadEnemiesFromExpeditionAreaInfo(int wave){
+        // 기존의 적 파티를 삭제한다.
+        RemoveEnemyParty();
+
+        // 새로운 적 파티를 얻어온다.
+        enemyParty = currentExpeditonAreaInfo.getEnemies(wave);
+
+        // 초기화 작업을 해준다.
+        int row = 0;
+        for(BattleProfile battleProfile : enemyParty){
+            add(battleProfile); // 자식으로 추가.
+            battleProfile.setWidth(150);
+            battleProfile.setHeight(75 * 3);
+            battleProfile.setX(800 + 100 + 180 * row);
+            battleProfile.setY(450);
+            ++row;
+        }
+
+    }
 
     public enum BattlePage {
         waitNextBattle, tick, enemyUseSkill, pickTarget, skillAnimation

@@ -16,12 +16,12 @@ public class PartySettingBarUI extends Sprite {
     // 생성자
     public PartySettingBarUI() {
         super(new Builder(R.mipmap.png_black_white_frame_512x256, 800, 900 - 75, 525, 150)
-                .setPivotCenter());
+                .setPivot(PivotType.center));
 
         alwaysVisible = false;
 
         for(int i = 0; i < 4; ++i){
-            addChild(new AdventurerIcon(i, new Builder(0, -187.5f + 125 * i, 0f, 100f, 100f).setPivotCenter()));
+            addChild(new AdventurerIcon(i, new Builder(0, -187.5f + 125 * i, 0f, 100f, 100f).setPivot(PivotType.center)));
         }
     }
 

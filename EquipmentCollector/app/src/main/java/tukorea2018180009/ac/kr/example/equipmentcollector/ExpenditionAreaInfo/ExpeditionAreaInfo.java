@@ -8,6 +8,8 @@ import java.util.HashMap;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BattleScene;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
 
 public abstract class ExpeditionAreaInfo extends Object implements IIcon {
     // 지역 enum
@@ -38,6 +40,8 @@ public abstract class ExpeditionAreaInfo extends Object implements IIcon {
     public static void setCurrentAreaType(AreaType areaType){
         currentAreaType = areaType;
     }
+
+    public abstract ArrayList<BattleProfile> getEnemies(int wave);
 
     public abstract String getName();
 
