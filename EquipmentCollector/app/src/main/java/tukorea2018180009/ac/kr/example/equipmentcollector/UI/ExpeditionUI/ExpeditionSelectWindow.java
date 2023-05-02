@@ -65,6 +65,7 @@ public class ExpeditionSelectWindow extends Sprite {
             // 모험가 파티가 1명이상 배치되었는지 확인한다.
             if(0 < UserInfo.getInstance().getNumOfAdventererInParty()){
                 // 탐험 씬으로 이동 한다.
+                ExpeditionAreaInfo.setCurrentAreaType(selectInventory.getSelectedIcon().getAreaType());
                 new BattleScene().pushScene();
             }
             selectInventory.select(null);

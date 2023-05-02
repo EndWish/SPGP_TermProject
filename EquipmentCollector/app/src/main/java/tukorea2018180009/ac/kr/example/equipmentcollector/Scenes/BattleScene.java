@@ -5,20 +5,41 @@ import android.graphics.Canvas;
 import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
+import tukorea2018180009.ac.kr.example.equipmentcollector.ExpenditionAreaInfo.ExpeditionAreaInfo;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerUI.AdventurerInventoryButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.ExpeditionUI.ExpeditionSelectWindowOpenButton;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.TriggerButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
 public class BattleScene extends BaseScene {
+
+    BattlePage battlePage;
+    int wave = 0;
+
     ArrayList<BattleProfile> myParty = new ArrayList<>();
     ArrayList<BattleProfile> enemyParty = new ArrayList<>();
+
+    TriggerButton nextBattleButton;
 
     @Override
     public void init() {
         super.init();
+
+        battlePage = BattlePage.waitNextBattle;
+
+        // 배경을 생성한다.
+        add(new Sprite(
+                new Sprite.Builder(ExpeditionAreaInfo.getCurrentExpeditionAreaInfo().getIcon(),
+                        0,0,1600, 900)));
+
+        // 다음 웨이브 버튼을 생성한다.
+        nextBattleButton = new TriggerButton(new Sprite.Builder(R.mipmap.png_button_right_arrow, 1200, 450, 200, 200).setPivotCenter());
+        add(nextBattleButton);
+
+        // [추가]웨이브를 나타내는 텍스트를 생성한다.
 
         // 파티에 있는 모험가를 myParty배열에 추가한다.
        for(int i = 3; i >= 0; --i){
@@ -40,9 +61,6 @@ public class BattleScene extends BaseScene {
             ++row;
         }
 
-        // 다음 웨이브 버튼을 생성한다.
-        
-
     }
 
     @Override
@@ -53,6 +71,40 @@ public class BattleScene extends BaseScene {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        UserInfo.getInstance().update();
+        //UserInfo.getInstance().update();
+
+        switch (battlePage){
+            case waitNextBattle:
+                if(nextBattleButton.getTrigger()){
+                    nextBattleButton.setVisible(false);
+                    battlePage = BattlePage.tick;
+                    ++wave;
+                    // [추가]적을 생성한다. Forest1_ExpeditionAreaInfo를 전역에 저장해두고 사용하자.
+                }
+                break;
+
+            case tick:
+                // [추가]모든 유닛의 틱(스킬 게이지 증가 + 능력치 업데이트 + 버프/디버프 처리)을 수행한다.
+
+                // [추가]스킬게이지가 꽉찬 유닛이 있는지 확인한다.
+                    // [추가]스킬 게이지가 꽉찬 유닛 중 가장 게이지가 큰 유닛이 선공을 가지도록 한다.
+
+                break;
+
+            case enemyUseSkill:
+                break;
+
+            case pickTarget:
+                break;
+
+            case skillAnimation:
+                break;
+        }
+
+    }
+
+
+    public enum BattlePage {
+        waitNextBattle, tick, enemyUseSkill, pickTarget, skillAnimation
     }
 }
