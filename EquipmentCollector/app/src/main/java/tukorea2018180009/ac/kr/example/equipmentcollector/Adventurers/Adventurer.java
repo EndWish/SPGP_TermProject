@@ -1,5 +1,7 @@
 package tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers;
 
+import static java.lang.Math.max;
+
 import android.graphics.Bitmap;
 
 import java.util.ArrayList;
@@ -57,14 +59,32 @@ public abstract class Adventurer extends Object implements IIcon {
         equipments.add(equipment);
     }
 
-    public void calculateTotalStatus(){
-        totalStatus.set(0);
-        totalStatus.add(basicStatus);
-        totalStatus.add(extraBasicStatus);
-        totalStatus.mul(coefficientStatus);
-    }
+
 
     public void initForBattle(){
+        // 능력치 초기화
+        applyStatus();
+
+        // 스킬 게이지를 0으로 초기화
+        for (Skill skill :skills){
+            skill.setGauge(0);
+        }
+
+        // hp를 최대 체력으로 채워 놓는다.
+        hp = totalStatus.get(Status.Type.hpm);
+    }
+
+    public void advanceTick() {
+        for (Equipment equipment :equipments)
+            equipment.advanceTick(this);
+        for (Skill skill :skills){
+            skill.advanceTick(this);
+        }
+
+        applyStatus();
+    }
+
+    public void applyStatus() {
         // 추가 능력치들을 초기화 한다.
         extraBasicStatus.set(0);
         coefficientStatus.set(1f);
@@ -74,17 +94,24 @@ public abstract class Adventurer extends Object implements IIcon {
             equipment.applyStatus(this);
         for (Skill skill :skills){
             skill.applyStatus(this);
-            skill.setGauge(0);
         }
 
-        // [추가]버프/디버프를 전부 삭제한다.
-
         calculateTotalStatus();
-        hp = totalStatus.get(Status.Type.hpm);
+    }
+    public void calculateTotalStatus(){
+        totalStatus.set(0);
+        totalStatus.add(basicStatus);
+        totalStatus.add(extraBasicStatus);
+        totalStatus.mul(coefficientStatus);
     }
 
-    //public void AdvanceTick();
-    //public float GetMaximumGauge();
+    public float getMaxSkillGauge() {
+        float maxGauge = 0;
+        for (Skill skill :skills){
+            maxGauge = max(maxGauge, skill.getGauge());
+        }
+        return maxGauge;
+    }
     //public void UseMaximumGaugeSkill(targets);
 
     //public void ResetExtraBasicStats();

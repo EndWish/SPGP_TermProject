@@ -77,22 +77,48 @@ public class BattleScene extends BaseScene {
         super.update(deltaTime);
         //UserInfo.getInstance().update();
 
+        // [추가]죽은 유닛이 있는지 확인해서 삭제한다.
+
         switch (battlePage){
             case waitNextBattle:
                 if(nextBattleButton.getTrigger()){
                     nextBattleButton.setVisible(false);
                     battlePage = BattlePage.tick;
                     ++wave;
-                    // [추가]적을 생성한다. Forest1_ExpeditionAreaInfo를 전역에 저장해두고 사용하자.
+                    // 적을 생성한다. Forest1_ExpeditionAreaInfo를 전역에 저장해두고 사용하자.
                     loadEnemiesFromExpeditionAreaInfo(wave);
                 }
                 break;
 
             case tick:
-                // [추가]모든 유닛의 틱(스킬 게이지 증가 + 능력치 업데이트 + 버프/디버프 처리)을 수행한다.
+                // 모든 유닛의 틱(스킬 게이지 증가 + 능력치 업데이트 + 버프/디버프 처리)을 수행한다.
+                for(BattleProfile battleProfile : myParty)
+                    battleProfile.getAdventurer().advanceTick();
+                for(BattleProfile battleProfile : enemyParty)
+                    battleProfile.getAdventurer().advanceTick();
 
                 // [추가]스킬게이지가 꽉찬 유닛이 있는지 확인한다.
-                    // [추가]스킬 게이지가 꽉찬 유닛 중 가장 게이지가 큰 유닛이 선공을 가지도록 한다.
+                skillCaster = null;
+                float maxGauge = 100;
+
+                for(BattleProfile battleProfile : enemyParty){
+                    float gauge = battleProfile.getAdventurer().getMaxSkillGauge();
+                    if(maxGauge <= gauge){
+                        skillCaster = battleProfile;
+                    }
+                }
+                for(BattleProfile battleProfile : myParty){
+                    float gauge = battleProfile.getAdventurer().getMaxSkillGauge();
+                    if(maxGauge <= gauge){
+                        skillCaster = battleProfile;
+                    }
+                }
+                if(skillCaster != null) {   // 스킬 게이지가 꽉찬 유닛(중에서 게이지가 가장 큰 유닛)이 있을 경우
+                    // [추가] 아군일 경우 pickTarget 부분으로 넘어간다.
+                    
+                    // [추가] 적일경우 enemyUseSkill 부분으로 넘어간다.
+
+                }
 
                 break;
 

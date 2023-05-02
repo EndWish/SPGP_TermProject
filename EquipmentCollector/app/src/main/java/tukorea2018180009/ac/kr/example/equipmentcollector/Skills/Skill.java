@@ -3,6 +3,7 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Skills;
 import android.graphics.Bitmap;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IAbility;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 
@@ -32,11 +33,19 @@ public abstract class Skill implements IAbility, IIcon {
     }
     
     // 등급 열거형
-    public static enum Grade{
-        essential, normal, ultimate,
+    public enum Grade{
+        essential, normal, ultimate;
     }
 
     // IAbility를 위한 함수들
     @Override
     public void applyStatus(Adventurer adventurer) {}
+    public void advanceTick(Adventurer adventurer) {
+        if(getGrade() == Grade.essential)
+            tickGauge(adventurer.getTotalStatus().get(Status.Type.essentialSkillSpeed));
+        else if(getGrade() == Grade.normal)
+            tickGauge(adventurer.getTotalStatus().get(Status.Type.normalSkillSpeed));
+        else if(getGrade() == Grade.ultimate)
+            tickGauge(adventurer.getTotalStatus().get(Status.Type.ultimateSkillSpeed));
+    }
 }

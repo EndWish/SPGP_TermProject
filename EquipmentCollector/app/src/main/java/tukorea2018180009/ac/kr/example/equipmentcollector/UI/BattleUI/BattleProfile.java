@@ -18,4 +18,11 @@ public class BattleProfile extends SpriteButton {
         adventurer.initForBattle();
     }
 
+    public Adventurer getAdventurer() {
+        return adventurer;
+    }
+    public void setAdventurer(Adventurer adventurer) {
+        this.adventurer = adventurer;
+    }
+
 }
