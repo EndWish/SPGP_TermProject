@@ -82,6 +82,20 @@ public class Sprite extends GameObject{
         this.height = height;
         updatePivot();
     }
+    public boolean isImgFlipx() {
+        return imgFlipx;
+    }
+    public void setImgFlipx(boolean imgFlipx) {
+        this.imgFlipx = imgFlipx;
+    }
+
+    public boolean isImgFlipy() {
+        return imgFlipy;
+    }
+
+    public void setImgFlipy(boolean imgFlipy) {
+        this.imgFlipy = imgFlipy;
+    }
 
     public PivotType getPivotType() {
         return pivotType;

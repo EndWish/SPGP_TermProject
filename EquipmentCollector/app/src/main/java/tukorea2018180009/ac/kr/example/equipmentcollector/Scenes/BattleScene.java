@@ -18,6 +18,7 @@ public class BattleScene extends BaseScene {
 
     ExpeditionAreaInfo currentExpeditonAreaInfo;
     BattlePage battlePage;
+    BattleProfile skillCaster;
     int wave = 0;
 
     ArrayList<BattleProfile> myParty = new ArrayList<>();
@@ -126,10 +127,13 @@ public class BattleScene extends BaseScene {
         int row = 0;
         for(BattleProfile battleProfile : enemyParty){
             add(battleProfile); // 자식으로 추가.
+
+            // 위치를 설정해준다.
             battleProfile.setWidth(150);
             battleProfile.setHeight(75 * 3);
             battleProfile.setX(800 + 100 + 180 * row);
             battleProfile.setY(450);
+            battleProfile.setImgFlipx(true);
             ++row;
         }
 
