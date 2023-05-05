@@ -148,4 +148,10 @@ public abstract class Adventurer extends Object implements IIcon {
     public ArrayList<Equipment> getEquipments() {
         return equipments;
     }
+    public float getHp() {
+        return hp;
+    }
+    public void setHp(float hp) {
+        this.hp = hp;
+    }
 }
