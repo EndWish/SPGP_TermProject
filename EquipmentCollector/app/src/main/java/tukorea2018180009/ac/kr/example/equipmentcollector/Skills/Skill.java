@@ -2,10 +2,13 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Skills;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
+
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IAbility;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
 
 public abstract class Skill implements IAbility, IIcon {
     protected float gauge;
@@ -20,6 +23,13 @@ public abstract class Skill implements IAbility, IIcon {
     public abstract float getCorrectionSpeed();
     public abstract String getDesc();
     public abstract String getName();
+
+    // 해당 스킬이 공격할 수 있는 적들을 리턴해줌. (기본은 모든적들을 공격할 수 있는 것으로 함.)
+    public ArrayList<BattleProfile> getAttackableTarget(ArrayList<BattleProfile> enemies){
+        ArrayList<BattleProfile> result = new ArrayList<BattleProfile>();
+        result.addAll(enemies);
+        return result;
+    }
 
     // getter, setter
     public float getGauge() {

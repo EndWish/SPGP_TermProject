@@ -1,12 +1,14 @@
 package tukorea2018180009.ac.kr.example.equipmentcollector.Scenes;
 
 import android.graphics.Canvas;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.ExpenditionAreaInfo.ExpeditionAreaInfo;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerUI.AdventurerInventoryButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
@@ -19,12 +21,15 @@ public class BattleScene extends BaseScene {
     ExpeditionAreaInfo currentExpeditonAreaInfo;
     BattlePage battlePage;
     BattleProfile skillCaster;
+    Skill castSkill;
     int wave = 0;
 
     ArrayList<BattleProfile> myParty = new ArrayList<>();
     ArrayList<BattleProfile> enemyParty;
 
     TriggerButton nextBattleButton;
+
+    float waitPageTimer = 0;
 
     @Override
     public void init() {
@@ -91,13 +96,8 @@ public class BattleScene extends BaseScene {
                 break;
 
             case tick:
-                // 모든 유닛의 틱(스킬 게이지 증가 + 능력치 업데이트 + 버프/디버프 처리)을 수행한다.
-                for(BattleProfile battleProfile : myParty)
-                    battleProfile.getAdventurer().advanceTick();
-                for(BattleProfile battleProfile : enemyParty)
-                    battleProfile.getAdventurer().advanceTick();
-
-                // [추가]스킬게이지가 꽉찬 유닛이 있는지 확인한다.
+                Log.d("update", "tick");
+                // 스킬게이지가 꽉찬 유닛이 있는지 확인한다.
                 skillCaster = null;
                 float maxGauge = 100;
 
@@ -113,22 +113,63 @@ public class BattleScene extends BaseScene {
                         skillCaster = battleProfile;
                     }
                 }
-                if(skillCaster != null) {   // 스킬 게이지가 꽉찬 유닛(중에서 게이지가 가장 큰 유닛)이 있을 경우
-                    // [추가] 아군일 경우 pickTarget 부분으로 넘어간다.
-                    
-                    // [추가] 적일경우 enemyUseSkill 부분으로 넘어간다.
 
+                // 스킬 게이지가 꽉찬 유닛(중에서 게이지가 가장 큰 유닛)이 있을 경우
+                if(skillCaster != null) {
+                    castSkill = skillCaster.getAdventurer().getMaxGaugedSkill();
+                    castSkill.setGauge(0);  // 사용하게될 스킬의 게이지를 0으로 만든다.
+                    // [추가] 아군일 경우 pickTarget 부분으로 넘어간다.
+                    if(skillCaster.isAlly()){
+                        ArrayList<BattleProfile> targets = castSkill.getAttackableTarget(enemyParty);
+                        // 공격할 수 있는 적이 없을 경우 잠시 대기(Wait 배틀 페이지로 이동)했다가 넘어가도록 한다.
+                        if(targets.size() == 0){
+                            battlePage = BattlePage.wait;
+                            waitPageTimer = 1.0f;
+                        }
+                        // 공격할 수 있는 대상이 존재할 경우 (어떤 적을 공격할 수 있는지 표시하고 다음 배틀페이지로 넘어간다.)
+                        else{
+                            battlePage = BattlePage.pickTarget;
+                            for(BattleProfile target : targets){
+                                target.setAttackableTarget(true);
+                            }
+                        }
+                    }
+                    // [추가] 적일경우 enemyUseSkill 부분으로 넘어간다.
+                    else{
+                        battlePage = BattlePage.enemyUseSkill;
+                    }
+                }
+                // 스킬 게이지가 꽉찬 유닛이 없을 경우 (스킬 게이지가 꽉찬 유닛이 여러명일 경우 틱을 진행하면 안되기 때문)
+                else{
+                    // 모든 유닛의 틱(스킬 게이지 증가 + 능력치 업데이트 + 버프/디버프 처리)을 수행한다.
+                    for(BattleProfile battleProfile : myParty)
+                        battleProfile.getAdventurer().advanceTick();
+                    for(BattleProfile battleProfile : enemyParty)
+                        battleProfile.getAdventurer().advanceTick();
                 }
 
                 break;
 
             case enemyUseSkill:
+                Log.d("update", "enemyUseSkill");
                 break;
 
             case pickTarget:
+                Log.d("update", "pickTarget");
                 break;
 
             case skillAnimation:
+                Log.d("update", "skillAnimation");
+                break;
+
+            case wait:
+                Log.d("update", "wait");
+                waitPageTimer -= deltaTime;
+                // 기다르는 시간이 지났을 경우 다시 TickPage로 돌아간다.
+                if(waitPageTimer <= 0) {
+                    battlePage = BattlePage.tick;
+                    //[추가]공격할 수 있는 대상이 없어서 wiatPage에 왔다면 문구로 알려준다.
+                }
                 break;
         }
 
@@ -160,12 +201,13 @@ public class BattleScene extends BaseScene {
             battleProfile.setX(800 + 100 + 180 * row);
             battleProfile.setY(450);
             battleProfile.setImgFlipx(true);
+            battleProfile.setAlly(false);
             ++row;
         }
 
     }
 
     public enum BattlePage {
-        waitNextBattle, tick, enemyUseSkill, pickTarget, skillAnimation
+        waitNextBattle, tick, enemyUseSkill, pickTarget, skillAnimation, wait,
     }
 }

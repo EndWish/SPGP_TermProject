@@ -112,6 +112,16 @@ public abstract class Adventurer extends Object implements IIcon {
         }
         return maxGauge;
     }
+    public Skill getMaxGaugedSkill(){
+        Skill result = null;
+        for (Skill skill :skills){
+            if(result == null || result.getGauge() < skill.getGauge()){
+                result = skill;
+            }
+        }
+        return result;
+    }
+
     //public void UseMaximumGaugeSkill(targets);
 
     //public void ResetExtraBasicStats();
