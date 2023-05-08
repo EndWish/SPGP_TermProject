@@ -17,7 +17,7 @@ public class AdventurerInventoryButton extends SpriteButton {
     @Override
     public void clickDown() {
         super.clickDown();
-        BaseScene.getTopScene().add(new AdventurerInventory());
+        BaseScene.getTopScene().addPost(new AdventurerInventory());
     }
 
 }

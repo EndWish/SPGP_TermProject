@@ -20,7 +20,7 @@ public class ExpeditionSelectWindowOpenButton extends SpriteButton {
     @Override
     public void clickDown() {
         super.clickDown();
-        BaseScene.getTopScene().add(new ExpeditionSelectWindow());
+        BaseScene.getTopScene().addPost(new ExpeditionSelectWindow());
     }
 
 }

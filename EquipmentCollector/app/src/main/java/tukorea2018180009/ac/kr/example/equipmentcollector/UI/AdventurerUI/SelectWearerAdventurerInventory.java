@@ -58,7 +58,7 @@ public class SelectWearerAdventurerInventory  extends Sprite {
 
         // 장착할 모험가를 선택했을 경우
         if(selectInventory.getSelectedIcon() != null){
-            BaseScene.getTopScene().add(new EquipmentEquipQueryUI(equipment, selectInventory.getSelectedIcon()));
+            BaseScene.getTopScene().addPost(new EquipmentEquipQueryUI(equipment, selectInventory.getSelectedIcon()));
             selectInventory.select(null);
         }
 

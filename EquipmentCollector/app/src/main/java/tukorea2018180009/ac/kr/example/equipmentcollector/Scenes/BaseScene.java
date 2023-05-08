@@ -41,7 +41,7 @@ public class BaseScene {
         return stack.size();
     }
 
-    public int add(GameObject object) {
+    protected int add(GameObject object) {
         gameObjects.add(object);
         return gameObjects.size();
     }

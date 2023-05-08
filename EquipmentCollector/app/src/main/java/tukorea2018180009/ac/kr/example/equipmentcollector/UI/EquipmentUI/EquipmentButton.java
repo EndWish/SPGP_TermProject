@@ -31,7 +31,7 @@ public class EquipmentButton extends SpriteButton {
     public void clickDown() {
         super.clickDown();
         if(equipment != null)
-            BaseScene.getTopScene().add(new EquipmentInfoUI(equipment));
+            BaseScene.getTopScene().addPost(new EquipmentInfoUI(equipment));
     }
 
     // getter, setter

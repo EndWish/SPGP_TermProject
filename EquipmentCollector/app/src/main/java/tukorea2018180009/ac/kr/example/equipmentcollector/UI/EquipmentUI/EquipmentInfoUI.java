@@ -83,11 +83,11 @@ public class EquipmentInfoUI  extends Sprite {
 
         // 업그레이드 버튼을 눌렸을 경우
         if(upgradeButton.getTrigger())
-            BaseScene.getTopScene().add(new SelectIngredientEquipmentInventory(equipment));
+            BaseScene.getTopScene().addPost(new SelectIngredientEquipmentInventory(equipment));
 
         // 장착 버튼을 눌렀을 경우
         if(equipButton.getTrigger() && equipment.getWearer() == null)
-            BaseScene.getTopScene().add(new SelectWearerAdventurerInventory(equipment));
+            BaseScene.getTopScene().addPost(new SelectWearerAdventurerInventory(equipment));
 
         // 닫기 버튼을 눌렀을 경우
         if(closeButton.getTrigger())

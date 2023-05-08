@@ -20,7 +20,7 @@ public class SkillButton extends SpriteButton {
         // 아직 툴팁이 생성되지 않았다면 생성한다.
         if(tooltip == null){
             tooltip = new Tooltip(this.skill.getDesc(), 1500, 50, 50);
-            BaseScene.getTopScene().add(tooltip);
+            BaseScene.getTopScene().addPost(tooltip);
         }
         tooltip.setVisible(true);
     }

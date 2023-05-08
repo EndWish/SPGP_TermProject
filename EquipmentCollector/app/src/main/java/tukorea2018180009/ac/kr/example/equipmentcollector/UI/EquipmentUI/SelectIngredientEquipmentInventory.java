@@ -64,7 +64,7 @@ public class SelectIngredientEquipmentInventory extends Sprite {
         
         // 재료로 사용할 장비를 선택했을 경우
         if(selectInventory.getSelectedIcon() != null){
-            BaseScene.getTopScene().add(new EquipmentUpgradeQueryUI(upgradeEquipment, selectInventory.getSelectedIcon()));
+            BaseScene.getTopScene().addPost(new EquipmentUpgradeQueryUI(upgradeEquipment, selectInventory.getSelectedIcon()));
             selectInventory.select(null);
         }
 
@@ -77,7 +77,7 @@ public class SelectIngredientEquipmentInventory extends Sprite {
         // 재료로 사용할 수 있는 장비들의 리스트를 뽑아낸다.
         ingredients.clear();
         for (Equipment equipment : UserInfo.getInstance().getEquipments()) {
-            if (equipment != null && !equipment.isDeleted() && upgradeEquipment.getName() == equipment.getName()) {
+            if (equipment != null && !equipment.isDeleted() && upgradeEquipment.getName() == equipment.getName() && upgradeEquipment != equipment) {
                 ingredients.add(equipment);
             }
         }

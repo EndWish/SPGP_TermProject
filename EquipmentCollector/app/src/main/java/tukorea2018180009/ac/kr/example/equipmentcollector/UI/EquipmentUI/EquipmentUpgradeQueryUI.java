@@ -3,6 +3,9 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.UI.EquipmentUI;
 import android.util.Log;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.LifeTimeEffect;
+import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.YesNoQueryUI;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
@@ -61,6 +64,12 @@ public class EquipmentUpgradeQueryUI extends YesNoQueryUI {
                 equipment.addUpgradeLevel(1);
                 setDelete();
                 Log.d(TAG, "강화 성공");
+                // 이팩트 생성
+                BaseScene.getTopScene().addPost(
+                        new LifeTimeEffect(1f, new Builder(R.mipmap.png_sheet_effect_success, 800, 450, 800, 300)
+                                .setPivot(PivotType.center)
+                                .setAnimation(5, 22, 1, false)));
+                
                 return;
             }
             // 재료 파괴 : 재료를 삭제하고, 이 창을 닫는다. 이펙트를 출력한다.
@@ -68,11 +77,22 @@ public class EquipmentUpgradeQueryUI extends YesNoQueryUI {
                 ingredient.setDelete();
                 setDelete();
                 Log.d(TAG, "재료 파괴");
+                // 이팩트 생성
+                BaseScene.getTopScene().addPost(
+                        new LifeTimeEffect(1f, new Builder(R.mipmap.png_sheet_effect_destroy, 800, 450, 800, 300)
+                                .setPivot(PivotType.center)
+                                .setAnimation(5, 22, 1, false)));
+
                 return;
             }
             // 강화 실패 : 이펙트를 출력한다.
             else {
                 Log.d(TAG, "강화 실패");
+                // 이팩트 생성
+                BaseScene.getTopScene().addPost(
+                        new LifeTimeEffect(1f, new Builder(R.mipmap.png_sheet_effect_fail, 800, 450, 800, 300)
+                                .setPivot(PivotType.center)
+                                .setAnimation(5, 22, 1, false)));
             }
         }
 

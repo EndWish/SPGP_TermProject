@@ -2,8 +2,10 @@ package tukorea2018180009.ac.kr.example.equipmentcollector;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
+import android.util.Log;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 
@@ -11,11 +13,17 @@ public class Sprite extends GameObject{
     private static final String TAG = Sprite.class.getSimpleName();
     protected Bitmap bitmap;
     protected RectF dstRect = new RectF();
+    protected Rect srcRect = new Rect();
 
     protected float width, height, px, py;
     protected boolean imgFlipx, imgFlipy;   // 이미지만 반전시키고 그려지는 위치는 바뀌지 않는다.
     protected boolean flipx, flipy;         // 좌표계가 반전된다.
     protected PivotType pivotType;
+
+    // 애니메이션을 위한 변수들
+    protected boolean aniEnable, aniLoop;
+    protected int aniMaxColumn, aniNFrame, aniIndex;
+    protected float aniTime, aniMaxTime;
 
     public enum PivotType{
         custom, leftTop, rightTop, leftBottom, rightBottom, center;
@@ -29,13 +37,41 @@ public class Sprite extends GameObject{
     public void update(float deltaTime) {
         super.update(deltaTime);
         fixDstRect();
+        
+        // 애니메이션 시간 경과
+        if(aniEnable){
+            aniTime += deltaTime;
+            if(aniLoop){
+                while(aniMaxTime <= aniTime){
+                    aniTime -= aniMaxTime;
+                }
+            }
+            else{
+                if(aniMaxTime <= aniTime)
+                    aniTime = aniMaxTime - deltaTime;
+            }
+        }
     }
 
     @Override
     protected void draw(Canvas canvas) {
         super.draw((canvas));
-        if(bitmap != null)
-            canvas.drawBitmap(bitmap, null, dstRect, null);
+        if(bitmap != null){
+            if(aniEnable){
+                aniIndex = (int)((aniTime / aniMaxTime) * aniNFrame);
+                Log.d("aniTime", aniTime + "s");
+                int aniMaxRow = (aniNFrame + aniMaxColumn - 1) / aniMaxColumn;
+                int aniCurrentCol = aniIndex % aniMaxColumn;
+                int aniCurrentRow = aniIndex / aniMaxColumn;
+                int frameWidth = bitmap.getWidth() / aniMaxColumn;
+                int frameHeight = bitmap.getHeight() / aniMaxRow;
+                srcRect.set(frameWidth * aniCurrentCol, frameHeight * aniCurrentRow, frameWidth * (aniCurrentCol + 1), frameHeight * (aniCurrentRow + 1));
+                canvas.drawBitmap(bitmap, srcRect, dstRect, null);
+            }
+            else{
+                canvas.drawBitmap(bitmap, null, dstRect, null);
+            }
+        }
     }
 
     @Override
@@ -58,6 +94,16 @@ public class Sprite extends GameObject{
         imgFlipy = builder.imgFlipy;
         flipx = builder.flipx;
         flipy = builder.flipy;
+
+        // 애니메이션 관련 변수 초기화
+        aniMaxColumn = builder.aniMaxColumn;
+        aniNFrame = builder.aniNFrame;
+        aniMaxTime = builder.aniMaxTime;
+        aniLoop = builder.aniLoop;
+        aniEnable = builder.aniEnable;
+        aniIndex = builder.aniIndex;
+        aniTime = builder.aniTime;
+
         fixDstRect();
     }
 
@@ -134,6 +180,26 @@ public class Sprite extends GameObject{
         }
     }
 
+    public void setAnimation(int aniMaxColumn, int aniNFrame, float aniMaxTime, boolean aniLoop){
+        aniEnable = true;
+        this.aniMaxColumn = aniMaxColumn;
+        this.aniNFrame = aniNFrame;
+        this.aniMaxTime = aniMaxTime;
+        this.aniLoop = aniLoop;
+    }
+    public boolean isAniEnable() {
+        return aniEnable;
+    }
+    public void setAniEnable(boolean aniEnable) {
+        this.aniEnable = aniEnable;
+    }
+    public void setAniIndex(int aniIndex){
+        this.aniIndex = aniIndex;
+    }
+    public void setAniTime(float aniTime) {
+        this.aniTime = aniTime;
+    }
+
     // 빌더 클래스
     public static class Builder{
         // 필수 인자.
@@ -147,6 +213,11 @@ public class Sprite extends GameObject{
         protected boolean flipx = false, flipy = false;
         protected boolean imgFlipx = false, imgFlipy = false;
         protected PivotType pivotType = PivotType.leftTop;
+
+        // 애니메이션 관련 변수
+        protected boolean aniEnable = false, aniLoop = false;
+        protected int aniMaxColumn = 1, aniNFrame = 1, aniIndex = 0;
+        protected float aniTime = 0, aniMaxTime = 1;
 
         public Builder(Bitmap bitmap, float cx, float cy, float width, float height){
             if(bitmap != null)
@@ -210,6 +281,23 @@ public class Sprite extends GameObject{
         public Builder setScale(float sx, float sy){
             this.sx = sx;
             this.sy = sy;
+            return this;
+        }
+
+        public Builder setAnimation(int aniMaxColumn, int aniNFrame, float aniMaxTime, boolean aniLoop){
+            aniEnable = true;
+            this.aniMaxColumn = aniMaxColumn;
+            this.aniNFrame = aniNFrame;
+            this.aniMaxTime = aniMaxTime;
+            this.aniLoop = aniLoop;
+            return this;
+        }
+        public Builder setAniIndex(int aniIndex){
+            this.aniIndex = aniIndex;
+            return this;
+        }
+        public Builder setAniTime(float aniTime) {
+            this.aniTime = aniTime;
             return this;
         }
 

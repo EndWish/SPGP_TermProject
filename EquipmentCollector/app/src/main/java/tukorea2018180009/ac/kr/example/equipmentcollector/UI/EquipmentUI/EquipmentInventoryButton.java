@@ -18,7 +18,7 @@ public class EquipmentInventoryButton extends SpriteButton {
     @Override
     public void clickDown() {
         super.clickDown();
-        BaseScene.getTopScene().add(new EquipmentInventory());
+        BaseScene.getTopScene().addPost(new EquipmentInventory());
     }
 
 }
