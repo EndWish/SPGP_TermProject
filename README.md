@@ -3,7 +3,7 @@
 
 ## 게임 컨셉
 유사 게임 : 서머너즈 워 천공의 아레나  
-![image](https://user-images.githubusercontent.com/90082921/230753300-e9ca050a-86ab-4651-9bff-f286a68df105.png)
+![image](https://user-images.githubusercontent.com/90082921/230753300-e9ca050a-86ab-4651-9bff-f286a68df105.png)  
 
     - 턴제 수집형 RPG 게임  
     - 캐릭터로 팀을 꾸려 던전을 탐험  
@@ -33,19 +33,52 @@
 7.  마지막 전투까지 승리하게 되면 탐험이 끝나고 다음 탐험지역이 활성화 됩니다. 1번 과정으로 돌아가 반복하게 됩니다.  
 
 ## 개발 일정
-### 1주차 - 리소스 수집  
+### 1주차 - 리소스 수집 (90%)  
 -------------------------
-### 2주차 - 클래스다이어 그램을 작성하고 설계하기  
+![image](https://user-images.githubusercontent.com/90082921/236818396-e1180115-0b3d-49c5-b612-9792aa89decd.png)
+![image](https://user-images.githubusercontent.com/90082921/236818557-a632b84a-27d0-4f94-ba6a-b2f87ebbeb14.png)
+![image](https://user-images.githubusercontent.com/90082921/236818608-682de6a8-7e1b-4c0f-9286-4d05fd61c0b1.png)
+
+### 2주차 - 클래스다이어 그램을 작성하고 설계하기(80%)  
 링크 : https://drive.google.com/file/d/1hy8AKG66e9_fdKM2iuScWqOGM9-6YYXr/view?usp=sharing  
 ![image](https://user-images.githubusercontent.com/90082921/230753916-d48dd56a-f54e-455e-a9d6-032b73a03740.png)  
 -------------------------
-### 3주차 - 타이틀 화면 및 메인화면에 필요한 버튼 구성, 캐릭터와 장비 인벤토리 창 구현  
+### 3주차 - 타이틀 화면 및 메인화면에 필요한 버튼 구성, 캐릭터와 장비 인벤토리 창 구현 (100%)  
+SpriteButton클래스를 추가하여 버튼시스템을 구현  
+![image](https://user-images.githubusercontent.com/90082921/236818920-d03a90ec-9985-4f79-8543-cc050b52740f.png)  
+소유중인 캐릭터들을 보여주는 인벤토리창 구현  
+![image](https://user-images.githubusercontent.com/90082921/236819729-f9d89a83-09c1-4fd0-9429-195a1e9be3ad.png)  
+보유중인 장비를 보여주는 인벤토리창 구현  
+![image](https://user-images.githubusercontent.com/90082921/236819859-e1ee082a-640f-4b82-ab75-a826288b4ecc.png)  
+인벤토리창에 페이지를 넘길 수 있는 좌우 화살표 버튼을 만들고 페이지수를 표시할 수 있도록 텍스트를 출력  
+
 -------------------------
-### 4주차 - 캐릭터와 장비의 정보창 구현. 강화 및 귀속 시스템 구현  
+### 4주차 - 캐릭터와 장비의 정보창 구현. 강화 및 귀속 시스템 구현 (90%)  
+캐릭터의 능력치나 장비하고 있는 무기, 스킬 등을 보여주는 정보창을 구현  
+![image](https://user-images.githubusercontent.com/90082921/236820103-e1365fc6-02bb-4cf5-8c80-5ae555a58802.png)  
+장비의 정보를 보여주는 창을 구현  
+![image](https://user-images.githubusercontent.com/90082921/236820685-c167b4ca-c345-4647-adbc-78349322de43.png)  
+
+터치인 사이드 기능 구현.  
+드래그 기능을 구현하여 파티를 구성할 수 있도록 제작  
+가장위에 있는 창의 버튼만 눌리도록 구현(아래쪽에 묻혀있는 창의 버튼이 눌리지 않도록 구현.)  
+
+무기강화와 무기귀속 기능을 구현  
+![image](https://user-images.githubusercontent.com/90082921/236821239-0f980917-5c1c-4ef8-9995-b69425ee1c09.png)  
+
+무기강화와 무기귀속 시도시 성공혹은 실패 이팩트가 발생하도록 구현  
+
 -------------------------
-### 5주차 - 전투 시스템 구현  
+### 5주차 - 전투 시스템 구현 (적 생성, 스킬 게이지, 대상 선택) (50%)
+탐험지역 추가.  
+![image](https://user-images.githubusercontent.com/90082921/236821630-72b67c13-f043-4073-853b-22d64f299ab1.png)  
+현재 탐험지역에서 나올 수 있는 적들을 랜덤으로 생성하도록 구현.  
+![image](https://user-images.githubusercontent.com/90082921/236825570-fcd0e0d1-1e90-41ca-8f65-c01cdbf9467b.png)  
+시간이 지남에 따라 스킬 게이지가 차고, 가장 먼저 스킬게이지가 찬 캐릭터가 공격 턴을 가지고 공격할 수 있는 적은 노란색 테두리로 표시  
+![image](https://user-images.githubusercontent.com/90082921/236821977-b38ef9f8-b848-4b66-b562-8a6664412d85.png)  
+
 -------------------------
-### 6주차 - 전투 시스템 구현  
+### 6주차 - 전투 시스템 구현 (스킬 이팩트, 데미지, 보상 시스템, 버프 디버프 시스템 구현)  
 -------------------------
 ### 7주차 - 캐릭터와 무기 추가  
 -------------------------
