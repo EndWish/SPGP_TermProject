@@ -28,6 +28,10 @@ public class BaseScene {
         if (top < 0) return null;
         return stack.get(top);
     }
+    public static int popScene() {
+        stack.remove(stack.size() - 1);
+        return stack.size();
+    }
 
     public void init() { }
 
