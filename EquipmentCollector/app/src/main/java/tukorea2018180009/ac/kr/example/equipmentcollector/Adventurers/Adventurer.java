@@ -55,8 +55,9 @@ public abstract class Adventurer extends Object implements IIcon {
     protected abstract void initBasicStatus();
     protected abstract void initSkills();
 
-    protected void addEquipment(Equipment equipment) {
+    public void addEquipment(Equipment equipment) {
         equipments.add(equipment);
+        equipment.setWearer(this);
     }
 
 

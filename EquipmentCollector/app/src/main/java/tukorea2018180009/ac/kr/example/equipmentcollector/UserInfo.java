@@ -34,7 +34,7 @@ public class UserInfo {
 
     //멤버 함수
     public void LoadNewStart() {
-        gold = 1000;
+        gold = 1000000;
         for(int i = 0; i < 50; ++i){
             adventurers.add(new ArthurAdventurer());
         }

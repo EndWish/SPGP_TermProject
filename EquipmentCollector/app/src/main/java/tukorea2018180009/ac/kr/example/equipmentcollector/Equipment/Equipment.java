@@ -8,7 +8,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 public abstract class Equipment extends Object implements IAbility, IIcon {
 
 
-
+    protected Adventurer wearer;
     protected int upgradeLevel;
 
     public Equipment() {
@@ -31,6 +31,14 @@ public abstract class Equipment extends Object implements IAbility, IIcon {
     }
     public void addUpgradeLevel(int add){
         upgradeLevel += add;
+    }
+    public Adventurer getWearer() {
+        if(wearer != null && wearer.isDeleted())
+            wearer = null;
+        return wearer;
+    }
+    public void setWearer(Adventurer wearer) {
+        this.wearer = wearer;
     }
 
     // 등급 열거형
