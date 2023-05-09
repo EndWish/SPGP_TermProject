@@ -1,10 +1,13 @@
 package tukorea2018180009.ac.kr.example.equipmentcollector.Scenes;
 
 import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import java.util.ArrayList;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
@@ -19,6 +22,9 @@ public class BaseScene {
     protected ArrayList<GameObject> addPostGameObjects = new ArrayList<>();
     protected SpriteButton buttonOnMouse, clickedButton;
     protected Object hand;
+    protected RectF handRectF = new RectF();
+    protected float mx = 0;
+    protected float my = 0;
     protected int buttonLayer = 0;
     protected Canvas canvasForButton = new Canvas();
 
@@ -64,6 +70,12 @@ public class BaseScene {
                 continue;
             object.drawAll(canvas);
         }
+
+        if(hand != null && hand instanceof IIcon){
+            Log.d(TAG, mx + "," + my);
+            handRectF.set(mx - 50f, my - 50f, mx + 50f, my + 50f);
+            canvas.drawBitmap(((IIcon) hand).getIcon(), null, handRectF, null);
+        }
     }
 
     public void getButtonOnMouse(float mx, float my){
@@ -82,8 +94,8 @@ public class BaseScene {
 
         int action = event.getAction();
 
-        float mx = Metrics.toGameX(event.getX());
-        float my = Metrics.toGameY(event.getY());
+        mx = Metrics.toGameX(event.getX());
+        my = Metrics.toGameY(event.getY());
         getButtonOnMouse(mx, my);
 
         switch (action) {
