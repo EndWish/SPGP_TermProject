@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.GaugeSprite;
@@ -79,6 +80,7 @@ public class BattleProfile extends SpriteButton {
         for(int i = 0; i < skillGauges.size(); ++i){
             skillGauges.get(i).setRatio(skills.get(i).getGauge() / 100.f);
         }
+
     }
 
     // getter, setter

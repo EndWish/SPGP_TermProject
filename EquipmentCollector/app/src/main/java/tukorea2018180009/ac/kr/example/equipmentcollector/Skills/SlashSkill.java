@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
 
 public class SlashSkill extends Skill {
 
@@ -37,5 +38,10 @@ public class SlashSkill extends Skill {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public Attack CreateAttack(BattleProfile caster, BattleProfile target) {
+        return new SlashAttack(caster, target);
     }
 }
