@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.ExpenditionAreaInfo.ExpeditionAreaInfo;
+import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Attack;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
@@ -25,11 +27,14 @@ public class BattleScene extends BaseScene {
     Skill castSkill;
     int wave = 0;
 
+    ArrayList<GameObject> attacks = new ArrayList<>();
+
     ArrayList<BattleProfile> myParty = new ArrayList<>();
     ArrayList<BattleProfile> enemyParty;
 
     TriggerButton nextBattleButton;
 
+    BattlePage nextBattlePageAfterWaiting = BattlePage.tick;
     float waitPageTimer = 0;
 
     @Override
@@ -81,7 +86,11 @@ public class BattleScene extends BaseScene {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
-        //UserInfo.getInstance().update();
+
+        if(enemyParty != null)
+            enemyParty.removeIf(battleProfile -> battleProfile == null || battleProfile.isDeleted());
+        if(myParty != null)
+            myParty.removeIf(battleProfile -> battleProfile == null || battleProfile.isDeleted());
 
         switch (battlePage){
             case waitNextBattle:
@@ -96,47 +105,70 @@ public class BattleScene extends BaseScene {
 
             case tick:
                 Log.d("update", "tick");
-                // 스킬게이지가 꽉찬 유닛이 있는지 확인한다.
-                skillCaster = null;
-                float maxGauge = 100;
 
-                for(BattleProfile battleProfile : enemyParty){
-                    float gauge = battleProfile.getAdventurer().getMaxSkillGauge();
-                    if(maxGauge <= gauge){
-                        skillCaster = battleProfile;
+                // 현재 웨이브의 적을 모두 처치했는지 확인한다.
+                if(enemyParty.isEmpty()){
+                    // 현재 웨이브가 마지막 웨이브가 아닐경우 waitNextBattle 배틀 페이지로 이동한다.
+                    if(wave < 10){
+                        battlePage = BattlePage.waitNextBattle;
+                        nextBattleButton.setVisible(true);
+                        break;
+                    }
+                    // [추가]마지막 웨이브까지 적을 처치했을 경우 보상탭으로 가도록 한다.
+                    else{
+
                     }
                 }
-                for(BattleProfile battleProfile : myParty){
-                    float gauge = battleProfile.getAdventurer().getMaxSkillGauge();
-                    if(maxGauge <= gauge){
-                        skillCaster = battleProfile;
-                    }
-                }
+
+                // 스킬게이지가 꽉찬 유닛이 있는지 확인한다.
+                skillCaster = findSkillCaster();
 
                 // 스킬 게이지가 꽉찬 유닛(중에서 게이지가 가장 큰 유닛)이 있을 경우
                 if(skillCaster != null) {
                     castSkill = skillCaster.getAdventurer().getMaxGaugedSkill();
                     castSkill.setGauge(0);  // 사용하게될 스킬의 게이지를 0으로 만든다.
-                    // [추가] 아군일 경우 pickTarget 부분으로 넘어간다.
+                    // 아군일 경우 pickTarget 부분으로 넘어간다.
                     if(skillCaster.isAlly()){
                         ArrayList<BattleProfile> targets = castSkill.getAttackableTarget(enemyParty);
                         // 공격할 수 있는 적이 없을 경우 잠시 대기(Wait 배틀 페이지로 이동)했다가 넘어가도록 한다.
                         if(targets.size() == 0){
                             battlePage = BattlePage.wait;
+                            nextBattlePageAfterWaiting = BattlePage.tick;
                             waitPageTimer = 1.0f;
                         }
-                        // 공격할 수 있는 대상이 존재할 경우 (어떤 적을 공격할 수 있는지 표시하고 다음 배틀페이지로 넘어간다.)
+                        // 공격할 수 있는 대상이 존재할 경우
                         else{
-                            battlePage = BattlePage.pickTarget;
+                            // 어떤 적을 공격할 수 있는지 표시한다.
                             for(BattleProfile target : targets){
                                 target.setAttackableTarget(true);
                                 target.getTrigger();    // 이전에 눌렸던 버퍼를 해제해켜 준다.
                             }
+                            // 다음 배틀페이지로 넘어간다
+                            battlePage = BattlePage.pickTarget;
                         }
                     }
-                    // [추가] 적일경우 enemyUseSkill 부분으로 넘어간다.
+                    // 적일경우 enemyUseSkill 부분으로 넘어간다.
                     else{
-                        battlePage = BattlePage.enemyUseSkill;
+                        ArrayList<BattleProfile> targets = castSkill.getAttackableTarget(myParty);
+                        // 공격할 수 있는 적이 없을 경우 잠시 대기(Wait 배틀 페이지로 이동)했다가 넘어가도록 한다.
+                        if(targets.size() == 0){
+                            battlePage = BattlePage.wait;
+                            nextBattlePageAfterWaiting = BattlePage.tick;
+                            waitPageTimer = 1.0f;
+                        }
+                        // 공격할 수 있는 대상이 존재할 경우
+                        else{
+                            // 어떤 적을 공격할 수 있는지 표시한다.
+                            for(BattleProfile target : targets){
+                                target.setAttackableTarget(true);
+                                target.getTrigger();    // 이전에 눌렸던 버퍼를 해제해켜 준다.
+                            }
+                            // 잠시 대기시간을 가진후 다음 배틀페이지로 넘어간다
+                            battlePage = BattlePage.wait;
+                            nextBattlePageAfterWaiting = BattlePage.enemyUseSkill;
+                            waitPageTimer = 0.5f;
+                        }
+
                     }
                 }
                 // 스킬 게이지가 꽉찬 유닛이 없을 경우 (스킬 게이지가 꽉찬 유닛이 여러명일 경우 틱을 진행하면 안되기 때문)
@@ -152,45 +184,93 @@ public class BattleScene extends BaseScene {
 
             case enemyUseSkill:
                 Log.d("update", "enemyUseSkill");
+
+                // 선택할 수 있는 대상만 추려서 targetParty에 넣는다.
+                ArrayList<BattleProfile> targetParty = new ArrayList<>();
+                targetParty.addAll(myParty);
+                targetParty.addAll(enemyParty);
+                targetParty.removeIf(battleProfile -> !battleProfile.isAttackableTarget());
+
+                // 선택 대상중 랜덤으로 한명을 선택해서 공격한다.
+                int selectIndex = (int)(Math.random() * (targetParty.size() + 1));
+                addAttack( castSkill.createAttack(skillCaster, targetParty.get(selectIndex)) );
+
+                // 공격할 수 있는 대상들을 전부 해제시킨다.
+                for(BattleProfile battleProfile : targetParty)
+                    battleProfile.setAttackableTarget(false);
+
+                // 배틀 페이지를 변경시킨다.
+                battlePage = BattlePage.skillAnimation;
+
                 break;
 
             case pickTarget:
                 Log.d("update", "pickTarget");
                 boolean process = false;    // 여러명을 동시에 누른 경우 한명만 처리하도록 하기 위한 변수
-                for (BattleProfile battleProfile : myParty){
+                ArrayList<BattleProfile> allParty = new ArrayList<>();
+                allParty.addAll(myParty);
+                allParty.addAll(enemyParty);
+
+                for (BattleProfile battleProfile : allParty){
                     if(battleProfile.getTrigger() && battleProfile.isAttackableTarget() && !process){
-                        Attack attack = castSkill.createAttack(skillCaster, battleProfile);
-                        BaseScene.getTopScene().addPost(attack);
-                        process = true;
-                    }
-                }
-                for (BattleProfile battleProfile : enemyParty){
-                    if(battleProfile.getTrigger() && battleProfile.isAttackableTarget() && !process){
-                        Attack attack = castSkill.createAttack(skillCaster, battleProfile);
-                        BaseScene.getTopScene().addPost(attack);
+                        addAttack( castSkill.createAttack(skillCaster, battleProfile) );
                         process = true;
                     }
                 }
                 if(process){
+                    // 공격할 수 있는 대상들을 전부 해제시킨다.
+                    for(BattleProfile battleProfile : allParty)
+                        battleProfile.setAttackableTarget(false);
+
+                    // 배틀 페이지를 변경시킨다.
                     battlePage = BattlePage.skillAnimation;
                 }
                 break;
 
             case skillAnimation:
                 Log.d("update", "skillAnimation");
+                attacks.removeIf(attack -> attack == null || attack.isDeleted());
+                if(attacks.size() == 0){
+                    battlePage = BattlePage.tick;
+                }
                 break;
 
             case wait:
                 Log.d("update", "wait");
                 waitPageTimer -= deltaTime;
-                // 기다르는 시간이 지났을 경우 다시 TickPage로 돌아간다.
+                // 기다리는 시간이 지났을 경우 다시 TickPage로 돌아간다.
                 if(waitPageTimer <= 0) {
-                    battlePage = BattlePage.tick;
+                    battlePage = nextBattlePageAfterWaiting;
                     //[추가]공격할 수 있는 대상이 없어서 wiatPage에 왔다면 문구로 알려준다.
                 }
                 break;
         }
 
+    }
+    protected BattleProfile findSkillCaster(){
+        skillCaster = null;
+        float maxGauge = 100;
+
+        for(BattleProfile battleProfile : enemyParty){
+            float gauge = battleProfile.getAdventurer().getMaxSkillGauge();
+            if(maxGauge <= gauge){
+                skillCaster = battleProfile;
+            }
+        }
+        for(BattleProfile battleProfile : myParty){
+            float gauge = battleProfile.getAdventurer().getMaxSkillGauge();
+            if(maxGauge <= gauge){
+                skillCaster = battleProfile;
+            }
+        }
+        return skillCaster;
+    }
+
+    protected void addAttack(GameObject gameObject){
+        if(gameObject != null) {
+            BaseScene.getTopScene().addPost(gameObject);
+            attacks.add(gameObject);
+        }
     }
 
     protected void RemoveEnemyParty(){
