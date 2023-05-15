@@ -4,11 +4,13 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.util.Log;
 
 import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Damage;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
@@ -17,6 +19,8 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.UI.GaugeSprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 
 public class BattleProfile extends SpriteButton {
+    private static String TAG = BattleProfile.class.getSimpleName();
+
     Adventurer adventurer;
     boolean ally;
     boolean attackableTarget;
@@ -25,6 +29,7 @@ public class BattleProfile extends SpriteButton {
     GaugeSprite hpGauge;
     ArrayList<GaugeSprite> skillGauges;
     ArrayList<Skill> skills;
+
 
     // 생성자
     public BattleProfile(Adventurer adventurer, float cx, float cy, float width) {
@@ -81,6 +86,39 @@ public class BattleProfile extends SpriteButton {
             skillGauges.get(i).setRatio(skills.get(i).getGauge() / 100.f);
         }
 
+    }
+
+    public float takeDamage(Damage damage){
+        if(isDeleted()){
+            Log.d(TAG, "이미 죽은 유닛입니다.");
+            return 0;
+        }
+
+        float totalTrueDamage = 0;
+
+        for(Damage.Type damageType : Damage.Type.values()){
+            // 해당 데미지 타입의 데미지값이 0보다 클경우
+            float damageValue = damage.getDamage(damageType);   // 데미지 값
+            if(0 < damageValue){
+                Status.Type statusDefType = Damage.Type.convertStatusDefType.get(damageType);
+                float defValue = adventurer.getTotalStatus().get(statusDefType);    // 방어력 값
+
+                // 방어력을 적용한 데미지 값(피해량)을 계산
+                float trueDamage = damageValue * (100 / (100 + defValue));
+
+                // 총피해량에 현재 구한 피해량을 더해준다.
+                totalTrueDamage += trueDamage;
+            }
+        }
+
+        adventurer.addHp(totalTrueDamage);
+
+        // hp가 0이하가 되면 삭제한다.
+        if(adventurer.getHp() <= 0){
+            setDelete();
+        }
+
+        return totalTrueDamage;
     }
 
     // getter, setter

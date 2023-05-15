@@ -82,8 +82,6 @@ public class BattleScene extends BaseScene {
         super.update(deltaTime);
         //UserInfo.getInstance().update();
 
-        // [추가]죽은 유닛이 있는지 확인해서 삭제한다.
-
         switch (battlePage){
             case waitNextBattle:
                 if(nextBattleButton.getTrigger()){

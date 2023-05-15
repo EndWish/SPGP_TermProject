@@ -1,6 +1,8 @@
 package tukorea2018180009.ac.kr.example.equipmentcollector.Skills;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Damage;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
@@ -34,15 +36,20 @@ public class SlashAttack extends Attack {
         }
 
         if(lifeTime <= dmgTiming && 0 < damageRemaining){
-            apply();
+            damageApply();
         }
     }
 
-    protected void apply() {
+    protected void damageApply() {
         --damageRemaining;
 
         // 데미지를 계산하여 적에게 데미지를 준다.
-        
+        Status casterTotalStatue = caster.getAdventurer().getTotalStatus();
+
+        Damage damage = new Damage();
+        damage.addDamage(Damage.Type.slash, 0.7f * casterTotalStatue.get(Status.Type.slashPower));
+        damage.addDamage(Damage.Type.slash, 0.7f * casterTotalStatue.get(Status.Type.piercePower));
+        target.takeDamage(damage);
     }
 
 }

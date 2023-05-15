@@ -8,7 +8,7 @@ public class Damage {
 
     public float[] values = new float[Damage.Type.values().length];
 
-    public Damage(Type type, float value) {
+    public Damage() {
         for(int i = 0; i < Damage.Type.values().length; ++i){
             values[i] = 0;
         }
@@ -16,6 +16,9 @@ public class Damage {
 
     public void setDamage(Type type, float value){
         values[type.ordinal()] = value;
+    }
+    public void addDamage(Type type, float value){
+        values[type.ordinal()] += value;
     }
     public float getDamage(Type type){
         return values[type.ordinal()];
