@@ -3,9 +3,11 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers;
 import static java.lang.Math.max;
 
 import android.graphics.Bitmap;
+import android.util.Log;
 
 import java.util.ArrayList;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.Damage;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
@@ -14,6 +16,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 
 public abstract class Adventurer extends Object implements IIcon {
 
+    private static final String TAG = Adventurer.class.getSimpleName();
     protected float hp;
     protected Status basicStatus = new Status();
     protected Status extraBasicStatus = new Status();
@@ -121,6 +124,37 @@ public abstract class Adventurer extends Object implements IIcon {
             }
         }
         return result;
+    }
+
+    public float takeDamage(Damage damage){
+        if(isDeleted()){
+            Log.d(TAG, "이미 죽은 유닛입니다.");
+            return 0;
+        }
+
+        float totalTrueDamage = 0;
+
+        for(Damage.Type damageType : Damage.Type.values()){
+            // 해당 데미지 타입의 데미지값이 0보다 클경우
+            float damageValue = damage.getDamage(damageType);   // 데미지 값
+            if(0 < damageValue){
+                Status.Type statusDefType = Damage.Type.convertStatusDefType.get(damageType);
+                float defValue = totalStatus.get(statusDefType);    // 방어력 값
+
+                // 방어력을 적용한 데미지 값(피해량)을 계산
+                float trueDamage = damageValue * (100 / (100 + defValue));
+
+                // 총피해량에 현재 구한 피해량을 더해준다.
+                totalTrueDamage += trueDamage;
+            }
+        }
+
+        hp -= totalTrueDamage;
+
+        if(hp <= 0)
+            setDelete();
+
+        return totalTrueDamage;
     }
 
     //public void UseMaximumGaugeSkill(targets);
