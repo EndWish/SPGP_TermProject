@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.ExpenditionAreaInfo.ExpeditionAreaInfo;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Attack;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerUI.AdventurerInventoryButton;
@@ -129,6 +130,7 @@ public class BattleScene extends BaseScene {
                             battlePage = BattlePage.pickTarget;
                             for(BattleProfile target : targets){
                                 target.setAttackableTarget(true);
+                                target.getTrigger();    // 이전에 눌렸던 버퍼를 해제해켜 준다.
                             }
                         }
                     }
@@ -154,6 +156,24 @@ public class BattleScene extends BaseScene {
 
             case pickTarget:
                 Log.d("update", "pickTarget");
+                boolean process = false;    // 여러명을 동시에 누른 경우 한명만 처리하도록 하기 위한 변수
+                for (BattleProfile battleProfile : myParty){
+                    if(battleProfile.getTrigger() && battleProfile.isAttackableTarget() && !process){
+                        Attack attack = castSkill.createAttack(skillCaster, battleProfile);
+                        BaseScene.getTopScene().addPost(attack);
+                        process = true;
+                    }
+                }
+                for (BattleProfile battleProfile : enemyParty){
+                    if(battleProfile.getTrigger() && battleProfile.isAttackableTarget() && !process){
+                        Attack attack = castSkill.createAttack(skillCaster, battleProfile);
+                        BaseScene.getTopScene().addPost(attack);
+                        process = true;
+                    }
+                }
+                if(process){
+                    battlePage = BattlePage.skillAnimation;
+                }
                 break;
 
             case skillAnimation:

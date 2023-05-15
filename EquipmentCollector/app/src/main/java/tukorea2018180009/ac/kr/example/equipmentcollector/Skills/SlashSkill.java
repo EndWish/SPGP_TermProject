@@ -41,7 +41,7 @@ public class SlashSkill extends Skill {
     }
 
     @Override
-    public Attack CreateAttack(BattleProfile caster, BattleProfile target) {
+    public Attack createAttack(BattleProfile caster, BattleProfile target) {
         return new SlashAttack(caster, target);
     }
 }

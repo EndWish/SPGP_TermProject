@@ -29,7 +29,7 @@ public class Damage {
         slash, pierce, impact,
         magic, holy, cursed;
 
-        static public HashMap<Type, Status.Type> convertStatusDefType;
+        static public HashMap<Type, Status.Type> convertStatusDefType = new HashMap<>();
         static {
             convertStatusDefType.put(slash, Status.Type.slashDefense);
             convertStatusDefType.put(pierce, Status.Type.pierceDefense);
@@ -39,7 +39,7 @@ public class Damage {
             convertStatusDefType.put(cursed, Status.Type.cursedResistance);
         }
 
-        static public HashMap<Type, Status.Type> convertStatusPowerType;
+        static public HashMap<Type, Status.Type> convertStatusPowerType = new HashMap<>();
         static {
             convertStatusPowerType.put(slash, Status.Type.slashPower);
             convertStatusPowerType.put(pierce, Status.Type.piercePower);

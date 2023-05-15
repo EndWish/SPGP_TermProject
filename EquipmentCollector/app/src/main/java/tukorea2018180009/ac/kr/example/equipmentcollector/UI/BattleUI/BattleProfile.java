@@ -17,8 +17,9 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.GaugeSprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.TriggerButton;
 
-public class BattleProfile extends SpriteButton {
+public class BattleProfile extends TriggerButton {
     private static String TAG = BattleProfile.class.getSimpleName();
 
     Adventurer adventurer;
@@ -111,7 +112,7 @@ public class BattleProfile extends SpriteButton {
             }
         }
 
-        adventurer.addHp(totalTrueDamage);
+        adventurer.addHp(-totalTrueDamage);
 
         // hp가 0이하가 되면 삭제한다.
         if(adventurer.getHp() <= 0){
