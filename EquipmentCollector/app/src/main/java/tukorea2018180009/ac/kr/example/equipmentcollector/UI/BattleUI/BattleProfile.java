@@ -17,6 +17,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.GaugeSprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.Text.FloatingText;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.TriggerButton;
 
 public class BattleProfile extends TriggerButton {
@@ -112,7 +113,11 @@ public class BattleProfile extends TriggerButton {
             }
         }
 
+        // hp를 데미지많큼 줄인다.
         adventurer.addHp(-totalTrueDamage);
+
+        // FloatText를 생성한다.
+        BaseScene.getTopScene().addPost(new FloatingText(x, y - height, String.valueOf((int)(totalTrueDamage)), Color.RED));
 
         // hp가 0이하가 되면 삭제한다.
         if(adventurer.getHp() <= 0){
