@@ -5,7 +5,7 @@ import android.graphics.Paint;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
-import tukorea2018180009.ac.kr.example.equipmentcollector.Text;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.Text.Text;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 
 public class EquipmentButton extends SpriteButton {

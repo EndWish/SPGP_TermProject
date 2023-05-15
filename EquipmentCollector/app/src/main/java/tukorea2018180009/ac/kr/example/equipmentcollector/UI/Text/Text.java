@@ -1,12 +1,12 @@
-package tukorea2018180009.ac.kr.example.equipmentcollector;
+package tukorea2018180009.ac.kr.example.equipmentcollector.UI.Text;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.TextPaint;
-import android.util.Log;
 
-import java.sql.Array;
 import java.util.ArrayList;
+
+import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
 
 public class Text extends GameObject {
     private static final String TAG = Text.class.getSimpleName();

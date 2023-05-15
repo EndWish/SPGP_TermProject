@@ -2,7 +2,6 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.UI;
 
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -13,7 +12,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
-import tukorea2018180009.ac.kr.example.equipmentcollector.Text;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.Text.Text;
 
 public class SelectInventory<T extends IIcon> extends Sprite {
     protected T selectedIcon;

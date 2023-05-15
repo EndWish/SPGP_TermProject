@@ -12,7 +12,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
-import tukorea2018180009.ac.kr.example.equipmentcollector.Text;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.Text.Text;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.EquipmentUI.EquipmentButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SkillButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.StatusText;

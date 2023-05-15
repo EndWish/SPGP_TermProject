@@ -6,7 +6,7 @@ import android.graphics.Paint;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
-import tukorea2018180009.ac.kr.example.equipmentcollector.Text;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.Text.Text;
 
 public class StatusText extends Sprite {
 
