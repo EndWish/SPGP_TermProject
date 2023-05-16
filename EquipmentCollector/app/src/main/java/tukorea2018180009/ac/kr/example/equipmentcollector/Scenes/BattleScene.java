@@ -6,6 +6,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.ExpenditionAreaInfo.ExpeditionAreaInfo;
 import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
@@ -15,6 +16,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerUI.AdventurerInventoryButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.ClearRewardsCheckUI;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.ExpeditionUI.ExpeditionSelectWindowOpenButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.NotificationMessage;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.TriggerButton;
@@ -28,6 +30,9 @@ public class BattleScene extends BaseScene {
     Skill castSkill;
     int wave = 0;
 
+    ArrayList<Equipment> rewardEquipments = new ArrayList<>();
+    int rewardGold = 0;
+
     ArrayList<GameObject> attacks = new ArrayList<>();  // 공격의 개수를 판별하기 위한 배열
 
     ArrayList<BattleProfile> myParty = new ArrayList<>();
@@ -35,6 +40,7 @@ public class BattleScene extends BaseScene {
 
     TriggerButton nextBattleButton;
     NotificationMessage failMessage;
+    ClearRewardsCheckUI clearMessage;
 
     BattlePage nextBattlePageAfterWaiting = BattlePage.tick;
     float waitPageTimer = 0;
@@ -92,17 +98,24 @@ public class BattleScene extends BaseScene {
         // 삭제된 오브젝트들의 연결을 끊는다.
         if(failMessage != null && failMessage.isDeleted())
             failMessage = null;
-        if(enemyParty != null)
+        if(clearMessage != null && clearMessage.isDeleted())
+            clearMessage = null;
+        if(enemyParty != null){
+            // 적이 죽어서 삭제될경우 보상을 추가한다.
+            for(BattleProfile battleProfile : enemyParty){
+                if(battleProfile != null && battleProfile.isDeleted()){
+                    rewardEquipments.addAll(battleProfile.getAdventurer().getRewardEquipments());
+                    rewardGold += battleProfile.getAdventurer().getRewardGold();
+                }
+            }
             enemyParty.removeIf(battleProfile -> battleProfile == null || battleProfile.isDeleted());
+            Log.d("적의 수 : ",enemyParty.size() + "");
+        }
+
         if(myParty != null)
             myParty.removeIf(battleProfile -> battleProfile == null || battleProfile.isDeleted());
 
         switch (battlePage){
-            case fail:
-                if(failMessage == null) {
-                    popScene();
-                }
-                break;
 
             case waitNextBattle:
                 if(nextBattleButton.getTrigger()){
@@ -129,8 +142,9 @@ public class BattleScene extends BaseScene {
                     else{
                         battlePage = BattlePage.wait;
                         nextBattlePageAfterWaiting = BattlePage.clear;
-                        waitPageTimer = 1.0f;
+                        waitPageTimer = 0.5f;
                     }
+                    return;
                 }
 
                 // 나의 파티가 전멸했을 경우
@@ -138,6 +152,7 @@ public class BattleScene extends BaseScene {
                     battlePage = BattlePage.wait;
                     nextBattlePageAfterWaiting = BattlePage.fail;
                     waitPageTimer = 0.5f;
+                    return;
                 }
 
                 // 스킬게이지가 꽉찬 유닛이 있는지 확인한다.
@@ -265,6 +280,10 @@ public class BattleScene extends BaseScene {
                         failMessage = new NotificationMessage("탐험에 실패하였습니다.\n모험가와 장비를 강화하여 다시 도전하십시오.");
                         addPost(failMessage);
                     }
+                    else if(nextBattlePageAfterWaiting == BattlePage.clear){
+                        clearMessage = new ClearRewardsCheckUI(rewardEquipments, rewardGold);
+                        addPost(clearMessage);
+                    }
 
                     battlePage = nextBattlePageAfterWaiting;
                     //[추가]공격할 수 있는 대상이 없어서 wiatPage에 왔다면 문구로 알려준다.
@@ -273,7 +292,19 @@ public class BattleScene extends BaseScene {
                 }
                 break;
 
+            case fail:
+                if(failMessage == null) {
+                    popScene();
+                }
+                break;
 
+            case clear:
+                if(clearMessage == null) {
+                    UserInfo.getInstance().addGold(rewardGold);
+                    UserInfo.getInstance().getEquipments().addAll(rewardEquipments);
+                    popScene();
+                }
+                break;
         }
 
     }

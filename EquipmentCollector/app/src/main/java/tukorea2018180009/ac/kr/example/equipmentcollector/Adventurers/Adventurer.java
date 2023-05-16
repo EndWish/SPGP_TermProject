@@ -126,7 +126,8 @@ public abstract class Adventurer extends Object implements IIcon {
         return result;
     }
 
-
+    abstract public ArrayList<Equipment> getRewardEquipments();
+    abstract public int getRewardGold();
 
     //public void UseMaximumGaugeSkill(targets);
 

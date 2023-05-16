@@ -2,8 +2,12 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers;
 
 import android.graphics.Bitmap;
 
+import java.util.ArrayList;
+
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEquipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.SlashSkill;
 
@@ -57,6 +61,17 @@ public class ArthurAdventurer extends Adventurer{
         skills.add(new SlashSkill());
         skills.add(new SlashSkill());
         skills.add(new SlashSkill());
+    }
+
+    @Override
+    public ArrayList<Equipment> getRewardEquipments() {
+        ArrayList<Equipment> rewards = new ArrayList<Equipment>();
+        rewards.add(new PlainSwordEquipment());
+        return rewards;
+    }
+    @Override
+    public int getRewardGold() {
+        return 50;
     }
 
     @Override
