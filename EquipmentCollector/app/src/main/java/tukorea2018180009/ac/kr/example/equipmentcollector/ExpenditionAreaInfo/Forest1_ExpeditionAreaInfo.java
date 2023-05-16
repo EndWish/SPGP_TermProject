@@ -32,14 +32,14 @@ public class Forest1_ExpeditionAreaInfo extends ExpeditionAreaInfo {
         ArrayList<BattleProfile> result = new ArrayList<>();
 
         final float percentage = (float)(Math.random() * 100.0);
-        if(percentage <= 10){
+        if(percentage <= 90){
             // [수정]A파티 생성
-            result.add(new BattleProfile(new ArthurAdventurer(), 0,0,0));   // 1열
-            result.add(new BattleProfile(new ArthurAdventurer(), 0,0,0));   // 2열
+            result.add(new BattleProfile(new ArthurAdventurer(), 0,0,150));   // 1열
+            result.add(new BattleProfile(new ArthurAdventurer(), 0,0,150));   // 2열
         }
         else{
             // [수정]B파티 생성
-            result.add(new BattleProfile(new ArthurAdventurer(), 0,0,0));   // 1열
+            result.add(new BattleProfile(new ArthurAdventurer(), 0,0,150));   // 1열
         }
         return result;
     }

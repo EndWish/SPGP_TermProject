@@ -16,6 +16,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Scenes.BaseScene;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.GaugeSprite;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SkillButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.SpriteButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.Text.FloatingText;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.TriggerButton;
@@ -26,7 +27,9 @@ public class BattleProfile extends TriggerButton {
     Adventurer adventurer;
     boolean ally;
     boolean attackableTarget;
+    boolean skillCasting;
 
+    SkillButton castingSkillButton;
     Sprite attackableTargetFrame;
     GaugeSprite hpGauge;
     ArrayList<GaugeSprite> skillGauges;
@@ -42,6 +45,7 @@ public class BattleProfile extends TriggerButton {
         skills = adventurer.getSkills();
         this.ally = true;
         this.attackableTarget = false;
+        this.skillCasting = false;
 
         // 능력치 초기화 작업을 한다.
         adventurer.initForBattle();
@@ -73,6 +77,12 @@ public class BattleProfile extends TriggerButton {
             skillGauges.add(skillGauge);
             addChild(skillGauge);
         }
+
+        // 시전중인 스킬을 보여주기위한 객체 생성 (처음에는 보이지 않도록 설정)
+        castingSkillButton = new SkillButton(null, 0, -height * 0.5f - width * 0.5f, width * 2f/3f);
+        castingSkillButton.setPivot(PivotType.center);
+        castingSkillButton.setVisible(false);
+        addChild(castingSkillButton);
 
     }
 
@@ -148,6 +158,8 @@ public class BattleProfile extends TriggerButton {
         for(GaugeSprite skillGauge : skillGauges){
             skillGauge.setWidth(width);
         }
+        castingSkillButton.setWidth(width * 2f/3f);
+        castingSkillButton.setHeight(width * 2f/3f);
     }
     @Override
     public void setHeight(float height) {
@@ -170,5 +182,22 @@ public class BattleProfile extends TriggerButton {
     public void setAttackableTarget(boolean attackableTarget) {
         this.attackableTarget = attackableTarget;
         attackableTargetFrame.setVisible(attackableTarget);
+    }
+
+    public boolean isSkillCasting() {
+        return skillCasting;
+    }
+    public void setSkillCasting(boolean skillCasting) {
+        this.skillCasting = skillCasting;
+        // 내가 공격을 하는 차례일 경우 어떤 스킬을 사용하는지 보여준다.
+        if(skillCasting){
+            castingSkillButton.setSkill(getAdventurer().getMaxGaugedSkill());
+            castingSkillButton.setVisible(true);
+        }
+        // 공격하는 차례가 아니게 될경우 보여주던 스킬을 다시 보여주지 않도록 한다.
+        else{
+            castingSkillButton.setSkill(null);
+            castingSkillButton.setVisible(false);
+        }
     }
 }

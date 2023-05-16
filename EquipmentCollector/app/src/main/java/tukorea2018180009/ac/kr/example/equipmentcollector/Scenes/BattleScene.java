@@ -66,7 +66,7 @@ public class BattleScene extends BaseScene {
        for(int i = 3; i >= 0; --i){
            Adventurer adventurer = UserInfo.getInstance().getPartyAdventerer(i);
            if(adventurer != null) {
-               BattleProfile battleProfile = new BattleProfile(adventurer, 0, 0, 0);
+               BattleProfile battleProfile = new BattleProfile(adventurer, 0, 0, 150);
                myParty.add(battleProfile);
                add(battleProfile);
            }
@@ -100,6 +100,8 @@ public class BattleScene extends BaseScene {
             failMessage = null;
         if(clearMessage != null && clearMessage.isDeleted())
             clearMessage = null;
+        if(myParty != null)
+            myParty.removeIf(battleProfile -> battleProfile == null || battleProfile.isDeleted());
         if(enemyParty != null){
             // 적이 죽어서 삭제될경우 보상을 추가한다.
             for(BattleProfile battleProfile : enemyParty){
@@ -109,11 +111,7 @@ public class BattleScene extends BaseScene {
                 }
             }
             enemyParty.removeIf(battleProfile -> battleProfile == null || battleProfile.isDeleted());
-            Log.d("적의 수 : ",enemyParty.size() + "");
         }
-
-        if(myParty != null)
-            myParty.removeIf(battleProfile -> battleProfile == null || battleProfile.isDeleted());
 
         switch (battlePage){
 
@@ -160,6 +158,7 @@ public class BattleScene extends BaseScene {
 
                 // 스킬 게이지가 꽉찬 유닛(중에서 게이지가 가장 큰 유닛)이 있을 경우
                 if(skillCaster != null) {
+                    skillCaster.setSkillCasting(true);
                     castSkill = skillCaster.getAdventurer().getMaxGaugedSkill();
                     castSkill.setGauge(0);  // 사용하게될 스킬의 게이지를 0으로 만든다.
                     // 아군일 경우 pickTarget 부분으로 넘어간다.
@@ -230,6 +229,11 @@ public class BattleScene extends BaseScene {
                 int selectIndex = (int)(Math.random() * targetParty.size());
                 addAttack( castSkill.createAttack(skillCaster, targetParty.get(selectIndex)) );
 
+                // 스킬 캐스터를 해제 시킨다.
+                skillCaster.setSkillCasting(false);
+                skillCaster = null;
+                castSkill = null;
+
                 // 공격할 수 있는 대상들을 전부 해제시킨다.
                 for(BattleProfile battleProfile : targetParty)
                     battleProfile.setAttackableTarget(false);
@@ -253,6 +257,10 @@ public class BattleScene extends BaseScene {
                     }
                 }
                 if(process){
+                    // 스킬 캐스터를 해제 시킨다.
+                    skillCaster.setSkillCasting(false);
+                    skillCaster = null;
+                    castSkill = null;
                     // 공격할 수 있는 대상들을 전부 해제시킨다.
                     for(BattleProfile battleProfile : allParty)
                         battleProfile.setAttackableTarget(false);
@@ -355,8 +363,6 @@ public class BattleScene extends BaseScene {
             add(battleProfile); // 자식으로 추가.
 
             // 위치를 설정해준다.
-            battleProfile.setWidth(150);
-            battleProfile.setHeight(75 * 3);
             battleProfile.setX(800 + 100 + 180 * row);
             battleProfile.setY(450);
             battleProfile.setImgFlipx(true);
