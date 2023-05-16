@@ -16,6 +16,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerUI.AdventurerInventoryButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.ExpeditionUI.ExpeditionSelectWindowOpenButton;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.NotificationMessage;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.TriggerButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
@@ -27,12 +28,13 @@ public class BattleScene extends BaseScene {
     Skill castSkill;
     int wave = 0;
 
-    ArrayList<GameObject> attacks = new ArrayList<>();
+    ArrayList<GameObject> attacks = new ArrayList<>();  // 공격의 개수를 판별하기 위한 배열
 
     ArrayList<BattleProfile> myParty = new ArrayList<>();
     ArrayList<BattleProfile> enemyParty;
 
     TriggerButton nextBattleButton;
+    NotificationMessage failMessage;
 
     BattlePage nextBattlePageAfterWaiting = BattlePage.tick;
     float waitPageTimer = 0;
@@ -87,12 +89,21 @@ public class BattleScene extends BaseScene {
     public void update(float deltaTime) {
         super.update(deltaTime);
 
+        // 삭제된 오브젝트들의 연결을 끊는다.
+        if(failMessage != null && failMessage.isDeleted())
+            failMessage = null;
         if(enemyParty != null)
             enemyParty.removeIf(battleProfile -> battleProfile == null || battleProfile.isDeleted());
         if(myParty != null)
             myParty.removeIf(battleProfile -> battleProfile == null || battleProfile.isDeleted());
 
         switch (battlePage){
+            case fail:
+                if(failMessage == null) {
+                    popScene();
+                }
+                break;
+
             case waitNextBattle:
                 if(nextBattleButton.getTrigger()){
                     nextBattleButton.setVisible(false);
@@ -116,8 +127,17 @@ public class BattleScene extends BaseScene {
                     }
                     // [추가]마지막 웨이브까지 적을 처치했을 경우 보상탭으로 가도록 한다.
                     else{
-
+                        battlePage = BattlePage.wait;
+                        nextBattlePageAfterWaiting = BattlePage.clear;
+                        waitPageTimer = 1.0f;
                     }
+                }
+
+                // 나의 파티가 전멸했을 경우
+                if(myParty.isEmpty()){
+                    battlePage = BattlePage.wait;
+                    nextBattlePageAfterWaiting = BattlePage.fail;
+                    waitPageTimer = 0.5f;
                 }
 
                 // 스킬게이지가 꽉찬 유닛이 있는지 확인한다.
@@ -192,7 +212,7 @@ public class BattleScene extends BaseScene {
                 targetParty.removeIf(battleProfile -> !battleProfile.isAttackableTarget());
 
                 // 선택 대상중 랜덤으로 한명을 선택해서 공격한다.
-                int selectIndex = (int)(Math.random() * (targetParty.size() + 1));
+                int selectIndex = (int)(Math.random() * targetParty.size());
                 addAttack( castSkill.createAttack(skillCaster, targetParty.get(selectIndex)) );
 
                 // 공격할 수 있는 대상들을 전부 해제시킨다.
@@ -240,10 +260,20 @@ public class BattleScene extends BaseScene {
                 waitPageTimer -= deltaTime;
                 // 기다리는 시간이 지났을 경우 다시 TickPage로 돌아간다.
                 if(waitPageTimer <= 0) {
+                    //
+                    if(nextBattlePageAfterWaiting == BattlePage.fail){
+                        failMessage = new NotificationMessage("탐험에 실패하였습니다.\n모험가와 장비를 강화하여 다시 도전하십시오.");
+                        addPost(failMessage);
+                    }
+
                     battlePage = nextBattlePageAfterWaiting;
                     //[추가]공격할 수 있는 대상이 없어서 wiatPage에 왔다면 문구로 알려준다.
+
+
                 }
                 break;
+
+
         }
 
     }
@@ -306,6 +336,6 @@ public class BattleScene extends BaseScene {
     }
 
     public enum BattlePage {
-        waitNextBattle, tick, enemyUseSkill, pickTarget, skillAnimation, wait,
+        waitNextBattle, tick, enemyUseSkill, pickTarget, skillAnimation, wait, clear, fail,
     }
 }
