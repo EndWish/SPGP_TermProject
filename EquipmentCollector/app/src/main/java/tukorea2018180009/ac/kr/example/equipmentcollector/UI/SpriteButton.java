@@ -8,10 +8,12 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 
 public class SpriteButton extends Sprite {
     private static final String TAG = SpriteButton.class.getSimpleName();
+    boolean clickable;
     int layer;
 
     public SpriteButton(Builder builder) {
         super(builder);
+        clickable = true;
         layer = BaseScene.getTopScene().getButtonLayer();
     }
 
@@ -37,4 +39,11 @@ public class SpriteButton extends Sprite {
         return BaseScene.getTopScene().getClickedButton() == this;
     }
 
+    // getter, setter
+    public boolean isClickable() {
+        return clickable;
+    }
+    public void setClickable(boolean clickable) {
+        this.clickable = clickable;
+    }
 }

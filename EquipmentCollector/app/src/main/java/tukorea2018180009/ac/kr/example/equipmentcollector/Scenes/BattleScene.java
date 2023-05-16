@@ -118,6 +118,7 @@ public class BattleScene extends BaseScene {
             case waitNextBattle:
                 if(nextBattleButton.getTrigger()){
                     nextBattleButton.setVisible(false);
+                    nextBattleButton.setClickable(false);
                     battlePage = BattlePage.tick;
                     ++wave;
                     // 적을 생성한다. Forest1_ExpeditionAreaInfo를 전역에 저장해두고 사용하자.
@@ -134,6 +135,7 @@ public class BattleScene extends BaseScene {
                     if(wave < 10){
                         battlePage = BattlePage.waitNextBattle;
                         nextBattleButton.setVisible(true);
+                        nextBattleButton.setClickable(true);
                         break;
                     }
                     // [추가]마지막 웨이브까지 적을 처치했을 경우 보상탭으로 가도록 한다.

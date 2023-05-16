@@ -94,7 +94,7 @@ public class GameObject extends Object {
         }
 
         // 충돌 검사를 해서 충돌할 경우 리턴한다.
-        if(this instanceof SpriteButton && ((SpriteButton) this).isSameButtonLayer()) {
+        if(this instanceof SpriteButton && ((SpriteButton) this).isSameButtonLayer() && ((SpriteButton) this).isClickable()) {
             SpriteButton me = (SpriteButton)this;
 
             // 마우스의 위치를 나의 로컬 좌표계로 변환한다.
