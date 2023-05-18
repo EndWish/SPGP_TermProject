@@ -9,6 +9,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEquipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.RushSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.SlashSkill;
 
 public class ArthurAdventurer extends Adventurer{
@@ -59,8 +60,7 @@ public class ArthurAdventurer extends Adventurer{
     @Override
     protected void initSkills() {
         skills.add(new SlashSkill());
-        skills.add(new SlashSkill());
-        skills.add(new SlashSkill());
+        skills.add(new RushSkill());
     }
 
     @Override

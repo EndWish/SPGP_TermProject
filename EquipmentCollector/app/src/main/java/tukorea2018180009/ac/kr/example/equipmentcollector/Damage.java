@@ -9,9 +9,7 @@ public class Damage {
     public float[] values = new float[Damage.Type.values().length];
 
     public Damage() {
-        for(int i = 0; i < Damage.Type.values().length; ++i){
-            values[i] = 0;
-        }
+        reset();
     }
 
     public void setDamage(Type type, float value){
@@ -22,6 +20,12 @@ public class Damage {
     }
     public float getDamage(Type type){
         return values[type.ordinal()];
+    }
+
+    public void reset() {
+        for(int i = 0; i < Damage.Type.values().length; ++i){
+            values[i] = 0;
+        }
     }
 
     // 타입 정의

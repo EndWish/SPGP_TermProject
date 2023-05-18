@@ -9,15 +9,12 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.ExpenditionAreaInfo.ExpeditionAreaInfo;
 import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
-import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Attack;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
-import tukorea2018180009.ac.kr.example.equipmentcollector.UI.AdventurerUI.AdventurerInventoryButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.ClearRewardsCheckUI;
-import tukorea2018180009.ac.kr.example.equipmentcollector.UI.ExpeditionUI.ExpeditionSelectWindowOpenButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.NotificationMessage;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.TriggerButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
@@ -229,7 +226,7 @@ public class BattleScene extends BaseScene {
 
                 // 선택 대상중 랜덤으로 한명을 선택해서 공격한다.
                 int selectIndex = (int)(Math.random() * targetParty.size());
-                addAttack( castSkill.createAttack(skillCaster, targetParty.get(selectIndex)) );
+                addAttacks( castSkill.createAttacks(skillCaster, targetParty.get(selectIndex)) );
 
                 // 스킬 캐스터를 해제 시킨다.
                 skillCaster.setSkillCasting(false);
@@ -254,7 +251,7 @@ public class BattleScene extends BaseScene {
 
                 for (BattleProfile battleProfile : allParty){
                     if(battleProfile.getTrigger() && battleProfile.isAttackableTarget() && !process){
-                        addAttack( castSkill.createAttack(skillCaster, battleProfile) );
+                        addAttacks( castSkill.createAttacks(skillCaster, battleProfile) );
                         process = true;
                     }
                 }
@@ -337,10 +334,15 @@ public class BattleScene extends BaseScene {
         return skillCaster;
     }
 
-    protected void addAttack(GameObject gameObject){
-        if(gameObject != null) {
-            BaseScene.getTopScene().addPost(gameObject);
-            attacks.add(gameObject);
+    public void addAttacks(ArrayList<Attack> attacks){
+        for(Attack gameObject : attacks){
+            addAttack(gameObject);
+        }
+    }
+    public void addAttack(Attack attack){
+        if(attack != null) {
+            BaseScene.getTopScene().addPost(attack);
+            attacks.add(attack);
         }
     }
 
@@ -372,6 +374,26 @@ public class BattleScene extends BaseScene {
             ++row;
         }
 
+    }
+
+    public int getBattleProfileIndex(BattleProfile target, ArrayList<BattleProfile> party) {
+        // 해당 배틀 프로필이 파티에서 몇번째 인덱스인지를 반환해준다.
+        int i = 0;
+        for(BattleProfile battleProfile : party){
+            if(battleProfile == target)
+                return i;
+            ++i;
+        }
+        // 그 파티에 없을 경우 -1을 반환한다.
+        return -1;
+    }
+
+    // getter, setter
+    public ArrayList<BattleProfile> getMyParty() {
+        return myParty;
+    }
+    public ArrayList<BattleProfile> getEnemyParty() {
+        return enemyParty;
     }
 
     public enum BattlePage {

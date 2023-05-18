@@ -49,7 +49,7 @@ public class SlashAttack extends Attack {
 
         Damage damage = new Damage();
         damage.addDamage(Damage.Type.slash, 0.7f * casterTotalStatue.get(Status.Type.slashPower));
-        damage.addDamage(Damage.Type.slash, 0.7f * casterTotalStatue.get(Status.Type.piercePower));
+        damage.addDamage(Damage.Type.slash, 0.3f * casterTotalStatue.get(Status.Type.piercePower));
         target.takeDamage(damage);
     }
 
