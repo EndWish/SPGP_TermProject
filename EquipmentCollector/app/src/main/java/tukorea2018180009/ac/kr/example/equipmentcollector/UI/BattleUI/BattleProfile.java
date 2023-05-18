@@ -116,7 +116,7 @@ public class BattleProfile extends TriggerButton {
                 float defValue = adventurer.getTotalStatus().get(statusDefType);    // 방어력 값
 
                 // 방어력을 적용한 데미지 값(피해량)을 계산
-                float trueDamage = damageValue * (100 / (100 + defValue));
+                float trueDamage = damageValue * (10 / (10 + defValue));
 
                 // 총피해량에 현재 구한 피해량을 더해준다.
                 totalTrueDamage += trueDamage;

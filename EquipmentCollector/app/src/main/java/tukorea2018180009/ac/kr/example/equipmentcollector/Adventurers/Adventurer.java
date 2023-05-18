@@ -71,7 +71,7 @@ public abstract class Adventurer extends Object implements IIcon {
 
         // 스킬 게이지를 0으로 초기화
         for (Skill skill :skills){
-            skill.setGauge(0);
+            skill.setGauge(50);
         }
 
         // hp를 최대 체력으로 채워 놓는다.
