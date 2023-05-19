@@ -112,8 +112,10 @@ public class BaseScene {
             case MotionEvent.ACTION_UP:
                 if(buttonOnMouse != null && !buttonOnMouse.isDeleted()){
                     buttonOnMouse.clickUp();
-                    //setHand(null);
+
                 }
+                if(clickedButton != null)
+                    clickedButton = null;
                 setHand(null);
                 return true;
         }

@@ -5,6 +5,7 @@ import android.graphics.Paint;
 
 import java.util.ArrayList;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.ExpenditionAreaInfo.ExpeditionAreaInfo;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
@@ -154,7 +155,7 @@ public class SelectInventory<T extends IIcon> extends Sprite {
         @Override
         public void clickDown() {
             super.clickDown();
-            if(myIcon != null)
+            if(myIcon != null && myIcon instanceof Adventurer)
                 BaseScene.getTopScene().setHand((Object)myIcon);
         }
 
