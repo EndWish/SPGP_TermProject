@@ -13,6 +13,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
+import tukorea2018180009.ac.kr.example.equipmentcollector.StatusEffect.StatusEffect;
 
 public abstract class Adventurer extends Object implements IIcon {
 
@@ -25,7 +26,8 @@ public abstract class Adventurer extends Object implements IIcon {
 
     protected ArrayList<Skill> skills = new ArrayList<>();
     protected ArrayList<Equipment> equipments = new ArrayList<>();
-    //protected ArrayList<StateChange> stateChanges;
+    protected ArrayList<StatusEffect> statusEffects = new ArrayList<>();
+    protected ArrayList<StatusEffect> postStatusEffects = new ArrayList<>();
 
     // 생성자
     public Adventurer() {
@@ -74,6 +76,9 @@ public abstract class Adventurer extends Object implements IIcon {
             skill.setGauge(50);
         }
 
+        // 버프/디버프를 초기화한다.
+        statusEffects.clear();
+
         // hp를 최대 체력으로 채워 놓는다.
         hp = totalStatus.get(Status.Type.hpm);
     }
@@ -81,13 +86,14 @@ public abstract class Adventurer extends Object implements IIcon {
     public void advanceTick() {
         for (Equipment equipment :equipments)
             equipment.advanceTick(this);
-        for (Skill skill :skills){
+        for (Skill skill :skills)
             skill.advanceTick(this);
-        }
+        for (StatusEffect statusEffect :statusEffects)
+            statusEffect.advanceTick(this);
+        statusEffectUpdateInsertAndRemove();
 
         applyStatus();
     }
-
     public void applyStatus() {
         // 추가 능력치들을 초기화 한다.
         extraBasicStatus.set(0);
@@ -96,9 +102,11 @@ public abstract class Adventurer extends Object implements IIcon {
         // 장비와 스킬의 배틀 최기화 함수를 부른다. + 스킬 게이지를 0으로 초기화
         for (Equipment equipment :equipments)
             equipment.applyStatus(this);
-        for (Skill skill :skills){
+        for (Skill skill :skills)
             skill.applyStatus(this);
-        }
+        for (StatusEffect statusEffect :statusEffects)
+            statusEffect.applyStatus(this);
+        statusEffectUpdateInsertAndRemove();
 
         calculateTotalStatus();
     }
@@ -107,6 +115,17 @@ public abstract class Adventurer extends Object implements IIcon {
         totalStatus.add(basicStatus);
         totalStatus.add(extraBasicStatus);
         totalStatus.mul(coefficientStatus);
+    }
+
+    public void addStatusEffects(ArrayList<StatusEffect> addStatusEffects) {
+        if(addStatusEffects != null){
+            for(StatusEffect statusEffect : addStatusEffects)
+                addStatusEffect(statusEffect);
+        }
+    }
+    public void addStatusEffect(StatusEffect addStatusEffect) {
+        if(addStatusEffect != null)
+            statusEffects.add(addStatusEffect);
     }
 
     public float getMaxSkillGauge() {
@@ -124,6 +143,12 @@ public abstract class Adventurer extends Object implements IIcon {
             }
         }
         return result;
+    }
+
+    protected void statusEffectUpdateInsertAndRemove(){ // 버프/디버프가 삭제되서 배열에서 제거하는 것과 추가하는 것을 진행해주는 함수.
+        statusEffects.removeIf(statusEffect -> statusEffect.isDeleted());   // 삭제된 버프/디버프를 제거한다.
+        statusEffects.addAll(postStatusEffects);
+        postStatusEffects.clear();
     }
 
     abstract public ArrayList<Equipment> getRewardEquipments();

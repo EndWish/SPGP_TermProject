@@ -14,7 +14,7 @@ public class RushAttack1 extends Attack {
         
         // 스프라이트를 생성
         sprite = new Sprite(new Sprite.Builder(R.mipmap.png_effect_skill_rush1, caster.getX(), caster.getY(), 300, 300)
-                .setPivot(300, 300)
+                .setPivot(Sprite.PivotType.center)
                 .setFlip(!allyAttack, false)
                 .setAnimation(5, 7, lifeTime, false));
         addChild(sprite);

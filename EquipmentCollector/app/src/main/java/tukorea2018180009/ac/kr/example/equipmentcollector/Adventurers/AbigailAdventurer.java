@@ -8,6 +8,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEquipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.BlessingSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.HealSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.RushSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.SlashSkill;
@@ -60,7 +61,7 @@ public class AbigailAdventurer extends Adventurer{
     @Override
     protected void initSkills() {
         skills.add(new HealSkill());
-        skills.add(new RushSkill());
+        skills.add(new BlessingSkill());
     }
 
     @Override
