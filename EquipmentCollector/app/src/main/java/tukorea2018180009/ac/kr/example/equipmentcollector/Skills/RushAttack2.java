@@ -8,8 +8,8 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProf
 
 public class RushAttack2 extends Attack {
     float lifeTime = 0.5f;
-    final float dmgTiming1 = 0.1f;
-    final float dmgTiming2 = 0.4f;
+    final float dmgTiming1 = 0.4f;
+    final float dmgTiming2 = 0.1f;
     int damageRemaining = 1;
     BattleProfile nextTarget;
 
@@ -33,10 +33,6 @@ public class RushAttack2 extends Attack {
 
         lifeTime -= deltaTime;
 
-        if(lifeTime <= 0) {
-            setDelete();
-        }
-
         // 앞에 있는 적에게 데미지를 준다.
         if(lifeTime <= dmgTiming1 && 0 < damageRemaining){
             damageApplyFront();
@@ -46,6 +42,9 @@ public class RushAttack2 extends Attack {
             damageApplyBack();
         }
 
+        if(lifeTime <= 0) {
+            setDelete();
+        }
     }
 
     protected void damageApplyFront() {

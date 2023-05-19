@@ -161,7 +161,11 @@ public abstract class Adventurer extends Object implements IIcon {
     public void setHp(float hp) {
         this.hp = hp;
     }
-    public void addHp(float hp) {
-        this.hp += hp;
+    public void addHp(float addHp) {
+        float hpm = getTotalStatus().get(Status.Type.hpm);
+        this.hp += addHp;
+        if(hpm < this.hp){
+            this.hp = hpm;
+        }
     }
 }

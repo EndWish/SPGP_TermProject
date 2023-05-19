@@ -2,6 +2,7 @@ package tukorea2018180009.ac.kr.example.equipmentcollector;
 
 import java.util.ArrayList;
 
+import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.AbigailAdventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.ArthurAdventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
@@ -35,9 +36,11 @@ public class UserInfo {
     //멤버 함수
     public void LoadNewStart() {
         gold = 1000000;
-        for(int i = 0; i < 50; ++i){
-            adventurers.add(new ArthurAdventurer());
-        }
+        adventurers.add(new ArthurAdventurer());
+        adventurers.add(new ArthurAdventurer());
+        adventurers.add(new AbigailAdventurer());
+        adventurers.add(new AbigailAdventurer());
+
         for(int i = 0; i < 50; ++i){
             equipments.add(new PlainSwordEquipment());
         }

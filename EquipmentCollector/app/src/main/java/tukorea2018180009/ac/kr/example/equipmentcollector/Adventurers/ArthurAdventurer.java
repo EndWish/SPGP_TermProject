@@ -77,7 +77,7 @@ public class ArthurAdventurer extends Adventurer{
     @Override
     protected void initForTest() {
         super.initForTest();
-        for(int i = 0; i < 8; ++i)
-            addEquipment(new PlainSwordEquipment());
+//        for(int i = 0; i < 8; ++i)
+//            addEquipment(new PlainSwordEquipment());
     }
 }

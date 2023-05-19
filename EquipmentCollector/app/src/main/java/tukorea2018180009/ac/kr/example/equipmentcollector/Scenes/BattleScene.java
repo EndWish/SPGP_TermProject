@@ -162,7 +162,7 @@ public class BattleScene extends BaseScene {
                     castSkill.setGauge(0);  // 사용하게될 스킬의 게이지를 0으로 만든다.
                     // 아군일 경우 pickTarget 부분으로 넘어간다.
                     if(skillCaster.isAlly()){
-                        ArrayList<BattleProfile> targets = castSkill.getAttackableTarget(enemyParty);
+                        ArrayList<BattleProfile> targets = castSkill.getAttackableTarget(enemyParty, myParty);
                         // 공격할 수 있는 적이 없을 경우 잠시 대기(Wait 배틀 페이지로 이동)했다가 넘어가도록 한다.
                         if(targets.size() == 0){
                             battlePage = BattlePage.wait;
@@ -182,7 +182,7 @@ public class BattleScene extends BaseScene {
                     }
                     // 적일경우 enemyUseSkill 부분으로 넘어간다.
                     else{
-                        ArrayList<BattleProfile> targets = castSkill.getAttackableTarget(myParty);
+                        ArrayList<BattleProfile> targets = castSkill.getAttackableTarget(myParty, enemyParty);
                         // 공격할 수 있는 적이 없을 경우 잠시 대기(Wait 배틀 페이지로 이동)했다가 넘어가도록 한다.
                         if(targets.size() == 0){
                             battlePage = BattlePage.wait;

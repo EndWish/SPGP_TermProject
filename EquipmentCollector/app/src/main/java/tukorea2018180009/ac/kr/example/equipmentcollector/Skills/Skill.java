@@ -25,7 +25,7 @@ public abstract class Skill implements IAbility, IIcon {
     public abstract ArrayList<Attack> createAttacks(BattleProfile caster, BattleProfile target);
 
     // 해당 스킬이 공격할 수 있는 적들을 리턴해줌. (기본은 모든적들을 공격할 수 있는 것으로 함.)
-    public ArrayList<BattleProfile> getAttackableTarget(ArrayList<BattleProfile> enemies){
+    public ArrayList<BattleProfile> getAttackableTarget(ArrayList<BattleProfile> enemies, ArrayList<BattleProfile> allies){
         ArrayList<BattleProfile> result = new ArrayList<BattleProfile>();
         result.addAll(enemies);
         return result;

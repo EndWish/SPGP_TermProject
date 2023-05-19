@@ -136,6 +136,15 @@ public class BattleProfile extends TriggerButton {
 
         return totalTrueDamage;
     }
+    public void receiveHealing(float healingAmount){
+        // [추가] 치유감소 시스템을 여기에 추가한다.
+
+        // 현재 체력을 상승시킨다.
+        adventurer.addHp(healingAmount);
+
+        // FloatText를 생성한다.
+        BaseScene.getTopScene().addPost(new FloatingText(x, y - height, String.valueOf((int)(healingAmount)), Color.GREEN));
+    }
 
     // getter, setter
     public Adventurer getAdventurer() {
