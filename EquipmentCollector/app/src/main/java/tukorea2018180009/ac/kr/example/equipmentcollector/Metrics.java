@@ -21,4 +21,13 @@ public class Metrics {
     public static float toGameY(float y) {
         return (y - y_offset) / scale;
     }
+
+    // GameObject관련 계산들
+    public static float distance2(GameObject a, GameObject b){
+        return (a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y);
+    }
+    public static float distance(GameObject a, GameObject b){
+        return (float)Math.sqrt(distance2(a, b));
+    }
+
 }

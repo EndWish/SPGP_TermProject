@@ -124,8 +124,6 @@ public class BattleScene extends BaseScene {
                 break;
 
             case tick:
-                Log.d("update", "tick");
-
                 // 현재 웨이브의 적을 모두 처치했는지 확인한다.
                 if(enemyParty.isEmpty()){
                     // 현재 웨이브가 마지막 웨이브가 아닐경우 waitNextBattle 배틀 페이지로 이동한다.
@@ -216,8 +214,6 @@ public class BattleScene extends BaseScene {
                 break;
 
             case enemyUseSkill:
-                Log.d("update", "enemyUseSkill");
-
                 // 선택할 수 있는 대상만 추려서 targetParty에 넣는다.
                 ArrayList<BattleProfile> targetParty = new ArrayList<>();
                 targetParty.addAll(myParty);
@@ -243,7 +239,6 @@ public class BattleScene extends BaseScene {
                 break;
 
             case pickTarget:
-                Log.d("update", "pickTarget");
                 boolean process = false;    // 여러명을 동시에 누른 경우 한명만 처리하도록 하기 위한 변수
                 ArrayList<BattleProfile> allParty = new ArrayList<>();
                 allParty.addAll(myParty);
@@ -270,7 +265,6 @@ public class BattleScene extends BaseScene {
                 break;
 
             case skillAnimation:
-                Log.d("update", "skillAnimation");
                 attacks.removeIf(attack -> attack == null || attack.isDeleted());
                 if(attacks.size() == 0){
                     battlePage = BattlePage.tick;
@@ -278,7 +272,6 @@ public class BattleScene extends BaseScene {
                 break;
 
             case wait:
-                Log.d("update", "wait");
                 waitPageTimer -= deltaTime;
                 // 기다리는 시간이 지났을 경우 다시 TickPage로 돌아간다.
                 if(waitPageTimer <= 0) {
@@ -341,7 +334,7 @@ public class BattleScene extends BaseScene {
     }
     public void addAttack(Attack attack){
         if(attack != null) {
-            BaseScene.getTopScene().addPost(attack);
+            addPost(attack);
             attacks.add(attack);
         }
     }
