@@ -6,7 +6,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProf
 
 public class PiercingArrowAttack1 extends Attack {
     float lifeTime = 0.7f;
-    final float fireTiming = 0.1f;
+    final float fireTiming = 0.25f;
     boolean fire = false;
 
     public PiercingArrowAttack1(BattleProfile caster, BattleProfile target) {

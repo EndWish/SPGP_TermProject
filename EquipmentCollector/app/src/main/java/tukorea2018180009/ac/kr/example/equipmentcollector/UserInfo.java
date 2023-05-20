@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.AbigailAdventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.AliyahAdventurer;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.AronAdventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.ArthurAdventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEquipment;
@@ -43,6 +44,8 @@ public class UserInfo {
         adventurers.add(new AbigailAdventurer());
         adventurers.add(new AliyahAdventurer());
         adventurers.add(new AliyahAdventurer());
+        adventurers.add(new AronAdventurer());
+        adventurers.add(new AronAdventurer());
 
         for(int i = 0; i < 50; ++i){
             equipments.add(new PlainSwordEquipment());
