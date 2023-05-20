@@ -13,10 +13,10 @@ public class SlashAttack extends Attack {
     int damageRemaining = 1;
 
     public SlashAttack(BattleProfile caster, BattleProfile target) {
-        super(caster, target);
+        super(caster, target, target.getX(), target.getY());
         
         // 스프라이트를 생성
-        sprite = new Sprite(new Sprite.Builder(R.mipmap.png_effect_skill_slash, target.getX(), target.getY(), 300, 200)
+        sprite = new Sprite(new Sprite.Builder(R.mipmap.png_effect_skill_slash, 0,0, 300, 200)
                 .setPivot(200, 100)
                 .setFlip(!allyAttack, false)
                 .setAnimation(5, 6, lifeTime, false));

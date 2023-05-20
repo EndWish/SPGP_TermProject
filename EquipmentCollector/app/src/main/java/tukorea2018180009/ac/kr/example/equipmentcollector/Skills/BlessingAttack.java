@@ -12,10 +12,10 @@ public class BlessingAttack extends Attack {
     int buffRemaining = 1;
 
     public BlessingAttack(BattleProfile caster, BattleProfile target) {
-        super(caster, target);
+        super(caster, target, target.getX(), target.getY());
         
         // 스프라이트를 생성
-        sprite = new Sprite(new Sprite.Builder(R.mipmap.png_effect_skill_blessing1, target.getX(), target.getY(), 300, 350)
+        sprite = new Sprite(new Sprite.Builder(R.mipmap.png_effect_skill_blessing1, 0,0, 300, 350)
                 .setPivot(150, 250)
                 .setFlip(!allyAttack, false)
                 .setAnimation(5, 13, lifeTime, false));

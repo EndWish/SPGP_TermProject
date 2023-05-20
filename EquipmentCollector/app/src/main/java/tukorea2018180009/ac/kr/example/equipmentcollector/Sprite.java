@@ -59,7 +59,6 @@ public class Sprite extends GameObject{
         if(bitmap != null){
             if(aniEnable){
                 aniIndex = (int)((aniTime / aniMaxTime) * aniNFrame);
-                Log.d("aniTime", aniTime + "s");
                 int aniMaxRow = (aniNFrame + aniMaxColumn - 1) / aniMaxColumn;
                 int aniCurrentCol = aniIndex % aniMaxColumn;
                 int aniCurrentRow = aniIndex / aniMaxColumn;

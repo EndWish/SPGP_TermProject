@@ -14,10 +14,10 @@ public class RushAttack2 extends Attack {
     BattleProfile nextTarget;
 
     public RushAttack2(BattleProfile caster, BattleProfile target) {
-        super(caster, target);
+        super(caster, target, target.getX(), target.getY());
         
         // 스프라이트를 생성
-        sprite = new Sprite(new Sprite.Builder(R.mipmap.png_effect_skill_rush2, target.getX(), target.getY(), 600, 300)
+        sprite = new Sprite(new Sprite.Builder(R.mipmap.png_effect_skill_rush2, 0,0, 600, 300)
                 .setPivot(200, 150)
                 .setFlip(!allyAttack, false)
                 .setAnimation(5, 8, lifeTime, false));
