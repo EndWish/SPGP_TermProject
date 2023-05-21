@@ -3,12 +3,16 @@ package tukorea2018180009.ac.kr.example.equipmentcollector;
 import java.util.HashMap;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
 
 public class Damage {
+    BattleProfile caster, target;
 
     public float[] values = new float[Damage.Type.values().length];
 
-    public Damage() {
+    public Damage(BattleProfile caster, BattleProfile target) {
+        this.caster = caster;
+        this.target = target;
         reset();
     }
 
@@ -26,6 +30,20 @@ public class Damage {
         for(int i = 0; i < Damage.Type.values().length; ++i){
             values[i] = 0;
         }
+    }
+
+    // getter, setter
+    public BattleProfile getCaster() {
+        return caster;
+    }
+    public void setCaster(BattleProfile caster) {
+        this.caster = caster;
+    }
+    public BattleProfile getTarget() {
+        return target;
+    }
+    public void setTarget(BattleProfile target) {
+        this.target = target;
     }
 
     // 타입 정의

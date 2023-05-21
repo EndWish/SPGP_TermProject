@@ -48,7 +48,7 @@ public class OrbitalFlameAttack2 extends Attack {
         // 데미지를 계산하여 적에게 데미지를 준다.
         Status casterTotalStatue = caster.getAdventurer().getTotalStatus();
 
-        Damage damage = new Damage();
+        Damage damage = new Damage(caster, target);
         damage.addDamage(Damage.Type.magic, 0.3f * casterTotalStatue.get(Status.Type.magicPower));
         target.takeDamage(damage);
     }

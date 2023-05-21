@@ -46,10 +46,12 @@ public class EmpoweredArrowsAttack2 extends Attack {
         // 데미지를 계산하여 적에게 데미지를 준다.
         Status casterTotalStatue = caster.getAdventurer().getTotalStatus();
 
-        Damage damage = new Damage();
+        Damage damage = new Damage(caster, null);
         damage.addDamage(Damage.Type.pierce, 0.8f * casterTotalStatue.get(Status.Type.piercePower));
-        for(BattleProfile enemy : relativeEnemies)
+        for(BattleProfile enemy : relativeEnemies){
+            damage.setTarget(enemy);
             enemy.takeDamage(damage);
+        }
     }
 
 }

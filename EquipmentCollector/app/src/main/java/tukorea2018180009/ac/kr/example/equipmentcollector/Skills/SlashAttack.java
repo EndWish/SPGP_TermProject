@@ -47,7 +47,7 @@ public class SlashAttack extends Attack {
         // 데미지를 계산하여 적에게 데미지를 준다.
         Status casterTotalStatue = caster.getAdventurer().getTotalStatus();
 
-        Damage damage = new Damage();
+        Damage damage = new Damage(caster, target);
         damage.addDamage(Damage.Type.slash, 0.7f * casterTotalStatue.get(Status.Type.slashPower));
         damage.addDamage(Damage.Type.slash, 0.3f * casterTotalStatue.get(Status.Type.piercePower));
         target.takeDamage(damage);

@@ -51,9 +51,10 @@ public class FlameVortexAttack extends Attack {
         int casterIndex = battleScene.getBattleProfileIndex(caster, relativeAllies);
         int targetNum = Math.min(4 - casterIndex, relativeEnemies.size());
 
-        Damage damage = new Damage();
+        Damage damage = new Damage(caster, null);
         damage.addDamage(Damage.Type.magic, 0.5f * casterTotalStatue.get(Status.Type.magicPower) / targetNum);
         for(int i = 0; i < targetNum; ++i){
+            damage.setTarget(relativeEnemies.get(i));
             relativeEnemies.get(i).takeDamage(damage);
         }
 

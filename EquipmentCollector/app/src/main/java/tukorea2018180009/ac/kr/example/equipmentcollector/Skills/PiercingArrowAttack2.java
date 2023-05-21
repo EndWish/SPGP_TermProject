@@ -43,7 +43,7 @@ public class PiercingArrowAttack2 extends Attack {
         // 데미지를 계산하여 적에게 데미지를 준다.
         Status casterTotalStatue = caster.getAdventurer().getTotalStatus();
 
-        Damage damage = new Damage();
+        Damage damage = new Damage(caster, target);
         damage.addDamage(Damage.Type.pierce, 0.5f * casterTotalStatue.get(Status.Type.piercePower));
         damage.addDamage(Damage.Type.impact, 0.3f * casterTotalStatue.get(Status.Type.piercePower));
         damage.addDamage(Damage.Type.impact, 0.5f * casterTotalStatue.get(Status.Type.impactPower));
