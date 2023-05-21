@@ -10,6 +10,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.BlessingSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.HealSkill;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.OrbitalFlameSkill;
 
 public class AronAdventurer extends Adventurer{
     private static final String name = "Aron";
@@ -58,7 +59,7 @@ public class AronAdventurer extends Adventurer{
 
     @Override
     protected void initSkills() {
-        skills.add(new HealSkill());
+        skills.add(new OrbitalFlameSkill());
         skills.add(new BlessingSkill());
     }
 
