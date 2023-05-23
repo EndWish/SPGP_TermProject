@@ -8,6 +8,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEquipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.EnchantedQuiverSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.RushSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.SlashSkill;
 
@@ -15,6 +16,8 @@ public class ShamarAdventurer extends Adventurer{
     private static final String name = "Shamar";
     private static final Bitmap icon = BitmapPool.get(R.mipmap.png_icon_adventurer_shamar_256x256);
     private static final Bitmap profile = BitmapPool.get(R.mipmap.png_profile_adventurer_shamar_256x384);
+
+    int quiver = 0;
 
     @Override
     public String getName() {
@@ -58,7 +61,7 @@ public class ShamarAdventurer extends Adventurer{
 
     @Override
     protected void initSkills() {
-        skills.add(new SlashSkill());
+        skills.add(new EnchantedQuiverSkill());
         skills.add(new RushSkill());
     }
 
@@ -74,9 +77,27 @@ public class ShamarAdventurer extends Adventurer{
     }
 
     @Override
+    public void initForBattle() {
+        super.initForBattle();
+        setQuiver(0);
+    }
+
+    @Override
     protected void initForTest() {
         super.initForTest();
 //        for(int i = 0; i < 8; ++i)
 //            addEquipment(new PlainSwordEquipment());
     }
+
+    // getter, setter
+    public int getQuiver() {
+        return quiver;
+    }
+    public void addQuiver(int add) {
+        quiver += add;
+    }
+    public void setQuiver(int quiver) {
+        this.quiver = quiver;
+    }
+
 }
