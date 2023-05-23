@@ -47,6 +47,7 @@ public abstract class Adventurer extends Object implements IIcon {
     public void update(float deltaTime) {
         super.update(deltaTime);
         equipments.removeIf(equipment -> equipment.isDeleted());
+        statusEffectUpdateInsertAndRemove();
     }
 
     public abstract String getName();
@@ -89,7 +90,7 @@ public abstract class Adventurer extends Object implements IIcon {
         for (StatusEffect statusEffect :statusEffects)
             if(statusEffect != null && !statusEffect.isDeleted())
                 statusEffect.advanceTick(this);
-        statusEffectUpdateInsertAndRemove();
+        //statusEffectUpdateInsertAndRemove();
 
         applyStatus();
     }

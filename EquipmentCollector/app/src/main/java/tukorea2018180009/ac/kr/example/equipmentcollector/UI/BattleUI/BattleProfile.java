@@ -89,6 +89,9 @@ public class BattleProfile extends TriggerButton {
     @Override
     public void update(float deltaTime) {
         super.update(deltaTime);
+        
+        // adventurer 업데이트
+        adventurer.update(deltaTime);
 
         Status totalStatus = adventurer.getTotalStatus();
 
