@@ -12,9 +12,11 @@ public class CreepingToxinStatusEffect extends StatusEffect{
     final int dmgTimings[] = new int[]{0, 20, 40, 60, 80};
     protected float cursedPower;
     protected Sprite effectSprite;
+    BattleProfile caster;
 
-    public CreepingToxinStatusEffect(BattleProfile target, float cursedPower) {
+    public CreepingToxinStatusEffect(BattleProfile target, BattleProfile caster, float cursedPower) {
         super(target);
+        this.caster = caster;
         this.cursedPower = cursedPower;
         lifeTick = 100;
 
@@ -49,7 +51,7 @@ public class CreepingToxinStatusEffect extends StatusEffect{
     }
 
     protected void damageApply() {
-        Damage damage = new Damage();
+        Damage damage = new Damage(caster, target);
         damage.addDamage(Damage.Type.cursed, 0.25f * cursedPower);
         target.takeDamage(damage);
     }

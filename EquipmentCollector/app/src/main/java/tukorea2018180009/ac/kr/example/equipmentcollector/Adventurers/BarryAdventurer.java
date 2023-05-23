@@ -9,6 +9,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEq
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.CreepingToxinSkill;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.PoisonMistReinforceSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.RushSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.SlashSkill;
 
@@ -60,7 +61,7 @@ public class BarryAdventurer extends Adventurer{
     @Override
     protected void initSkills() {
         skills.add(new CreepingToxinSkill());
-        skills.add(new RushSkill());
+        skills.add(new PoisonMistReinforceSkill());
     }
 
     @Override

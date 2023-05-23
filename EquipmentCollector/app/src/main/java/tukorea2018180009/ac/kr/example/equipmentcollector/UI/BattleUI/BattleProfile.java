@@ -106,7 +106,7 @@ public class BattleProfile extends TriggerButton {
             return 0;
         }
 
-        float totalTrueDamage = 0;
+        Float totalTrueDamage = new Float(0);
 
         for(Damage.Type damageType : Damage.Type.values()){
             // 해당 데미지 타입의 데미지값이 0보다 클경우
@@ -123,11 +123,19 @@ public class BattleProfile extends TriggerButton {
             }
         }
 
+        float totalDamageMultiple = 1f;
+        if(damage.getCaster() != null && !damage.getCaster().isDeleted())
+            totalDamageMultiple *= damage.getCaster().getAdventurer().changeTotalDamageMultiple(totalTrueDamage, damage);
+        if(damage.getTarget() != null && !damage.getTarget().isDeleted())
+            totalDamageMultiple *= damage.getTarget().getAdventurer().changeTotalDamageMultiple(totalTrueDamage, damage);
+
+        totalTrueDamage *= totalDamageMultiple;
+
         // hp를 데미지많큼 줄인다.
         adventurer.addHp(-totalTrueDamage);
 
         // FloatText를 생성한다.
-        BaseScene.getTopScene().addPost(new FloatingText(x, y - height, String.valueOf((int)(totalTrueDamage)), Color.RED));
+        BaseScene.getTopScene().addPost(new FloatingText(x, y - height, String.valueOf((int)((float)totalTrueDamage)), Color.RED));
 
         // hp가 0이하가 되면 삭제한다.
         if(adventurer.getHp() <= 0){

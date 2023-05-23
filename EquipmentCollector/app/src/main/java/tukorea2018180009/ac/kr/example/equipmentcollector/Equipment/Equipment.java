@@ -1,6 +1,7 @@
 package tukorea2018180009.ac.kr.example.equipmentcollector.Equipment;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Damage;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IAbility;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
@@ -49,6 +50,11 @@ public abstract class Equipment extends Object implements IAbility, IIcon {
     // IAbility를 위한 함수들
     @Override
     public void applyStatus(Adventurer adventurer) {}
+    @Override
     public void advanceTick(Adventurer adventurer) {}
+    @Override
+    public float changeTotalDamageMultiple(Float totalDamage, Damage damage) {
+        return 1f;
+    }
 
 }

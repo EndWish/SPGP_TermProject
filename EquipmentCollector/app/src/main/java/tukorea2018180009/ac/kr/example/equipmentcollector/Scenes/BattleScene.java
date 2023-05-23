@@ -81,8 +81,6 @@ public class BattleScene extends BaseScene {
 
     }
 
-
-
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);

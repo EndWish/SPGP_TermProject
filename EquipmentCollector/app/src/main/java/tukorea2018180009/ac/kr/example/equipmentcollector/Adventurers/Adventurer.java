@@ -3,13 +3,11 @@ package tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers;
 import static java.lang.Math.max;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 
 import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Damage;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
-import tukorea2018180009.ac.kr.example.equipmentcollector.GameObject;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Object;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.Skill;
@@ -89,7 +87,8 @@ public abstract class Adventurer extends Object implements IIcon {
         for (Skill skill :skills)
             skill.advanceTick(this);
         for (StatusEffect statusEffect :statusEffects)
-            statusEffect.advanceTick(this);
+            if(statusEffect != null && !statusEffect.isDeleted())
+                statusEffect.advanceTick(this);
         statusEffectUpdateInsertAndRemove();
 
         applyStatus();
@@ -105,11 +104,24 @@ public abstract class Adventurer extends Object implements IIcon {
         for (Skill skill :skills)
             skill.applyStatus(this);
         for (StatusEffect statusEffect :statusEffects)
-            statusEffect.applyStatus(this);
-        statusEffectUpdateInsertAndRemove();
+            if(statusEffect != null && !statusEffect.isDeleted())
+                statusEffect.applyStatus(this);
 
         calculateTotalStatus();
     }
+
+    public float changeTotalDamageMultiple(Float totalDamage, Damage damage){
+        float result = 1f;
+        for (Equipment equipment :equipments)
+            result *= equipment.changeTotalDamageMultiple(totalDamage, damage);
+        for (Skill skill :skills)
+            result *= skill.changeTotalDamageMultiple(totalDamage, damage);
+        for (StatusEffect statusEffect :statusEffects)
+            if(statusEffect != null && !statusEffect.isDeleted())
+                result *= statusEffect.changeTotalDamageMultiple(totalDamage, damage);
+        return result;
+    }
+
     public void calculateTotalStatus(){
         totalStatus.set(0);
         totalStatus.add(basicStatus);
@@ -125,7 +137,7 @@ public abstract class Adventurer extends Object implements IIcon {
     }
     public void addStatusEffect(StatusEffect addStatusEffect) {
         if(addStatusEffect != null)
-            statusEffects.add(addStatusEffect);
+            postStatusEffects.add(addStatusEffect);
     }
 
     public float getMaxSkillGauge() {
@@ -179,6 +191,9 @@ public abstract class Adventurer extends Object implements IIcon {
     }
     public ArrayList<Equipment> getEquipments() {
         return equipments;
+    }
+    public ArrayList<StatusEffect> getStatusEffects() {
+        return statusEffects;
     }
     public float getHp() {
         return hp;

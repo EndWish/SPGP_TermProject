@@ -34,7 +34,7 @@ public class CreepingToxinAttack1 extends Attack {
         if(lifeTime <= 0 && !isDeleted()) {
             Status casterTotalStatue = caster.getAdventurer().getTotalStatus();
             float cursedPower = casterTotalStatue.get(Status.Type.cursedPower);
-            target.getAdventurer().addStatusEffect(new CreepingToxinStatusEffect(target, cursedPower));
+            target.getAdventurer().addStatusEffect(new CreepingToxinStatusEffect(target, caster, cursedPower));
             setDelete();
         }
     }

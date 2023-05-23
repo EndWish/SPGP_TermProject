@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Damage;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IAbility;
 import tukorea2018180009.ac.kr.example.equipmentcollector.IIcon;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
@@ -50,6 +51,7 @@ public abstract class Skill implements IAbility, IIcon {
     // IAbility를 위한 함수들
     @Override
     public void applyStatus(Adventurer adventurer) {}
+    @Override
     public void advanceTick(Adventurer adventurer) {
         if(getGrade() == Grade.essential)
             tickGauge(adventurer.getTotalStatus().get(Status.Type.essentialSkillSpeed));
@@ -57,5 +59,9 @@ public abstract class Skill implements IAbility, IIcon {
             tickGauge(adventurer.getTotalStatus().get(Status.Type.normalSkillSpeed));
         else if(getGrade() == Grade.ultimate)
             tickGauge(adventurer.getTotalStatus().get(Status.Type.ultimateSkillSpeed));
+    }
+    @Override
+    public float changeTotalDamageMultiple(Float totalDamage, Damage damage) {
+        return 1f;
     }
 }
