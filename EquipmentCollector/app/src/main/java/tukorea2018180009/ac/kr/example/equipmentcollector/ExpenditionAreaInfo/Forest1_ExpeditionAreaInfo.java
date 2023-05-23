@@ -7,6 +7,7 @@ import java.util.Random;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.ArthurAdventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Monster.IvernMonster;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Monster.MurlocMonster;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
@@ -33,16 +34,22 @@ public class Forest1_ExpeditionAreaInfo extends ExpeditionAreaInfo {
         ArrayList<BattleProfile> result = new ArrayList<>();
 
         final float percentage = (float)(Math.random() * 100.0);
-        if(percentage <= 50){
+        if(percentage <= 20){
             // [수정]A파티 생성
             result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
             result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 2열
             result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 2열
         }
-        else{
+        else if(percentage <= 40){
             // [수정]B파티 생성
             result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
             result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
+        }
+        else if(percentage <= 100){
+            // [수정]B파티 생성
+            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
+            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
+            result.add(new BattleProfile(new IvernMonster(), 0,0,150));   // 1열
         }
         return result;
     }
