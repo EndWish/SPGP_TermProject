@@ -8,6 +8,7 @@ import java.util.Random;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.ArthurAdventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Monster.IvernMonster;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Monster.LiliumSerpensMonster;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Monster.MurlocMonster;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
@@ -35,21 +36,32 @@ public class Forest1_ExpeditionAreaInfo extends ExpeditionAreaInfo {
 
         final float percentage = (float)(Math.random() * 100.0);
         if(percentage <= 20){
-            // [수정]A파티 생성
+            // 파티 생성 (멀록, 멀록, 멀록)
             result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
             result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 2열
-            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 2열
+            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 3열
         }
         else if(percentage <= 40){
-            // [수정]B파티 생성
-            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
-            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
+            // 파티 생성 (멀록, 멀록,)
+            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));
+            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));
+        }
+        else if(percentage <= 60){
+            // 파티 생성 (멀록, 멀록, 이번)
+            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));
+            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));
+            result.add(new BattleProfile(new IvernMonster(), 0,0,150));
+        }
+        else if(percentage <= 80){
+            // 파티 생성 (멀록, 이번, 릴리움)
+            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));
+            result.add(new BattleProfile(new LiliumSerpensMonster(), 0,0,150));
+            result.add(new BattleProfile(new IvernMonster(), 0,0,150));
         }
         else if(percentage <= 100){
-            // [수정]B파티 생성
-            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
-            result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
-            result.add(new BattleProfile(new IvernMonster(), 0,0,150));   // 1열
+            // 파티 생성 (릴리움, 릴리움)
+            result.add(new BattleProfile(new LiliumSerpensMonster(), 0,0,150));
+            result.add(new BattleProfile(new LiliumSerpensMonster(), 0,0,150));
         }
         return result;
     }
