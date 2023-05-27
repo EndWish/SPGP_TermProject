@@ -10,6 +10,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEquipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.AnotherBiteSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.CreepingToxinSkill;
 
 public class BabyHydraMonster extends Adventurer {
@@ -59,7 +60,7 @@ public class BabyHydraMonster extends Adventurer {
 
     @Override
     protected void initSkills() {
-        skills.add(new CreepingToxinSkill());
+        skills.add(new AnotherBiteSkill());
     }
 
     @Override

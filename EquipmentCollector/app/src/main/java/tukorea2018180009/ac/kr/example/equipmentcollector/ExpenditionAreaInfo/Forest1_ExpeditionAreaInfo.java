@@ -37,6 +37,14 @@ public class Forest1_ExpeditionAreaInfo extends ExpeditionAreaInfo {
         ArrayList<BattleProfile> result = new ArrayList<>();
 
         final float percentage = (float)(Math.random() * 100.0);
+
+        // 테스트 용도
+        if(percentage <= 100){
+            // 파티 생성 (멀록, 멀록, 멀록)
+            result.add(new BattleProfile(new BabyHydraMonster(), 0,0,150));   // 1열
+            return result;
+        }
+
         if(percentage <= 10){
             // 파티 생성 (멀록, 멀록, 멀록)
             result.add(new BattleProfile(new MurlocMonster(), 0,0,150));   // 1열
