@@ -10,6 +10,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEquipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
 import tukorea2018180009.ac.kr.example.equipmentcollector.R;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.FinalBlowSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.RushSkill;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Skills.SlashSkill;
 
@@ -39,9 +40,9 @@ public class GrizzlyeerMonster extends Adventurer {
         basicStatus.set(Status.Type.normalSkillSpeed, 2);
         basicStatus.set(Status.Type.ultimateSkillSpeed, 2);
 
-        basicStatus.set(Status.Type.slashPower, 15);
+        basicStatus.set(Status.Type.slashPower, 10);
         basicStatus.set(Status.Type.piercePower, 3);
-        basicStatus.set(Status.Type.impactPower, 18);
+        basicStatus.set(Status.Type.impactPower, 12);
 
         basicStatus.set(Status.Type.magicPower, 0);
         basicStatus.set(Status.Type.holyPower, 0);
@@ -60,8 +61,8 @@ public class GrizzlyeerMonster extends Adventurer {
 
     @Override
     protected void initSkills() {
-        //skills.add(new SlashSkill());
         skills.add(new SlashSkill());
+        skills.add(new FinalBlowSkill());
     }
 
     @Override
