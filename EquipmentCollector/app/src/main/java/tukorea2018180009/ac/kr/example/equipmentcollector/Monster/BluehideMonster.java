@@ -33,7 +33,7 @@ public class BluehideMonster extends Adventurer {
 
     @Override
     protected void initBasicStatus() {
-        basicStatus.set(Status.Type.hpm, 100);
+        basicStatus.set(Status.Type.hpm, 25);
 
         basicStatus.set(Status.Type.essentialSkillSpeed, 2);
         basicStatus.set(Status.Type.normalSkillSpeed, 2);
