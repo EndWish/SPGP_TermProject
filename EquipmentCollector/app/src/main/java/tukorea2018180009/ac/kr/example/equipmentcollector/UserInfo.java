@@ -9,8 +9,19 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.AronAdvent
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.ArthurAdventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.BarryAdventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.ShamarAdventurer;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.BeltEquipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.CloakEquipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.GauntletEquipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.MjolnirEquipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainBowEquipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainHammerEquipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainStaffEquipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEquipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainWandEquipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.ShieldEquipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.ShoulderEquipment;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.SkullWandEquipment;
 
 public class UserInfo {
     // 싱글톤
@@ -53,8 +64,19 @@ public class UserInfo {
         adventurers.add(new ShamarAdventurer());
         adventurers.add(new ShamarAdventurer());
 
-        for(int i = 0; i < 50; ++i){
+        for(int i = 0; i < 2; ++i){
+            equipments.add(new BeltEquipment());
+            equipments.add(new CloakEquipment());
+            equipments.add(new GauntletEquipment());
+            equipments.add(new MjolnirEquipment());
+            equipments.add(new PlainBowEquipment());
+            equipments.add(new PlainHammerEquipment());
+            equipments.add(new PlainStaffEquipment());
             equipments.add(new PlainSwordEquipment());
+            equipments.add(new PlainWandEquipment());
+            equipments.add(new ShieldEquipment());
+            equipments.add(new ShoulderEquipment());
+            equipments.add(new SkullWandEquipment());
         }
     }
 
