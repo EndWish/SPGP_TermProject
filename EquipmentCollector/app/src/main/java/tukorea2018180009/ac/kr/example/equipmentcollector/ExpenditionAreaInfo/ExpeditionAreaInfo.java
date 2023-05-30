@@ -14,7 +14,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProf
 public abstract class ExpeditionAreaInfo extends Object implements IIcon {
     // 지역 enum
     public enum AreaType {
-        Forest1,
+        Forest1, Forest2, Forest3,
     }
 
     // 전역 변수
@@ -22,6 +22,8 @@ public abstract class ExpeditionAreaInfo extends Object implements IIcon {
     private static AreaType currentAreaType;
     static {
         expeditionAreaInfos.add(new Forest1_ExpeditionAreaInfo());
+        expeditionAreaInfos.add(new Forest2_ExpeditionAreaInfo());
+        expeditionAreaInfos.add(new Forest3_ExpeditionAreaInfo());
     }
 
     // 자신의 지역
