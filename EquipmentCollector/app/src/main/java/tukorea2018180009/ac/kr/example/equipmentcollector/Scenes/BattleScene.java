@@ -1,6 +1,8 @@
 package tukorea2018180009.ac.kr.example.equipmentcollector.Scenes;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ import tukorea2018180009.ac.kr.example.equipmentcollector.Sprite;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.BattleProfile;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.BattleUI.ClearRewardsCheckUI;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.NotificationMessage;
+import tukorea2018180009.ac.kr.example.equipmentcollector.UI.Text.Text;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UI.TriggerButton;
 import tukorea2018180009.ac.kr.example.equipmentcollector.UserInfo;
 
@@ -36,6 +39,7 @@ public class BattleScene extends BaseScene {
     ArrayList<BattleProfile> enemyParty;
 
     TriggerButton nextBattleButton;
+    Text waveText;
     NotificationMessage failMessage;
     ClearRewardsCheckUI clearMessage;
 
@@ -56,6 +60,8 @@ public class BattleScene extends BaseScene {
         // 다음 웨이브 버튼을 생성한다.
         nextBattleButton = new TriggerButton(new Sprite.Builder(R.mipmap.png_button_right_arrow, 1200, 450, 200, 200).setPivot(Sprite.PivotType.center));
         add(nextBattleButton);
+        waveText = new Text(1200, 600, "wave: 0/10", 75, 400, Color.BLACK, Paint.Align.CENTER);
+        add(waveText);
 
         // [추가]웨이브를 나타내는 텍스트를 생성한다.
 
@@ -114,6 +120,7 @@ public class BattleScene extends BaseScene {
                 if(nextBattleButton.getTrigger()){
                     nextBattleButton.setVisible(false);
                     nextBattleButton.setClickable(false);
+                    waveText.setVisible(false);
                     battlePage = BattlePage.tick;
                     ++wave;
                     // 적을 생성한다. Forest1_ExpeditionAreaInfo를 전역에 저장해두고 사용하자.
@@ -129,6 +136,8 @@ public class BattleScene extends BaseScene {
                         battlePage = BattlePage.waitNextBattle;
                         nextBattleButton.setVisible(true);
                         nextBattleButton.setClickable(true);
+                        waveText.setText("wave: " + wave + "/10");
+                        waveText.setVisible(true);
                         break;
                     }
                     // [추가]마지막 웨이브까지 적을 처치했을 경우 보상탭으로 가도록 한다.
