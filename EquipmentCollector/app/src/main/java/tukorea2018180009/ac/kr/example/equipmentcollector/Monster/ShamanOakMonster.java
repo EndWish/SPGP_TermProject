@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Adventurer;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Adventurers.Status;
+import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.CloakEquipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.Equipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Equipment.PlainSwordEquipment;
 import tukorea2018180009.ac.kr.example.equipmentcollector.Memory.BitmapPool;
@@ -70,7 +71,7 @@ public class ShamanOakMonster extends Adventurer {
     @Override
     public ArrayList<Equipment> getRewardEquipments() {
         ArrayList<Equipment> rewards = new ArrayList<Equipment>();
-        rewards.add(new PlainSwordEquipment());
+        rewards.add(new CloakEquipment());
         return rewards;
     }
     @Override
