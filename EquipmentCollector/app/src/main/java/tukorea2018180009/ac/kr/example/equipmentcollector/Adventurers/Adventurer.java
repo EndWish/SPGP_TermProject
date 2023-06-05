@@ -33,6 +33,7 @@ public abstract class Adventurer extends Object implements IIcon {
         initBasicStatus();
         initSkills();
         initForTest();
+        applyStatus();
     }
 
     // 소멸자
