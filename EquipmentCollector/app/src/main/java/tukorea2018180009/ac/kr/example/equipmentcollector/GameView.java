@@ -108,8 +108,8 @@ public class GameView extends View implements Choreographer.FrameCallback {
         canvas.restore();
 
         if (BuildConfig.DEBUG && deltaTime > 0) {
-            int fps = (int) (1.0f / deltaTime);
-            canvas.drawText("FPS: " + fps, 100f, 200f, fpsPaint);
+//            int fps = (int) (1.0f / deltaTime);
+//            canvas.drawText("FPS: " + fps, 100f, 200f, fpsPaint);
         }
     }
 
@@ -120,5 +120,9 @@ public class GameView extends View implements Choreographer.FrameCallback {
             return true;
         }
         return super.onTouchEvent(event);
+    }
+
+    public void setFullScreen() {
+        setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
 }
