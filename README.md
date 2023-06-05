@@ -119,9 +119,40 @@ SpriteButton클래스를 추가하여 버튼시스템을 구현
 ![png_icon_adventurer_aron_256x256](https://github.com/EndWish/SPGP_TermProject/assets/90082921/3d2f672a-169f-4a61-88f7-296ed65628ac)  
 ![OrbitalFlame](https://github.com/EndWish/SPGP_TermProject/assets/90082921/1b9998ae-8dac-4021-8e68-cbef7c12fe92)  
 ![FlameVortex](https://github.com/EndWish/SPGP_TermProject/assets/90082921/fa7461fd-d42b-403f-84f8-d514ff906cf4)  
+ 
+  
+  
+장비 아이템 추가.  
+![png_icon_equipment_belt](https://github.com/EndWish/SPGP_TermProject/assets/90082921/7f57447e-0f2d-465d-a1da-85be2234809d)
+![png_icon_equipment_cloak](https://github.com/EndWish/SPGP_TermProject/assets/90082921/6ae28b81-3120-4e3e-80a0-3fd3b108da6a)
+![png_icon_equipment_gauntlet](https://github.com/EndWish/SPGP_TermProject/assets/90082921/f926a25d-c6fb-4044-a906-15b0acd888ae)
+![png_icon_equipment_hauberk](https://github.com/EndWish/SPGP_TermProject/assets/90082921/bde04914-4b5c-4c5d-8399-5fd1c3af9786)
+![png_icon_equipment_headpiece](https://github.com/EndWish/SPGP_TermProject/assets/90082921/b93a2b6a-7d3c-4c82-a013-13d1670f921d)
+![png_icon_equipment_mjolnir](https://github.com/EndWish/SPGP_TermProject/assets/90082921/9d18abd8-2562-4f1b-8907-09309a45ad79)
+![png_icon_equipment_plain_bow](https://github.com/EndWish/SPGP_TermProject/assets/90082921/bbc20236-237c-49c5-af76-63e0c28ab9ef)
+![png_icon_equipment_plain_hammer](https://github.com/EndWish/SPGP_TermProject/assets/90082921/aae692e0-0195-4d9b-ad7d-fab4a13500a1)
+![png_icon_equipment_plain_staff](https://github.com/EndWish/SPGP_TermProject/assets/90082921/5a0f0570-00b2-4d7f-9618-bfe288b7fbe1)
+![png_icon_equipment_plain_sword](https://github.com/EndWish/SPGP_TermProject/assets/90082921/29a30f58-cf0c-465b-a254-51df8c74efc9)
+![png_icon_equipment_plain_wand](https://github.com/EndWish/SPGP_TermProject/assets/90082921/7c04e34c-9c0a-45f3-90d9-24e8fcabadec)
+![png_icon_equipment_shield](https://github.com/EndWish/SPGP_TermProject/assets/90082921/16950b2d-ed70-4ff3-8a61-a4615dc9b38c)
+![png_icon_equipment_shoulder](https://github.com/EndWish/SPGP_TermProject/assets/90082921/94a1abf4-7b3b-4ac3-bf59-ffb8fe1420a7)
+![png_icon_equipment_skull_wand](https://github.com/EndWish/SPGP_TermProject/assets/90082921/eec1886a-42a8-418a-8088-b44282831ef9)
 
 -------------------------
 ### 8주차 - 몬스터와 탐험지역 추가  
+![png_profile_monster_ivern_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/c0e8164f-89a5-4fcd-844d-b42ce2632ddf)
+![png_profile_monster_lilium_serpens_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/9e9e2986-fe9b-49d7-8ceb-bea99f01b4ad)
+![png_profile_monster_baby_hydra_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/3ee1f5fb-92f6-4541-b982-fdcb6b7ae916)
+![png_profile_monster_murloc_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/a8cb336a-73a6-4198-8404-fe60afa0e3fb)
+![png_profile_monster_shaman_oak_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/c4059dd6-73bf-4c91-a892-c464d275db40)
+![png_profile_monster_bluehide_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/b2da53b5-9219-4689-aca8-2cbc9c892f44)
+![png_profile_monster_red_lizardman_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/dc4a18cd-c45e-4f89-9c92-249d6a6a8f76)
+![png_profile_monster_tree_demon_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/827bc974-bbc7-4e0b-a133-53f9ccf473af)
+![png_profile_monster_grizzlyeer_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/5c1eb0ab-810a-4f68-90c0-c06aad547bd0)
+![png_profile_monster_hydra_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/43053bcc-4a32-452e-a53c-0f8f5a2f4b52)
+
+![FinalCrash](https://github.com/EndWish/SPGP_TermProject/assets/90082921/76e78392-7cbb-408e-a9f5-e34c01c7cab1)
+
 -------------------------
 ### 9주차 - 디버그 및 최종 테스트  
 -------------------------
