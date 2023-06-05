@@ -79,8 +79,47 @@ SpriteButton클래스를 추가하여 버튼시스템을 구현
 
 -------------------------
 ### 6주차 - 전투 시스템 구현 (스킬 이팩트, 데미지, 보상 시스템, 버프 디버프 시스템 구현)  
+아군 공격턴(대상 선택) 추가.  
+![공격](https://github.com/EndWish/SPGP_TermProject/assets/90082921/0080ccf7-6b81-4172-a92f-e0114d17661a)  
+  
+적군 공격턴(자동공격) 추가.  
+![적의 공격](https://github.com/EndWish/SPGP_TermProject/assets/90082921/800ce33d-7ff6-4623-b2d7-8453094f4417)  
+  
+전투 승리후 다음 웨이브 이동 추가.  
+![다음 웨이브 이동](https://github.com/EndWish/SPGP_TermProject/assets/90082921/15655df2-10c7-48b1-bd04-816a4ab7eac1)  
+  
+탐험 성공 결과창 추가.  
+![탐험 성공](https://github.com/EndWish/SPGP_TermProject/assets/90082921/e53874b4-cf82-4e0c-809c-030609d25cc5)  
+  
+탐험 실패 결과창 추가.  
+![탐험 실패](https://github.com/EndWish/SPGP_TermProject/assets/90082921/26ce885a-7d0e-4602-9db8-d016b2d31870)  
+  
 -------------------------
 ### 7주차 - 캐릭터와 무기 추가  
+![png_icon_adventurer_arthur_256x256](https://github.com/EndWish/SPGP_TermProject/assets/90082921/3b4878ac-c9d5-448b-b52e-222a05875a07)  
+![Slash](https://github.com/EndWish/SPGP_TermProject/assets/90082921/f5d09616-221a-4539-81a0-0cf5813cfc72)  
+![Rush](https://github.com/EndWish/SPGP_TermProject/assets/90082921/82848b9c-072e-4f44-8485-760f42c96b51)  
+  
+![png_icon_adventurer_abigail_256x256](https://github.com/EndWish/SPGP_TermProject/assets/90082921/a2e9c473-98b6-49ae-8626-b34eb24b4645)  
+![Heal](https://github.com/EndWish/SPGP_TermProject/assets/90082921/783f64a1-2f95-45aa-824f-2dea0f2e27bc)  
+![Blessing](https://github.com/EndWish/SPGP_TermProject/assets/90082921/f6736e72-9147-4479-9ef5-879a2b698736)  
+  
+![png_icon_adventurer_aliyah_256x256](https://github.com/EndWish/SPGP_TermProject/assets/90082921/afcde166-a4ea-4a4d-a4bf-70b53cd4368b)  
+![PierceArrow](https://github.com/EndWish/SPGP_TermProject/assets/90082921/a6e5beba-d1ca-4c37-9533-b0c2c523744c)  
+![EmpweredArrows](https://github.com/EndWish/SPGP_TermProject/assets/90082921/4fdd7255-f4e6-4a7c-99cc-3bf75f7704a8)  
+  
+![png_icon_adventurer_barry_256x256](https://github.com/EndWish/SPGP_TermProject/assets/90082921/97b4d8ea-c681-4869-8bb1-99fa1b52fd3e)  
+![CreepingToxin](https://github.com/EndWish/SPGP_TermProject/assets/90082921/341ad500-1338-4986-9799-b707dacf7741)  
+![PoisonMistReinforce](https://github.com/EndWish/SPGP_TermProject/assets/90082921/8f5ce1a7-d27d-4e2e-99b1-0c5ece06ee17)  
+  
+![png_icon_adventurer_shamar_256x256](https://github.com/EndWish/SPGP_TermProject/assets/90082921/92268cb1-bbd7-4f8e-bd88-4b71a02ebf47)  
+![EnchantedQuiver](https://github.com/EndWish/SPGP_TermProject/assets/90082921/273fae8d-22ec-46a5-ab08-074b44a22c65)  
+![ArrowBlaster](https://github.com/EndWish/SPGP_TermProject/assets/90082921/bdb5173d-c6f7-4975-9832-276ed1786b8e)  
+  
+![png_icon_adventurer_aron_256x256](https://github.com/EndWish/SPGP_TermProject/assets/90082921/3d2f672a-169f-4a61-88f7-296ed65628ac)  
+![OrbitalFlame](https://github.com/EndWish/SPGP_TermProject/assets/90082921/1b9998ae-8dac-4021-8e68-cbef7c12fe92)  
+![FlameVortex](https://github.com/EndWish/SPGP_TermProject/assets/90082921/fa7461fd-d42b-403f-84f8-d514ff906cf4)  
+
 -------------------------
 ### 8주차 - 몬스터와 탐험지역 추가  
 -------------------------
