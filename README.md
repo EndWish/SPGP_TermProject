@@ -33,13 +33,13 @@
 7.  마지막 전투까지 승리하게 되면 탐험이 끝나고 다음 탐험지역이 활성화 됩니다. 1번 과정으로 돌아가 반복하게 됩니다.  
 
 ## 개발 일정
-### 1주차 - 리소스 수집 (90%)  
+### 1주차 - 리소스 수집 (100%)  
 -------------------------
 ![image](https://user-images.githubusercontent.com/90082921/236818396-e1180115-0b3d-49c5-b612-9792aa89decd.png)
 ![image](https://user-images.githubusercontent.com/90082921/236818557-a632b84a-27d0-4f94-ba6a-b2f87ebbeb14.png)
 ![image](https://user-images.githubusercontent.com/90082921/236818608-682de6a8-7e1b-4c0f-9286-4d05fd61c0b1.png)
 
-### 2주차 - 클래스다이어 그램을 작성하고 설계하기(80%)  
+### 2주차 - 클래스다이어 그램을 작성하고 설계하기 (100%)  
 링크 : https://drive.google.com/file/d/1hy8AKG66e9_fdKM2iuScWqOGM9-6YYXr/view?usp=sharing  
 ![image](https://user-images.githubusercontent.com/90082921/230753916-d48dd56a-f54e-455e-a9d6-032b73a03740.png)  
 -------------------------
@@ -53,7 +53,7 @@ SpriteButton클래스를 추가하여 버튼시스템을 구현
 인벤토리창에 페이지를 넘길 수 있는 좌우 화살표 버튼을 만들고 페이지수를 표시할 수 있도록 텍스트를 출력  
 
 -------------------------
-### 4주차 - 캐릭터와 장비의 정보창 구현. 강화 및 귀속 시스템 구현 (90%)  
+### 4주차 - 캐릭터와 장비의 정보창 구현. 강화 및 귀속 시스템 구현 (100%)  
 캐릭터의 능력치나 장비하고 있는 무기, 스킬 등을 보여주는 정보창을 구현  
 ![image](https://user-images.githubusercontent.com/90082921/236820103-e1365fc6-02bb-4cf5-8c80-5ae555a58802.png)  
 장비의 정보를 보여주는 창을 구현  
@@ -69,7 +69,7 @@ SpriteButton클래스를 추가하여 버튼시스템을 구현
 무기강화와 무기귀속 시도시 성공혹은 실패 이팩트가 발생하도록 구현  
 
 -------------------------
-### 5주차 - 전투 시스템 구현 (적 생성, 스킬 게이지, 대상 선택) (50%)
+### 5주차 - 전투 시스템 구현 (적 생성, 스킬 게이지, 대상 선택) (100%)  
 탐험지역 추가.  
 ![image](https://user-images.githubusercontent.com/90082921/236821630-72b67c13-f043-4073-853b-22d64f299ab1.png)  
 현재 탐험지역에서 나올 수 있는 적들을 랜덤으로 생성하도록 구현.  
@@ -78,7 +78,7 @@ SpriteButton클래스를 추가하여 버튼시스템을 구현
 ![image](https://user-images.githubusercontent.com/90082921/236821977-b38ef9f8-b848-4b66-b562-8a6664412d85.png)  
 
 -------------------------
-### 6주차 - 전투 시스템 구현 (스킬 이팩트, 데미지, 보상 시스템, 버프 디버프 시스템 구현)  
+### 6주차 - 전투 시스템 구현 (스킬 이팩트, 데미지, 보상 시스템, 버프 디버프 시스템 구현) (100%)  
 아군 공격턴(대상 선택) 추가.  
 ![공격](https://github.com/EndWish/SPGP_TermProject/assets/90082921/0080ccf7-6b81-4172-a92f-e0114d17661a)  
   
@@ -95,7 +95,7 @@ SpriteButton클래스를 추가하여 버튼시스템을 구현
 ![탐험 실패](https://github.com/EndWish/SPGP_TermProject/assets/90082921/26ce885a-7d0e-4602-9db8-d016b2d31870)  
   
 -------------------------
-### 7주차 - 캐릭터와 무기 추가  
+### 7주차 - 캐릭터와 무기 추가 (100%)   
 ![png_icon_adventurer_arthur_256x256](https://github.com/EndWish/SPGP_TermProject/assets/90082921/3b4878ac-c9d5-448b-b52e-222a05875a07)  
 ![Slash](https://github.com/EndWish/SPGP_TermProject/assets/90082921/f5d09616-221a-4539-81a0-0cf5813cfc72)  
 ![Rush](https://github.com/EndWish/SPGP_TermProject/assets/90082921/82848b9c-072e-4f44-8485-760f42c96b51)  
@@ -139,7 +139,7 @@ SpriteButton클래스를 추가하여 버튼시스템을 구현
 ![png_icon_equipment_skull_wand](https://github.com/EndWish/SPGP_TermProject/assets/90082921/eec1886a-42a8-418a-8088-b44282831ef9)
 
 -------------------------
-### 8주차 - 몬스터와 탐험지역 추가  
+### 8주차 - 몬스터와 탐험지역 추가 (100%)  
 ![png_profile_monster_ivern_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/c0e8164f-89a5-4fcd-844d-b42ce2632ddf)
 ![png_profile_monster_lilium_serpens_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/9e9e2986-fe9b-49d7-8ceb-bea99f01b4ad)
 ![png_profile_monster_baby_hydra_256x384](https://github.com/EndWish/SPGP_TermProject/assets/90082921/3ee1f5fb-92f6-4541-b982-fdcb6b7ae916)
@@ -154,18 +154,22 @@ SpriteButton클래스를 추가하여 버튼시스템을 구현
 ![FinalCrash](https://github.com/EndWish/SPGP_TermProject/assets/90082921/76e78392-7cbb-408e-a9f5-e34c01c7cab1)
 
 -------------------------
-### 9주차 - 디버그 및 최종 테스트  
+### 9주차 - 디버그 및 최종 테스트 (100%)  
 -------------------------
 
 ### 진행률
 -------------------------
 |주차|진행률|
 |:----:|:----:|
-|1주차|90%|
-|2주차|80%|
+|1주차|100%|
+|2주차|100%|
 |3주차|100%|
-|4주차|90%|
-|5주차|50%|
+|4주차|100%|
+|5주차|100%|
+|6주차|100%|
+|7주차|100%|
+|8주차|100%|
+|9주차|100%|
 
 ## GameObject  
 GameObject : update와 draw를 처리하고 자식을 가질 수 있도록 하여 GameObject를 계층적으로 만들 수 있도록 하였다.  
@@ -175,12 +179,37 @@ Adventurer : 캐릭터(모험가)의 능력치, 스킬, 보유중인 아이템 �
 Equipment : 장비의 레벨과 착용자등의 정보를 가지고 있다. IAbility를 상속받아 특정 상황에서 능력이 발동되도록 구현. IIcon도 상속 받았다.  
 Skill : 현재는 이름, 아이콘, 툴팁등을 정보를 가지고 있다. 추후 캐릭터(모험가)를 매개변수로 스킬 이펙트를 생성하는 함수를 추가할 예정이다.  
 
-## 어려웠던 것들
-Touch Inside : 버튼이 눌린후 해당 버튼의 영역안에서 다시 손이 떼질 경우에만 작동하도록 하는 것.  
-아이템을 재료로 사용하거나 파괴 되었을 경우 인벤토리 창에서 버튼들을 갱신하는 부분.  
+### 사용된 기술  
+- Touch In side  
+- Drag  
+- Oriented Bounding Box 와 점(마우스)의 충돌 체크 구현  
+
+### 참고한 것들  
+- 폰트의 가로 사이즈를 얻어와 공백과 개행문자를 기준으로 문자를 쪼개는 것 (tooltip 만들때 사용)  
+
+### 수업내용에서 차용한 것  
+- BitmapPool/BaseScene/GameView  
+- 빌더 패턴을 사용하여 객체를 생성하기  
+- 화면의 크기를 상수로 만들어 사용하는 것  
+
+### 직접 개발한 것  
+- 게임 오브젝트를 계층 구조로 구현  
+- 아래에 묻힌 UI의 버튼이 눌리지 않도록 구현  
+- 스프라이트 애니메이션 및 회전과 플립 구현  
+- 전투 시스템  
+
+### 하고 싶었지만 못 한 것들 & 팔기 위해 보충할 것들  
+- 사운드 삽입  
+- RecycleBin 구현  
+- 콘텐츠 보강 및 추가  
+- 장비 아이템이 능력치만 주는것이 아닌 특수한 효과도 주도록 구현  
+
+### 수업에 대한 내용  
+- bitmapPool, RecycleBin 과 같은 메모리 관리 기법과 디자인 패턴 등 다른 강의에서 배우지 못한 내용들이 도움이 되었다.  
+- 강의 초반에 OOP에 대한 내용을 상기시켜주어, 이번 텀 프로젝트를 하면서 UML를 사용해 미리 설계도 해보고 객체 지향적인 프로그램을 의식하면서 코드를 짜다보니 프로젝트의 크기가 커져도 새로운 것을 추가하거나 수정할때 큰 어려움을 겪지 않은 것은 처음이어서 좋았습니다.  
 
 ## 커밋 내용  
-![image](https://user-images.githubusercontent.com/90082921/236828187-d34bda44-5629-4126-bf65-3aaeae5bb031.png)
+![image](https://github.com/EndWish/SPGP_TermProject/assets/90082921/67f43fbd-1b95-4474-909d-e9ab6f278f1b)  
 |주차|커밋 횟수|
 |:----:|:----:|
 |1주차 이전|4|
@@ -189,5 +218,12 @@ Touch Inside : 버튼이 눌린후 해당 버튼의 영역안에서 다시 손�
 |3주차|7|
 |4주차|4|
 |5주차|11|
+|6주차|8|
+|7주차|24|
+|8주차|15|
+|9주차|14|
 
 1차 발표 링크 : https://youtu.be/sNvB-zUBuz4  
+2차 발표 링크 : https://github.com/EndWish/SPGP_TermProject/blob/main/README.md  
+
+
