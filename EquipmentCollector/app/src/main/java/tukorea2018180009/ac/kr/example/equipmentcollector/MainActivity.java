@@ -22,4 +22,16 @@ public class MainActivity extends AppCompatActivity {
         //new VillageScene().pushScene();
     }
 
+    @Override
+    protected void onPause() {
+        gameView.pauseGame();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        gameView.resumeGame();
+    }
+
 }

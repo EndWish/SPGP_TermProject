@@ -22,6 +22,8 @@ public class GameView extends View implements Choreographer.FrameCallback {
     protected Paint fpsPaint;
     protected Paint borderPaint;
 
+    protected boolean running;
+
     // 생성자
     public GameView(Context context) {
         super(context);
@@ -40,6 +42,8 @@ public class GameView extends View implements Choreographer.FrameCallback {
     private void init(AttributeSet attrs, int defStyle) {
         GameView.res = getResources();
         Choreographer.getInstance().postFrameCallback(this);
+
+        running = true;
 
         if (BuildConfig.DEBUG) {
             fpsPaint = new Paint();
@@ -125,4 +129,23 @@ public class GameView extends View implements Choreographer.FrameCallback {
     public void setFullScreen() {
         setSystemUiVisibility(View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
     }
+
+    public void pauseGame() {
+        running = false;
+        BaseScene topScene = BaseScene.getTopScene();
+        if (topScene == null)
+            return;
+        //topScene.pauseScene();
+    }
+
+    public void resumeGame() {
+        if (running) {
+            return;
+        }
+        running = true;
+
+        //BaseScene.getTopScene().resumeScene();
+        Choreographer.getInstance().postFrameCallback(this);
+    }
+
 }
