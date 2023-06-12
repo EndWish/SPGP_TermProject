@@ -223,10 +223,10 @@ Skill : 현재는 이름, 아이콘, 툴팁등을 정보를 가지고 있다. �
 |8주차|15|
 |9주차|14|
 
-1차 영상 링크 : https://github.com/EndWish/SPGP_TermProject/blob/bb68b0f6afb3484c3336cbbfdbb2d46b2f20cf4e/README.md  
+1차 영상 링크 : https://www.youtube.com/watch?v=sNvB-zUBuz4&feature=youtu.be  
 1차 README.md 링크 : https://github.com/EndWish/SPGP_TermProject/blob/bb68b0f6afb3484c3336cbbfdbb2d46b2f20cf4e/README.md  
 
-2차 영상 링크 : https://github.com/EndWish/SPGP_TermProject/blob/bb68b0f6afb3484c3336cbbfdbb2d46b2f20cf4e/README.md  
+2차 영상 링크 : https://www.youtube.com/watch?v=jWWHEg3HKhE  
 2차 README.md 링크 : https://github.com/EndWish/SPGP_TermProject/tree/dfc52a7bb5978507aa7c9e7f47022cd4086541cf  
 
 3차 영상 링크 : https://youtu.be/M7pyT4aukIk  
